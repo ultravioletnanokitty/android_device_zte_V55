@@ -1,0 +1,64 @@
+
+# Sample variables file for BCM94330 SD WL AGB board
+manfid=0x2d0
+prodid=0x0547
+vendid=0x14e4
+devid=0x4360
+boardtype=0x0547
+boardrev=0x30
+#boardflags: 5GHz FEM: has ext 5GHz PA + LNA;
+#            2.4GHz FEM: has ext 2.4GHz PA + LNA;
+#            2.4GHz FEM: SP3T switch share with BT;
+#            keep original 0x200.
+boardflags=0x10081a00
+nocrc=1
+xtalfreq=37400
+boardnum=22
+macaddr=C8:7B:5B:6B:FF:41
+ag0=255
+aa2g=1
+ccode=ALL
+pa0itssit=0x20
+#PA parameters for 2.4GHz
+pa0b0=5400
+pa0b1=-654
+pa0b2=-174
+extpagain2g=2
+extpagain5g=2
+# rssi params for 2.4GHz
+rssismf2g=0x2
+rssismc2g=0x7
+rssisav2g=0x1
+cckPwrOffset=3
+# rssi params for 5GHz
+rssismf5g=0x4
+rssismc5g=0x7
+rssisav5g=0x2
+#PA parameters for lower a-band
+pa1lob0=4639
+pa1lob1=-740
+pa1lob2=-257
+#PA parameters for midband
+pa1b0=5856
+pa1b1=-530
+pa1b2=-37
+#PA parameters for high band
+pa1hib0=4493
+pa1hib1=-722
+pa1hib2=-248
+rxpo5g=0
+maxp2ga0=0x3a
+maxp5ga0=0x2a
+ofdm2gpo=0x22222222
+mcs2gpo0=0x0000
+mcs2gpo1=0x0000
+cckPwrIdxCorr=-15
+sromrev=3
+il0macaddr=00:90:4c:c5:12:38
+wl0id=0x431b
+pagc2g=0x10
+dacgc2g=4
+swctrlmap_2g=0x84048404,0xc2428202,0x82028202,0x14202,0x1ff
+# using new SKY65551 with swapped SW1, SW2: ctrl4 and ctrl5 swapped back from rev P200:
+swctrlmap_5g=0x00100010,0x00280020,0x00200020,0x14202,0x2f8
+initxidx5g=80
