@@ -14,7 +14,7 @@ $(LOCAL_KERNEL):kernel \
 PRODUCT_NAME := cm_V55
 PRODUCT_DEVICE := V55
 PRODUCT_MANUFACTURER := ZTE
-PRODUCT_BRAND :=Sprint 
+PRODUCT_BRAND := ZTE
 PRODUCT_MODEL := Optik
 PRODUCT_BOARD := V55
 PRODUCT_CHARACTERISTICS :=tablet,nosdcard
@@ -28,7 +28,7 @@ PRODUCT_PROPERTY_OVERRIDES+= dalvik.vm.execution-mode=int:jit \
 	debug.enabletr=true \
 	persist.sys.use_dithering=0 \
 	ro.com.google.locationfeatures=1 \
-	mobiledata.interfaces = eth0,rmnet0
+	mobiledata.interfaces = eth0
 
 # Provides overrides to configure the Dalvik heap for a standard tablet device.
 
@@ -107,11 +107,11 @@ PRODUCT_PACKAGES += \
     Gallery2 \
     LatinIME \
     Launcher2 \
-    Mms \
-    Music \
+#    Mms \
+#    Music \
 	MusicFX \
-    Phone \
-    Provision \
+#    Phone \
+#    Provision \
     Protips \
     QuickSearchBox \
 	hcitool \
@@ -123,7 +123,7 @@ PRODUCT_PACKAGES += \
     CalendarProvider \
     SyncProvider \
     IM \
-    VoiceDialer \
+#    VoiceDialer \
     hciconfig \
 	hciattach \
 	CMParts \
