@@ -107,7 +107,7 @@ WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_p
 CONFIG_DRIVER_WEXT := true
 WIFI_BAND                        := 802_11_ABGN
 BOARD_WEXT_NO_COMBO_SCAN := true
-#BOARD_MOBILEDATA_INTERFACE_NAME := rmnet0
+BOARD_MOBILEDATA_INTERFACE_NAME := rmnet0
 BOARD_NETWORK_INTERFACES_DIR := "/sys/devices/virtual/net"
 PRODUCT_WIRELESS_TOOLS := true
 
