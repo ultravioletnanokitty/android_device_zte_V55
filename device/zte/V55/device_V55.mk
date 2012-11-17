@@ -172,7 +172,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/modules/WCN1314_rf_ftm.ko:system/lib/modules/WCN1314_rf_ftm.ko \
 	device/zte/V55/proprietary/lib/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
 	device/zte/V55/proprietary/lib/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
-	device/zte/V55/proprietary/lib/modules/dal_remotetest.ko:system/lib/modules/dal_rem \otetest.ko
+	device/zte/V55/proprietary/lib/modules/dal_remotetest.ko:system/lib/modules/dal_remotetest.ko \
 	# This is the driver for the bcm4330 WiFi card itself.
 	device/zte/V55/proprietary/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
 	device/zte/V55/proprietary/lib/modules/dhd.ko.ok:system/lib/modules/dhd.ko.ok \
