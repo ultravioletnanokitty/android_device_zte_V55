@@ -173,7 +173,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
 	device/zte/V55/proprietary/lib/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
 	device/zte/V55/proprietary/lib/modules/dal_remotetest.ko:system/lib/modules/dal_remotetest.ko \
-	device/zte/V55/proprietary/lib/modules/dhd.ko:system/lib/modules/dhd.ko \ 
+	device/zte/V55/proprietary/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
 	device/zte/V55/proprietary/lib/modules/dhd.ko.ok:system/lib/modules/dhd.ko.ok \
 	device/zte/V55/proprietary/lib/modules/dhd.ko.ori:system/lib/modules/dhd.ko.ori \
 	device/zte/V55/proprietary/lib/modules/dma_test.ko:system/lib/modules/dma_test.ko \
