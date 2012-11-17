@@ -190,7 +190,6 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
 	device/zte/V55/proprietary/lib/modules/tsif_chrdev.ko:system/lib/modules/tsif_chrdev.ko \
 	device/zte/V55/proprietary/lib/modules/wlan.ko:system/lib/modules/wlan.ko \
-	                                
 
 
 # These are the hardware-specific features
