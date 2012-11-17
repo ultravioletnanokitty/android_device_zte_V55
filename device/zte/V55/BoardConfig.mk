@@ -190,4 +190,3 @@ SP3_NAME := "aboot"
 SP3_DISPLAY_NAME := "Appsboot"
 SP3_BACKUP_METHOD := image
 SP3_MOUNTABLE := 0
-:= 0
