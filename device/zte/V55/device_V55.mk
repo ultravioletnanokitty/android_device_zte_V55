@@ -414,9 +414,9 @@ PRODUCT_COPY_FILES += \
 	
 #wifi
 PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_bg.bin:system/etc/wifi/fw_bcm4330_bg.bin \
 	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_abg.bin:system/etc/wifi/fw_bcm4330_apsta_abg.bin \
 	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_abg.bin:system/etc/wifi/fw_bcm4330_abg.bin \
+	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_p2p_abg.bin:system/etc/wifi/fw_bcm4330_p2p_abg.bin \
 	device/zte/V55/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
 	
 #camera
