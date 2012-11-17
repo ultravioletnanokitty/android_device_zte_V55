@@ -173,8 +173,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
 	device/zte/V55/proprietary/lib/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
 	device/zte/V55/proprietary/lib/modules/dal_remotetest.ko:system/lib/modules/dal_remotetest.ko \
-	# This is the driver for the bcm4330 WiFi card itself.
-	device/zte/V55/proprietary/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
+	device/zte/V55/proprietary/lib/modules/dhd.ko:system/lib/modules/dhd.ko \ 
 	device/zte/V55/proprietary/lib/modules/dhd.ko.ok:system/lib/modules/dhd.ko.ok \
 	device/zte/V55/proprietary/lib/modules/dhd.ko.ori:system/lib/modules/dhd.ko.ori \
 	device/zte/V55/proprietary/lib/modules/dma_test.ko:system/lib/modules/dma_test.ko \
@@ -182,7 +181,6 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/modules/gspca_main.ko:system/lib/modules/gspca_main.ko \
 	device/zte/V55/proprietary/lib/modules/ksapi.ko:system/lib/modules/ksapi.ko \
 	device/zte/V55/proprietary/lib/modules/lcd.ko:system/lib/modules/lcd.ko \
-	# Appears to be for the SDIO interface the WiFi card uses
 	device/zte/V55/proprietary/lib/modules/librasdioif.ko:system/lib/modules/librasdioif.ko \
 	device/zte/V55/proprietary/lib/modules/msm_tsif.ko:system/lib/modules/msm_tsif.ko \
 	device/zte/V55/proprietary/lib/modules/oprofile.ko:system/lib/modules/oprofile.ko \
@@ -191,7 +189,6 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/modules/qcrypto.ko:system/lib/modules/qcrypto.ko \
 	device/zte/V55/proprietary/lib/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
 	device/zte/V55/proprietary/lib/modules/tsif_chrdev.ko:system/lib/modules/tsif_chrdev.ko \
-	# Obviously also WiFi related
 	device/zte/V55/proprietary/lib/modules/wlan.ko:system/lib/modules/wlan.ko \
 	                                
 
