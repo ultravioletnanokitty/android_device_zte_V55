@@ -90,8 +90,8 @@ TARGET_PROVIDES_LIBAUDIO := true
 # Wi-Fi
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-#BOARD_HOSTAPD_DRIVER        := WEXT
-#BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER        := WEXT
+BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE           := bcmdhd
 BOARD_WLAN_DEVICE_REV		:= bcm4330_b2
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
@@ -99,15 +99,15 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
 WIFI_DRIVER_MODULE_NAME := "dhd"
 WIFI_AP_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
 WIFI_AP_DRIVER_MODULE_NAME := "dhd"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/bcm4330_b2.bin"
-#WIFI_DRIVER_FW_PATH_P2P := "/system/etc/wifi/bcm4330_p2p_b2.bin"
-#WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/fw_bcm4330_apsta_b2.bin"
-WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt"
-#WIFI_AP_DRIVER_MODULE_ARG  := "firmware_path=/system/etc/wifi/fw_bcm4330_apsta_b2.bin nvram_path=/persist/zte/wifi/bcm.txt"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/fw_bcm4330_abg.bin"
+WIFI_DRIVER_FW_PATH_P2P := "/system/etc/wifi/fw_bcm4330_abg.bin"
+WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/fw_bcm4330_apsta_abg.bin"
+WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/fw_bcm4330_abg.bin nvram_path=/persist/zte/wifi/bcm.txt"
+WIFI_AP_DRIVER_MODULE_ARG  := "firmware_path=/system/etc/wifi/fw_bcm4330_apsta_abg.bin nvram_path=/persist/zte/wifi/bcm.txt"
 CONFIG_DRIVER_WEXT := true
 WIFI_BAND                        := 802_11_ABGN
 BOARD_WEXT_NO_COMBO_SCAN := true
-BOARD_MOBILEDATA_INTERFACE_NAME := rmnet0
+#BOARD_MOBILEDATA_INTERFACE_NAME := rmnet0
 BOARD_NETWORK_INTERFACES_DIR := "/sys/devices/virtual/net"
 PRODUCT_WIRELESS_TOOLS := true
 

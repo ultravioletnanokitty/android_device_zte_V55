@@ -189,8 +189,8 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
-	#frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-	#frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
+	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+	frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 
 # kcm keymaps
 PRODUCT_COPY_FILES += \
@@ -387,15 +387,14 @@ PRODUCT_COPY_FILES += \
 #	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
 #	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
 #	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
-#	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar
+#	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar \
 	
 #wifi
 PRODUCT_COPY_FILES += \
-	device/zte/smarttab_common/proprietary/etc/wifi/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
-	device/zte/smarttab_common/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
-	device/zte/smarttab_common/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
-	device/zte/smarttab_common/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin \
-	device/zte/smarttab_common/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
+	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_bg.bin:system/etc/wifi/fw_bcm4330_bg.bin \
+	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_abg.bin:system/etc/wifi/fw_bcm4330_apsta_abg.bin \
+	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_abg.bin:system/etc/wifi/fw_bcm4330_abg.bin \
+	device/zte/V55/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
 	
 #camera
 PRODUCT_COPY_FILES += \
