@@ -358,8 +358,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
 	device/zte/smarttab_common/proprietary/lib/libmmosal.so:/system/lib/libmmosal.so \
 	device/zte/smarttab_common/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
-#    device/zte/smarttab_common/proprietary/lib/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
-#    device/zte/smarttab_common/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
+#	device/zte/smarttab_common/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
 #	device/zte/smarttab_common/proprietary/lib/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
 #	device/zte/smarttab_common/proprietary/lib/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \
 
