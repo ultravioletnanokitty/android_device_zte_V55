@@ -25,7 +25,8 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-	 #chmod -R 777 /sys/devices/system/cpu #ugly hack cm settings
+	 
+	 chmod 0000 /dev/taos # Disabling Proximity Sensor 
 	 echo 1 > /sys/module/rpm_resources/enable_low_power/L2_cache
 	 echo 1 > /sys/module/rpm_resources/enable_low_power/pxo
 	 echo 2 > /sys/module/rpm_resources/enable_low_power/vdd_dig
@@ -49,8 +50,8 @@
 	 #echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
 	 #chown system /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
 	 #chown system /sys/devices/system/cpu/cpu1/cpufreq/ondemand/sampling_rate
-	 echo 432000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	 echo 432000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+	 echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	 echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
 	 #chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 	 #chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	 #chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq

@@ -20,11 +20,11 @@ loglevel 3
     export ANDROID_ROOT /system
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
-    export EXTERNAL_STORAGE /storage/sdcard0
+    export EXTERNAL_STORAGE /mnt/sdcard
 # ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
-    export EXTERNAL_ALT_STORAGE /storage/sdcard1
+    export EXTERNAL_ALT_STORAGE /mnt/sdcard-ext
 	#ZTE_MODIFY jijie 2011-10-03 start
-    export EXTERNAL_USB_STORAGE /storage/usb
+    export EXTERNAL_USB_STORAGE /mnt/sdcard-usb
 	#ZTE_MODIFY jijie 2011-10-03 end
 # ZTE_MODIFY yuanbo0015 end
     export ASEC_MOUNTPOINT /mnt/asec
@@ -45,10 +45,10 @@ loglevel 3
     symlink /system/vendor /vendor
 
 # create mountpoints
-    mkdir /storage/sdcard0 0000 system system
+    mkdir /mnt/sdcard 0000 system system
 # ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
-    mkdir /storage/sdcard1 0000 system system
-    mkdir /storage/usb 0000 system system
+    mkdir /mnt/sdcard-ext 0000 system system
+    mkdir /mnt/sdcard-usb 0000 system system
 # ZTE_MODIFY yuanbo0015 end
 
 # Create cgroup mount point for cpu accounting
@@ -57,10 +57,10 @@ loglevel 3
     mkdir /acct/uid
 
 # Backwards Compat - XXX: Going away in G*
-    symlink /storage/sdcard0 /sdcard
+    symlink /mnt/sdcard /sdcard
 # ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
-    symlink /storage/sdcard1 /sdcard-ext
-    symlink /storage/usb /sdcard-usb
+    symlink /mnt/sdcard-ext /sdcard-ext
+    symlink /mnt/sdcard-usb /sdcard-usb
 # ZTE_MODIFY yuanbo0015 end
 
     mkdir /system
@@ -278,6 +278,15 @@ on post-fs-data
     mkdir /data/dalvik-cache 0771 system system
     chown system system /data/dalvik-cache
     chmod 0771 /data/dalvik-cache
+
+
+
+
+
+
+
+
+
 
     # create the lost+found directories, so as to enforce our permissions
     mkdir /data/lost+found 0770

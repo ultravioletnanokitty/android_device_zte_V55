@@ -36,8 +36,8 @@
 	<bool name="config_wifi_background_scan_support">false</bool>
 	<bool name="config_allowAllRotations">true</bool>
 	<bool name="config_carDockEnablesAccelerometer">true</bool>
-	<bool name="config_voice_capable">false</bool>
-    <bool name="config_sms_capable">false</bool>
+	<bool name="config_voice_capable">true</bool>
+    <bool name="config_sms_capable">true</bool>
 
 	
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
@@ -146,14 +146,14 @@
     </string-array> end of stock from hc -->
 	<string-array translatable="false" name="networkAttributes">
         <item>"wifi,1,1,1,-1,true"</item>
-        <!-- item>"mobile,0,0,0,-1,true"</item>
+        <item>"mobile,0,0,0,-1,true"</item>
         <item>"mobile_mms,2,0,2,60000,true"</item>
         <item>"mobile_supl,3,0,2,60000,true"</item>
-        <item>"mobile_hipri,5,0,3,60000,true"</item -->
+        <item>"mobile_hipri,5,0,3,60000,true"</item>
 		<item>"bluetooth,7,0,3,60000,true"</item>
-        <!-- item>"mobile_fota,10,0,2,60000,true"</item>
+        <item>"mobile_fota,10,0,2,60000,true"</item>
         <item>"mobile_ims,11,0,2,60000,true"</item>
-        <item>"mobile_cbs,12,0,2,60000,true"</item -->
+        <item>"mobile_cbs,12,0,2,60000,true"</item>
     </string-array>
 	<integer-array translatable="false" name="config_protectedNetworks">
         <item>10</item>
@@ -164,13 +164,13 @@
 	
     <!-- Set of NetworkInfo.getType() that reflect data usage. -->
     <integer-array translatable="false" name="config_data_usage_network_types">
-        <!-- item>0</item>  TYPE_MOBILE -->
-        <!-- item>2</item>  TYPE_MOBILE_MMS -->
-        <!-- item>3</item>  TYPE_MOBILE_SUPL -->
-		<!-- item>4</item>  TYPE_MOBILE_DUN -->
-        <!-- item>5</item>  TYPE_MOBILE_HIPRI --> 
-        <item>7</item>  TYPE_Bluetooth -->		
-        <item>1</item>  TYPE_WIFI -->
+        <item>0</item> <!-- TYPE_MOBILE -->
+        <item>2</item> <!-- TYPE_MOBILE_MMS -->
+        <item>3</item> <!-- TYPE_MOBILE_SUPL -->
+		<item>4</item> <!-- TYPE_MOBILE_DUN -->
+        <item>5</item> <!-- TYPE_MOBILE_HIPRI -->
+        <item>7</item> <!-- TYPE_Bluetooth -->		
+        <item>1</item> <!-- TYPE_WIFI -->
     </integer-array>
     <!-- This string array should be overridden by the device to present a list of radio
          attributes.  This is used by the connectivity manager to decide which networks can coexist
@@ -187,7 +187,7 @@
 	
 	<string-array translatable="false" name="radioAttributes"> 
         <item>"1,1"</item>
-        <!-- item>"0,1"</item -->
+        <item>"0,1"</item>
 		<item>"7,1"</item>
     </string-array>
 
@@ -224,9 +224,9 @@
     <!-- Common options are [1, 4] for TYPE_WIFI and TYPE_MOBILE_DUN or
     <!== [0,1,5,7] for TYPE_MOBILE, TYPE_WIFI, TYPE_MOBILE_HIPRI and TYPE_BLUETOOTH  <item>7</item>-->
     <integer-array translatable="false" name="config_tether_upstream_types">
-        <!-- item>0</item -->
+        <item>0</item>
 		<item>1</item>
-		<!-- item>5</item -->
+		<item>5</item>
 		<item>7</item>
     </integer-array>
 

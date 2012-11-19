@@ -11,25 +11,31 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_BOOTLOADER_BOARD_NAME := V55
 TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_ARCH_VARIANT_CPU := cortex-a9
 ARCH_ARM_HAVE_NEON := true
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp -march=armv7-a
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp -march=armv7-a
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno220
-TARGET_BOARD_PLATFORM_FPU := neon
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+#TARGET_BOARD_PLATFORM_FPU := neon
 BOARD_USES_ADRENO_200 := true
 #TARGET_USES_ION := false
 TARGET_PROVIDES_INIT_RC := true
 TARGET_PROVIDES_RECOVERY_INIT_RC := true
 TARGET_RECOVERY_INITRC := device/zte/smarttab_common/recovery/init.rc
-ARCH_ARM_HAVE_ARMV7A := true
+TARGET_EXTRA_CFLAGS += $(call cc-option,-mtune=cortex-a9,$(call cc-option,-mtune=cortex-a8)) $(call cc-option,-mcpu=cortex-a9,$(call cc-option,-mcpu=cortex-a8))
+
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 
-#TARGET_HAS_S3D_SUPPORT := true
-WEBCORE_INPAGE_VIDEO := true
+# Stagefright
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_DECODERS
+
+
+#    TARGET_HAS_S3D_SUPPORT := true
+   WEBCORE_INPAGE_VIDEO := true
 TARGET_HAVE_TSLIB := false
 
 # Camera
@@ -55,12 +61,14 @@ TARGET_HARDWARE_3D := true
 #BOARD_NO_RGBX_8888 := true
 BOARD_USES_GENLOCK := true
 #BOARD_OVERLAY_FORMAT_YCbCr_420_SP := true
-COMMON_GLOBAL_CFLAGS += -DFORCE_CPU_UPLOAD -DQCOM_ICS_COMPAT -DQCOM_NO_SECURE_PLAYBACK
+COMMON_GLOBAL_CFLAGS += -DFORCE_CPU_UPLOAD -DQCOM_ICS_COMPAT -DQCOM_NO_SECURE_PLAYBACK -DQCOM_NO_DMX_SUPPORT -DNO_HW_VSYNC
 COMMON_GLOBAL_CFLAGS += -DQCOM_ACDB_ENABLED -DLEGACY_QCOM_VOICE -DPOLL_CALL_STATE -DUSE_QMI
 TARGET_NO_HW_VSYNC := true
-BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
-BOARD_USE_SKIA_LCDTEXT := true
-
+#BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+#BOARD_USE_SKIA_LCDTEXT := true
+WITH_DEXPREOPT := false 
+LOCAL_DEX_PREOPT := false
+#DISABLE_DEXPREOPT := true
 #hdmi
 TARGET_QCOM_HDMI_OUT := true
 TARGET_HAVE_HDMI_OUT := true
@@ -90,8 +98,8 @@ TARGET_PROVIDES_LIBAUDIO := true
 # Wi-Fi
 WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-BOARD_HOSTAPD_DRIVER        := WEXT
-BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
+#BOARD_HOSTAPD_DRIVER        := WEXT
+#BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE           := bcmdhd
 BOARD_WLAN_DEVICE_REV		:= bcm4330_b2
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
@@ -99,15 +107,15 @@ WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
 WIFI_DRIVER_MODULE_NAME := "dhd"
 WIFI_AP_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
 WIFI_AP_DRIVER_MODULE_NAME := "dhd"
-WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/fw_bcm4330_p2p_abg.bin"
-WIFI_DRIVER_FW_PATH_P2P := "/system/etc/wifi/fw_bcm4330_abg.bin"
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/fw_bcm4330_apsta_abg.bin"
-WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/fw_bcm4330_abg.bin nvram_path=/persist/zte/wifi/bcm.txt"
-WIFI_AP_DRIVER_MODULE_ARG  := "firmware_path=/system/etc/wifi/fw_bcm4330_apsta_abg.bin nvram_path=/persist/zte/wifi/bcm.txt"
+WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/bcm4330_b2.bin"
+#WIFI_DRIVER_FW_PATH_P2P := "/system/etc/wifi/bcm4330_p2p_b2.bin"
+#WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/fw_bcm4330_apsta_b2.bin"
+WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt"
+#WIFI_AP_DRIVER_MODULE_ARG  := "firmware_path=/system/etc/wifi/fw_bcm4330_apsta_b2.bin nvram_path=/persist/zte/wifi/bcm.txt"
 CONFIG_DRIVER_WEXT := true
 WIFI_BAND                        := 802_11_ABGN
 BOARD_WEXT_NO_COMBO_SCAN := true
-#BOARD_MOBILEDATA_INTERFACE_NAME := rmnet0
+BOARD_MOBILEDATA_INTERFACE_NAME := rmnet0
 BOARD_NETWORK_INTERFACES_DIR := "/sys/devices/virtual/net"
 PRODUCT_WIRELESS_TOOLS := true
 
@@ -117,7 +125,7 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 
 #RIL
 #BOARD_USES_HC_RADIO := true
-#BOARD_PROVIDES_LIBRIL := true
+BOARD_PROVIDES_LIBRIL := true
 
 #Sensors
 BOARD_INVENSENSE_APPLY_COMPASS_NOISE_FILTER := true
@@ -179,14 +187,14 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_NO_USB_STORAGE := true
 BOARD_HAS_NO_REAL_SDCARD := true
 
-SP1_NAME := "modem"
-SP1_DISPLAY_NAME := "NON-HLOS (modem Firmware)"
-SP1_BACKUP_METHOD := image
-SP1_MOUNTABLE := 0
-SP2_NAME := "persist"
-SP2_BACKUP_METHOD := image
-SP2_MOUNTABLE := 0
-SP3_NAME := "aboot"
-SP3_DISPLAY_NAME := "Appsboot"
-SP3_BACKUP_METHOD := image
-SP3_MOUNTABLE := 0
+#SP1_NAME := "modem"
+#SP1_DISPLAY_NAME := "NON-HLOS (modem Firmware)"
+#SP1_BACKUP_METHOD := image
+#SP1_MOUNTABLE := 1
+#SP2_NAME := "persist"
+#SP2_BACKUP_METHOD := image
+#SP2_MOUNTABLE := 1
+#SP3_NAME := "aboot"
+#SP3_DISPLAY_NAME := "Appsboot"
+#SP3_BACKUP_METHOD := image
+#SP3_MOUNTABLE := 1

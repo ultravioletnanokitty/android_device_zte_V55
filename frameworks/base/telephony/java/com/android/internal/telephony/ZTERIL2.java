@@ -186,14 +186,15 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
             status.addApplication(ca);
         }
         int appIndex = -1;
-        if (mPhoneType == RILConstants.CDMA_PHONE || getLteOnCdmaMode() == RILConstants.LTE_ON_CDMA_TRUE) {
+        if (mPhoneType == RILConstants.CDMA_PHONE) {
             appIndex = status.getCdmaSubscriptionAppIndex();
             Log.d(LOG_TAG, "This is a CDMA PHONE " + appIndex);
-			mAid = status.getApplication(appIndex).aid;
         } else {
             appIndex = status.getGsmUmtsSubscriptionAppIndex();
             Log.d(LOG_TAG, "This is a GSM PHONE " + appIndex);
-			if (numApplications > 0) {
+        }
+
+        if (numApplications > 0) {
             IccCardApplication application = status.getApplication(appIndex);
             mAid = application.aid;
             mUSIM = application.app_type
@@ -203,23 +204,9 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
             if (TextUtils.isEmpty(mAid))
                mAid = "";
             Log.d(LOG_TAG, "mAid " + mAid);
-				}
         }
-		
+
         return status;
-        /*if (numApplications > 0) {
-            IccCardApplication application = status.getApplication(appIndex);
-            mAid = application.aid;
-            mUSIM = application.app_type
-                      == IccCardApplication.AppType.APPTYPE_USIM;
-            mSetPreferredNetworkType = mPreferredNetworkType;
-
-            if (TextUtils.isEmpty(mAid))
-               mAid = "";
-            Log.d(LOG_TAG, "mAid " + mAid);
-        }
-
-        return status;*/
     }
 
     @Override
@@ -232,12 +219,13 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
             dataCall.cid = p.readInt();
             dataCall.active = p.readInt();
             dataCall.type = p.readString();
-            String unknown = p.readString();//possible ifname
+            dataCall.ifname = p.readString();
+			//String unknown = p.readString();//possible ifname
 			String addresses = p.readString();
 			String dnses = p.readString();
 			String gateways = p.readString();
 						
-			dataCall.ifname = "rmnet0" ;
+			//dataCall.ifname = "rmnet0" ;
 			
                     
             if (!TextUtils.isEmpty(addresses)) {
@@ -258,16 +246,38 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
         return dataCall;
     }
 
+	@Override
+    protected Object
+    responseDataCallList(Parcel p) {
+        ArrayList<DataCallState> response;
+
+        int ver = p.readInt();
+        int num = p.readInt();
+        riljLog("responseDataCallList ver=" + ver + " num=" + num);
+
+        response = new ArrayList<DataCallState>(num);
+        for (int i = 0; i < num; i++) {
+            response.add(getDataCallState(p, ver));
+        }
+
+        return response;
+    }
+
+	
     @Override
     protected Object
     responseSetupDataCall(Parcel p) {
-        DataCallState dataCall;
+        
 		int ver = p.readInt();
         int num = p.readInt();
-				
-        if (RILJ_LOGV) riljLog("responseSetupDataCall ver= " + ver + " num= " + num );
-		//DataCallState dataCall;
+		if (RILJ_LOGV) riljLog("responseSetupDataCall ver=" + ver + " num=" + num);
 
+		DataCallState dataCall;
+		
+				
+        //if (RILJ_LOGV) riljLog("responseSetupDataCall ver= " + ver + " num= " + num );
+		//DataCallState dataCall;
+		
 
         dataCall = new DataCallState();
 		dataCall.version = ver;
@@ -565,9 +575,9 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
         int response = p.readInt();
 
         switch(response) {
-            case RIL_UNSOL_RESPONSE_RADIO_STATE_CHANGED: ret =  responseVoid(p); break;
+            //case RIL_UNSOL_RESPONSE_RADIO_STATE_CHANGED: ret =  responseVoid(p); break;
             case 1033: ret = responseVoid(p); break;
-			case 1034: ret =  responseInts(p); break; // RIL_UNSOL_VOICE_RADIO_TECH_CHANGED
+			case 1034: ret =  responseVoid(p); break; // RIL_UNSOL_VOICE_RADIO_TECH_CHANGED
             case 1035: ret = responseVoid(p); break; // RIL_UNSOL_RESPONSE_IMS_NETWORK_STATE_CHANGED
             case 1036: ret = responseInts(p); break; // RIL_UNSOL_RESPONSE_TETHERED_MODE_STATE_CHANGED
             case 1037: ret = responseVoid(p); break; // RIL_UNSOL_RESPONSE_DATA_NETWORK_STATE_CHANGED
@@ -593,15 +603,8 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
                 setRadioStateFromRILInt(state);
                 break;
 
-			case 1037:
-                if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                if (mExitEmergencyCallbackModeRegistrants != null) {
-                    mExitEmergencyCallbackModeRegistrants.notifyRegistrants(
-                                        new AsyncResult (null, null, null));
-                }
-				break;
 			case 1033:
+			//case 1034:
 			case 1035:
 			case 1036:
 			//case 1037:
@@ -611,25 +614,20 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
             case 1041:
             case 1042:
                 break;	
-			case 1034:if (RILJ_LOGD) unsljLogRet(response, ret);
+			case 1034: // RIL_UNSOL_VOICE_RADIO_TECH_CHANGED
+			case 1037: // RIL_UNSOL_DATA_NETWORK_STATE_CHANGED
+                if (RILJ_LOGD) unsljLog(response);
 
-                if (mVoiceRadioTechChangedRegistrants != null) {
-                    mVoiceRadioTechChangedRegistrants.notifyRegistrants(
-                            new AsyncResult(null, ret, null));
-                }
-                break;
+                // Notifying on voice state change since it just causes a
+                // GsmServiceStateTracker::pollState() like CAF RIL does.
+                mVoiceNetworkStateRegistrants
+                    .notifyRegistrants(new AsyncResult(null, null, null));
+            break;
 			case 1043: 
-                {
                 if (RILJ_LOGD) unsljLogRet(response, ret);
-
-                // Initial conditions
-                //setRadioPower(false, null);
-                //setPreferredNetworkType(mPreferredNetworkType, null);
-                //setCdmaSubscriptionSource(mCdmaSubscription, null);
                 notifyRegistrantsRilConnectionChanged(((int[])ret)[0]);
                 break;
-            }
-}
+        }
     }
 
     /**
@@ -675,12 +673,6 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
                     mIccHandler = new IccHandler(this,looper);
                     mIccHandler.run();
                 }
-//                if (mPhoneType == RILConstants.CDMA_PHONE) {
-//                    radioState = CommandsInterface.RadioState.NV_NOT_READY;
-//                } else {
-//                    radioState = CommandsInterface.RadioState.SIM_NOT_READY;
-//                }
-//                setRadioState(radioState);
                 radioState = CommandsInterface.RadioState.RADIO_ON;
                 break;
             default:
@@ -722,19 +714,12 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
                         if (!mRil.getRadioState().isOn()) {
                             break;
                         }
-                       mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
-//                        if (mPhoneType == RILConstants.CDMA_PHONE) {
-//                            mRil.setRadioState(CommandsInterface.RadioState.NV_NOT_READY);
-//                        } else {
-//                            mRil.setRadioState(CommandsInterface.RadioState.SIM_LOCKED_OR_ABSENT);
-//                        }
+
+                        mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
                     } else {
                         int appIndex = -1;
-                        if (mPhoneType == RILConstants.CDMA_PHONE || getLteOnCdmaMode() == RILConstants.LTE_ON_CDMA_TRUE) {
+                        if (mPhoneType == RILConstants.CDMA_PHONE) {
                             appIndex = status.getCdmaSubscriptionAppIndex();
-							 //if (!mRil.getRadioState().isOn()) {
-							//	mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
-							//	}
                             Log.d(LOG_TAG, "This is a CDMA PHONE " + appIndex);
                         } else {
                             appIndex = status.getGsmUmtsSubscriptionAppIndex();
@@ -754,28 +739,23 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
                                     case APPTYPE_RUIM:
                                         mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
                                         break;
-									default:
+                                    default:
                                         Log.e(LOG_TAG, "Currently we don't handle SIMs of type: " + app_type);
                                         return;
                                 }
                                 break;
                             case APPSTATE_READY:
-                                if (mPhoneType == RILConstants.CDMA_PHONE || getLteOnCdmaMode() == RILConstants.LTE_ON_CDMA_TRUE) {
-								                       mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
-
-								} else {
-								switch (app_type) {
+                                switch (app_type) {
                                     case APPTYPE_SIM:
                                     case APPTYPE_USIM:
                                     case APPTYPE_RUIM:
                                         mRil.setRadioState(CommandsInterface.RadioState.RADIO_ON);
                                         break;
-									default:
+                                    default:
                                         Log.e(LOG_TAG, "Currently we don't handle SIMs of type: " + app_type);
                                         return;
                                 }
                                 break;
-								}
                             default:
                                 return;
                         }
@@ -835,8 +815,8 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
 
         send(rr);
     }
-/*
-    @Override
+
+/*    @Override
     protected Object
     responseOperatorInfos(Parcel p) {
         String strings[] = (String [])responseStrings(p);
@@ -860,6 +840,6 @@ public class ZTERIL2 extends RIL implements CommandsInterface {
         }
 
         return ret;
-    }
-*/
+    }*/
+
 }

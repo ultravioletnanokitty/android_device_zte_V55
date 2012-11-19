@@ -16,7 +16,7 @@
 /dev/msm_hw3dc            0666   root       root
 
 # the DIAG device node is world writable/readable.
-/dev/diag                 0666   root       root
+/dev/diag                 0666   system       root
 
 # the genlock client device node is world writable/readable.
 /dev/genlock              0666   root      root
@@ -41,7 +41,7 @@
 /dev/alarm                0664   system     radio
 /dev/tty0                 0660   root       system
 /dev/sdio_tty_ciq_00      0660   system     system
-/dev/graphics/*           0660   root       graphics
+/dev/graphics/*           0660   system     graphics
 /dev/msm_hw3dm            0660   system     graphics
 /dev/msm_rotator          0660   system     graphics
 /dev/input/*              0660   root       input
@@ -52,11 +52,11 @@
 /dev/pmem_adsp*           0660   system     audio
 /dev/pmem_smipool*        0660   system     camera
 /dev/pmem_camera*         0660   system     camera
-/dev/oncrpc/*             0666   root       qcom_oncrpc
+/dev/oncrpc/*             0660   root       qcom_oncrpc
 /dev/adsp/*               0660   system     audio
 /dev/snd/*                0660   system     audio
 /dev/mt9t013              0660   system     system
-/dev/msm_camera/*         0660   system     camera
+/dev/msm_camera/*         0660   system     system
 /dev/akm8976_daemon       0640   compass    system
 /dev/akm8976_aot          0640   compass    system
 /dev/akm8973_daemon       0640   compass    system
@@ -127,14 +127,14 @@
 /dev/qmi2                 0640   radio      radio
 /dev/bus/usb/*            0660   root       usb
 /dev/mtp_usb              0660   root       mtp
-/dev/gemini0              0660   system     camera
+/dev/gemini0              0660   system     system
 /dev/mdm                  0660   system     system
 /dev/ttyHSL1              0660   system     system
 /dev/tty_sdio_00          0660   system     system
 /dev/block/mmcblk0p17     0660   system     system
 /dev/block/mmcblk0p18     0660   system     system
 /dev/usb_accessory        0660   root       usb
-/dev/video*	          0660   system     camera 
+/dev/video*	          0777   system     camera 
 /dev/tun                  0660   system     vpn
 /dev/oncrpc/300000ba:00010000  0660   system     drmrpc
 

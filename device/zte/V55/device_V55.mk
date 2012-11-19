@@ -14,7 +14,7 @@ $(LOCAL_KERNEL):kernel \
 PRODUCT_NAME := cm_V55
 PRODUCT_DEVICE := V55
 PRODUCT_MANUFACTURER := ZTE
-PRODUCT_BRAND := ZTE
+PRODUCT_BRAND :=Sprint 
 PRODUCT_MODEL := Optik
 PRODUCT_BOARD := V55
 PRODUCT_CHARACTERISTICS :=tablet,nosdcard
@@ -24,11 +24,11 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 PRODUCT_PROPERTY_OVERRIDES+= dalvik.vm.execution-mode=int:jit \
 	ro.telephony.call_ring.multiple=false \
 	ro.telephony.call_ring.delay=5000 \
-	dalvik.vm.dexopt-flags=m=y,u=n,v=a,o=v \
+	dalvik.vm.dexopt-flags=m=y \
 	debug.enabletr=true \
 	persist.sys.use_dithering=0 \
 	ro.com.google.locationfeatures=1 \
-	mobiledata.interfaces = eth0
+	mobiledata.interfaces = eth0,rmnet0
 
 # Provides overrides to configure the Dalvik heap for a standard tablet device.
 
@@ -37,6 +37,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=48m \
     dalvik.vm.heapsize=256m
 
+#### Goo Manager support
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.goo.developerid=joestone \
+    ro.goo.board=$(subst full_,,$(PRODUCT_DEVICE)) \
+	ro.goo.rom=CM10_SprintOptik \
+	ro.goo.version=$(shell date +%Y%m%d )
+PRODUCT_COPY_FILES += \
+    device/zte/smarttab_common/proprietary/app/GooManager_2.1.2.apk:system/app/GooManager_2.1.2.apk \
+
+	
 PRODUCT_LOCALES += hdpi
 PRODUCT_LOCALES += xhdpi
 #PRODUCT_LOCALES += nodpi
@@ -107,11 +117,11 @@ PRODUCT_PACKAGES += \
     Gallery2 \
     LatinIME \
     Launcher2 \
-#    Mms \
-#    Music \
+    Mms \
+    Music \
 	MusicFX \
-#    Phone \
-#    Provision \
+    Phone \
+    Provision \
     Protips \
     QuickSearchBox \
 	hcitool \
@@ -123,7 +133,7 @@ PRODUCT_PACKAGES += \
     CalendarProvider \
     SyncProvider \
     IM \
-#    VoiceDialer \
+    VoiceDialer \
     hciconfig \
 	hciattach \
 	CMParts \
@@ -141,6 +151,7 @@ PRODUCT_PACKAGES += \
 	audio.a2dp.default \
 	audio.usb.default \
     VideoEditor \
+	libI420colorconvert \
 #	rild \
 #	libril \
 #	libreference-ril \
@@ -166,31 +177,7 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
 	com.android.future.usb.accessory \
     setup_fs
-    
-# Kernel Modules. Not currently organised.
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/lib/modules/WCN1314_rf_ftm.ko:system/lib/modules/WCN1314_rf_ftm.ko \
-	device/zte/V55/proprietary/lib/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
-	device/zte/V55/proprietary/lib/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
-	device/zte/V55/proprietary/lib/modules/dal_remotetest.ko:system/lib/modules/dal_remotetest.ko \
-	device/zte/V55/proprietary/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
-	device/zte/V55/proprietary/lib/modules/dhd.ko.ok:system/lib/modules/dhd.ko.ok \
-	device/zte/V55/proprietary/lib/modules/dhd.ko.ori:system/lib/modules/dhd.ko.ori \
-	device/zte/V55/proprietary/lib/modules/dma_test.ko:system/lib/modules/dma_test.ko \
-	device/zte/V55/proprietary/lib/modules/evbug.ko:system/lib/modules/evbug.ko \
-	device/zte/V55/proprietary/lib/modules/gspca_main.ko:system/lib/modules/gspca_main.ko \
-	device/zte/V55/proprietary/lib/modules/ksapi.ko:system/lib/modules/ksapi.ko \
-	device/zte/V55/proprietary/lib/modules/lcd.ko:system/lib/modules/lcd.ko \
-	device/zte/V55/proprietary/lib/modules/librasdioif.ko:system/lib/modules/librasdioif.ko \
-	device/zte/V55/proprietary/lib/modules/msm_tsif.ko:system/lib/modules/msm_tsif.ko \
-	device/zte/V55/proprietary/lib/modules/oprofile.ko:system/lib/modules/oprofile.ko \
-	device/zte/V55/proprietary/lib/modules/qce.ko:system/lib/modules/qce.ko \
-	device/zte/V55/proprietary/lib/modules/qcedev.ko:system/lib/modules/qcedev.ko \
-	device/zte/V55/proprietary/lib/modules/qcrypto.ko:system/lib/modules/qcrypto.ko \
-	device/zte/V55/proprietary/lib/modules/scsi_wait_scan.ko:system/lib/modules/scsi_wait_scan.ko \
-	device/zte/V55/proprietary/lib/modules/tsif_chrdev.ko:system/lib/modules/tsif_chrdev.ko \
-	device/zte/V55/proprietary/lib/modules/wlan.ko:system/lib/modules/wlan.ko \
-	
+
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
@@ -210,12 +197,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
-	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
 	device/zte/smarttab_common/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
-	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-#	frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
+	#frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+	#frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
+	#frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 
+	
 # kcm keymaps
 PRODUCT_COPY_FILES += \
     device/zte/smarttab_common/proprietary/usr/keychars/Generic.kcm:system/usr/keylayout/Generic.kcm \
@@ -262,17 +250,17 @@ PRODUCT_COPY_FILES += \
 
 #Bluetooth setup
 PRODUCT_COPY_FILES += \
-	device/zte/smarttab_common/proprietary/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
-	device/zte/smarttab_common/proprietary/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
-	device/zte/smarttab_common/proprietary/etc/bluetooth/network.conf:system/etc/bluetooth/network.conf \
 	device/zte/smarttab_common/proprietary/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
+#	device/zte/smarttab_common/proprietary/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
+#	device/zte/smarttab_common/proprietary/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
+#	device/zte/smarttab_common/proprietary/etc/bluetooth/network.conf:system/etc/bluetooth/network.conf \
+#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/audio.so:system/lib/bluez-plugin/audio.so \
+#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/input.so:system/lib/bluez-plugin/input.so \
+#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/network.so:system/lib/bluez-plugin/network.so \
 #	device/zte/smarttab_common/proprietary/lib/libbluedroid.so:system/lib/libbluedroid.so \
 #	device/zte/smarttab_common/proprietary/lib/libbluetooth.so:system/lib/libbluetooth.so \
 #	device/zte/smarttab_common/proprietary/lib/libbluetoothd.so:system/lib/libbluetoothd.so \
 #	device/zte/smarttab_common/proprietary/lib/libdbus.so:system/lib/libdbus.so \
-#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/audio.so:system/lib/bluez-plugin/audio.so \
-#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/input.so:system/lib/bluez-plugin/input.so \
-#	device/zte/smarttab_common/proprietary/lib/bluez-plugin/network.so:system/lib/bluez-plugin/network.so \
 #	device/zte/smarttab_common/proprietary/bin/bluetoothd:system/bin/bluetoothd \
 #	device/zte/smarttab_common/proprietary/bin/hciattach:system/bin/hciattach \
 #	device/zte/smarttab_common/proprietary/bin/sdptool:system/bin/sdptool \
@@ -282,26 +270,26 @@ PRODUCT_COPY_FILES += \
 
 	
 # GSM files
-#PRODUCT_COPY_FILES += \
-#	device/zte/V55/proprietary/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \
-#	device/zte/V55/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \
-#	device/zte/V55/proprietary/lib/libqmi.so:system/lib/libqmi.so \
-#	device/zte/V55/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
-#	device/zte/V55/proprietary/lib/libqmiservices.so:system/lib/libqmiservices.so \
-#	device/zte/V55/proprietary/lib/libidl.so:system/lib/libidl.so \
-#	device/zte/V55/proprietary/lib/libdsi_netctrl.so:system/lib/libdsi_netctrl.so \
-#	device/zte/V55/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so \
-#	device/zte/V55/proprietary/lib/libqdp.so:system/lib/libqdp.so \
-#	device/zte/V55/proprietary/lib/libtime_genoff.so:system/lib/libtime_genoff.so \
-#	device/zte/V55/proprietary/lib/libreference-ril.so:system/lib/libreference-ril.so \
-#	device/zte/V55/proprietary/lib/libreference-ril.so:obj/lib/libreference-ril.so \
-#	device/zte/V55/proprietary/lib/libril.so:system/lib/libril.so \
-#	device/zte/V55/proprietary/lib/libril.so:obj/lib/libril.so \
-#	device/zte/V55/proprietary/bin/rild:system/bin/rild \
-#	device/zte/V55/proprietary/bin/rild:obj/bin/rild \
-#	device/zte/V55/proprietary/bin/netmgrd:system/bin/netmgrd \
-#	device/zte/V55/proprietary/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
-#	device/zte/V55/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so \
+PRODUCT_COPY_FILES += \
+	device/zte/V55/proprietary/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \
+	device/zte/V55/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \
+	device/zte/V55/proprietary/lib/libqmi.so:system/lib/libqmi.so \
+	device/zte/V55/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
+	device/zte/V55/proprietary/lib/libqmiservices.so:system/lib/libqmiservices.so \
+	device/zte/V55/proprietary/lib/libidl.so:system/lib/libidl.so \
+	device/zte/V55/proprietary/lib/libdsi_netctrl.so:system/lib/libdsi_netctrl.so \
+	device/zte/V55/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so \
+	device/zte/V55/proprietary/lib/libqdp.so:system/lib/libqdp.so \
+	device/zte/V55/proprietary/lib/libtime_genoff.so:system/lib/libtime_genoff.so \
+	device/zte/V55/proprietary/lib/libreference-ril.so:system/lib/libreference-ril.so \
+	device/zte/V55/proprietary/lib/libreference-ril.so:obj/lib/libreference-ril.so \
+	device/zte/V55/proprietary/lib/libril.so:system/lib/libril.so \
+	device/zte/V55/proprietary/lib/libril.so:obj/lib/libril.so \
+	device/zte/V55/proprietary/bin/rild:system/bin/rild \
+	device/zte/V55/proprietary/bin/rild:obj/bin/rild \
+	device/zte/V55/proprietary/bin/netmgrd:system/bin/netmgrd \
+	device/zte/V55/proprietary/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
+	device/zte/V55/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so \
 	
 #root dir
 PRODUCT_COPY_FILES += \
@@ -313,9 +301,10 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/root/init.qcom.sh:root/init.qcom.sh \
 	device/zte/smarttab_common/proprietary/root/init.qcom.rc:root/init.qcom.rc \
 	device/zte/smarttab_common/proprietary/root/init:root/init \
-#	device/zte/smarttab_common/proprietary/root/ueventd.rc:recovery/root/ueventd.rc \
-#	device/zte/smarttab_common/proprietary/root/init:recovery/root/init \
-#	device/zte/smarttab_common/recovery/init.rc:recovery/root/init.rc \
+	device/zte/smarttab_common/proprietary/root/ueventd.rc:recovery/root/ueventd.rc \
+	device/zte/smarttab_common/proprietary/root/init:recovery/root/init \
+	device/zte/smarttab_common/recovery/init.rc:recovery/root/init.rc \
+	device/zte/smarttab_common/proprietary/bin/sdcard:recovery/root/sbin/sdcard \
 
 	
 # VOLD files
@@ -339,8 +328,9 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/lib/libgsl.so:system/lib/libgsl.so \
 	device/zte/smarttab_common/proprietary/lib/libC2D2.so:system/lib/libC2D2.so \
 	device/zte/smarttab_common/proprietary/lib/libOpenVG.so:system/lib/libOpenVG.so \
-	device/zte/smarttab_common/proprietary/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so 
-#	device/zte/smarttab_common/proprietary/lib/hw/copybit.msm8660.so:system/lib/hw/copybit.msm8660.so \
+	device/zte/smarttab_common/proprietary/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
+#	device/zte/smarttab_common/proprietary/lib/liboverlay.so:system/lib/liboverlay.so \
+#	device/zte/smarttab_common/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180 \
 
 	
 #firmware 	
@@ -363,13 +353,13 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw 
 
 #modem Scripts 	
-#PRODUCT_COPY_FILES += \
-#	device/zte/smarttab_common/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-#	device/zte/smarttab_common/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-#	device/zte/smarttab_common/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-#	device/zte/smarttab_common/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-#	device/zte/smarttab_common/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-#	device/zte/smarttab_common/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
+PRODUCT_COPY_FILES += \
+	device/zte/smarttab_common/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
+	device/zte/smarttab_common/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
+	device/zte/smarttab_common/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+	device/zte/smarttab_common/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+	device/zte/smarttab_common/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+	device/zte/smarttab_common/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
 	
 	
 #codecs	
@@ -379,10 +369,11 @@ PRODUCT_COPY_FILES += \
     device/zte/smarttab_common/proprietary/lib/libOmxEvrcDec.so:/system/lib/libOmxEvrcDec.so \
     device/zte/smarttab_common/proprietary/lib/libOmxWmaDec.so:/system/lib/libOmxWmaDec.so \
 	device/zte/smarttab_common/proprietary/lib/libmmparser.so:/system/lib/libmmparser.so \
+	device/zte/smarttab_common/proprietary/lib/libDivxDrm.so:/system/lib/libDivxDrm.so \
 	device/zte/smarttab_common/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
 	device/zte/smarttab_common/proprietary/lib/libmmosal.so:/system/lib/libmmosal.so \
-	device/zte/smarttab_common/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
-#	device/zte/smarttab_common/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
+#    device/zte/smarttab_common/proprietary/lib/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
+#    device/zte/smarttab_common/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
 #	device/zte/smarttab_common/proprietary/lib/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
 #	device/zte/smarttab_common/proprietary/lib/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \
 
@@ -399,25 +390,26 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
 
 #Sprint
-#PRODUCT_COPY_FILES += \
-#	device/zte/V55/proprietary/app/Activation4005.apk:system/app/Activation4005.apk \
-#	device/zte/V55/proprietary/app/SMPSClient_NonDebug.apk:system/app/SMPSClient_NonDebug.apk \
-#	device/zte/V55/proprietary/app/Sprint_InstallerNC_2101-2.apk:system/app/Sprint_InstallerNC_2101-2.apk \
-#	device/zte/V55/proprietary/app/sprint-android-release-prod2033-4.1.39-new.apk:system/app/sprint-android-release-prod2033-4.1.39-new.apk \
-#	device/zte/V55/proprietary/app/SprintPermissions.apk:system/app/SprintPermissions.apk \
-#	device/zte/V55/proprietary/app/tn70-tablet-sprint-7101357.apk:system/app/tn70-tablet-sprint-7101357.apk \
-#	device/zte/V55/proprietary/app/vdmc_hfa.apk:system/app/vdmc_hfa.apk \
-#	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
-#	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
-#	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
-#	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar \
+PRODUCT_COPY_FILES += \
+	device/zte/V55/proprietary/app/Activation4005.apk:system/app/Activation4005.apk \
+	device/zte/V55/proprietary/app/SMPSClient_NonDebug.apk:system/app/SMPSClient_NonDebug.apk \
+	device/zte/V55/proprietary/app/Sprint_InstallerNC_2101-2.apk:system/app/Sprint_InstallerNC_2101-2.apk \
+	device/zte/V55/proprietary/app/sprint-android-release-prod2033-4.1.39-new.apk:system/app/sprint-android-release-prod2033-4.1.39-new.apk \
+	device/zte/V55/proprietary/app/SprintPermissions.apk:system/app/SprintPermissions.apk \
+	device/zte/V55/proprietary/app/tn70-tablet-sprint-7101357.apk:system/app/tn70-tablet-sprint-7101357.apk \
+	device/zte/V55/proprietary/app/vdmc_hfa.apk:system/app/vdmc_hfa.apk \
+	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
+	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
+	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
+	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar
 	
 #wifi
 PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_abg.bin:system/etc/wifi/fw_bcm4330_apsta_abg.bin \
-	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_abg.bin:system/etc/wifi/fw_bcm4330_abg.bin \
-	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_p2p_abg.bin:system/etc/wifi/fw_bcm4330_p2p_abg.bin \
-	device/zte/V55/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+	device/zte/smarttab_common/proprietary/etc/wifi/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
+	device/zte/smarttab_common/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
+	device/zte/smarttab_common/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
+	device/zte/smarttab_common/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin \
+	device/zte/smarttab_common/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
 	
 #camera
 PRODUCT_COPY_FILES += \
@@ -426,10 +418,6 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/lib/libmmjpeg.so:obj/lib/libmmjpeg.so \
     device/zte/smarttab_common/proprietary/lib/liboemcamera.so:obj/lib/liboemcamera.so \
     device/zte/smarttab_common/proprietary/lib/liboemcamera.so:system/lib/liboemcamera.so \
-	device/zte/smarttab_common/proprietary/lib/libcamera.so:obj/lib/libcamera.so \
-    device/zte/smarttab_common/proprietary/lib/libcamera.so:system/lib/libcamera.so \
-	device/zte/smarttab_common/proprietary/lib/hw/camera.msm8660.so:obj/lib/camera.msm8660.so \
-    device/zte/smarttab_common/proprietary/lib/hw/camera.msm8660.so:system/lib/hw/camera.msm8660.so \
 	device/zte/smarttab_common/proprietary/lib/libgemini.so:system/lib/libgemini.so \
 	device/zte/smarttab_common/proprietary/lib/libmmmpo.so:system/lib/libmmmpo.so \
     device/zte/smarttab_common/proprietary/bin/v4l2-qcamera-app:system/bin/v4l2-qcamera-app \
@@ -437,6 +425,11 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/bin/mm-qcamera-test:system/bin/mm-qcamera-test \
 	device/zte/smarttab_common/proprietary/bin/mm-mpo-enc-test:system/bin/mm-mpo-enc-test \
 	device/zte/smarttab_common/proprietary/bin/mm-qcamera-testsuite-client:system/bin/mm-qcamera-testsuite-client \
+#	device/zte/smarttab_common/proprietary/lib/libcamera.so:obj/lib/libcamera.so \
+#   device/zte/smarttab_common/proprietary/lib/libcamera.so:system/lib/libcamera.so \
+#	device/zte/smarttab_common/proprietary/lib/hw/camera.msm8660.so:obj/lib/camera.msm8660.so \
+#   device/zte/smarttab_common/proprietary/lib/hw/camera.msm8660.so:system/lib/hw/camera.msm8660.so \
+
 
 #wiperiface
 PRODUCT_COPY_FILES += \
@@ -463,5 +456,5 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/bin/usbhub_init:system/bin/usbhub_init \
 	device/zte/smarttab_common/proprietary/bin/sdcard:system/bin/sdcard \
 	device/zte/smarttab_common/proprietary/bin/radish:system/bin/radish \
-#	device/zte/smarttab_common/proprietary/bin/ash:system/bin/ash \
+	device/zte/smarttab_common/proprietary/bin/hdmid:system/bin/hdmid \
 #	device/zte/smarttab_common/proprietary/bin/ash:system/bin/sh \
