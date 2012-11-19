@@ -14,7 +14,7 @@ $(LOCAL_KERNEL):kernel \
 PRODUCT_NAME := cm_V55
 PRODUCT_DEVICE := V55
 PRODUCT_MANUFACTURER := ZTE
-PRODUCT_BRAND :=Sprint 
+PRODUCT_BRAND := ZTE
 PRODUCT_MODEL := Optik
 PRODUCT_BOARD := V55
 PRODUCT_CHARACTERISTICS :=tablet,nosdcard
@@ -28,7 +28,7 @@ PRODUCT_PROPERTY_OVERRIDES+= dalvik.vm.execution-mode=int:jit \
 	debug.enabletr=true \
 	persist.sys.use_dithering=0 \
 	ro.com.google.locationfeatures=1 \
-	mobiledata.interfaces = eth0,rmnet0
+	mobiledata.interfaces = eth0
 
 # Provides overrides to configure the Dalvik heap for a standard tablet device.
 
@@ -38,13 +38,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=256m
 
 #### Goo Manager support
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.developerid=joestone \
-    ro.goo.board=$(subst full_,,$(PRODUCT_DEVICE)) \
-	ro.goo.rom=CM10_SprintOptik \
-	ro.goo.version=$(shell date +%Y%m%d )
-PRODUCT_COPY_FILES += \
-    device/zte/V55/proprietary/app/GooManager_2.1.2.apk:system/app/GooManager_2.1.2.apk \
+## Note from uvnk: this is cool, I'm not a recognised developer though, so I can't use it.
+
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.goo.developerid=joestone \
+#    ro.goo.board=$(subst full_,,$(PRODUCT_DEVICE)) \
+#	ro.goo.rom=CM10_SprintOptik \
+#	ro.goo.version=$(shell date +%Y%m%d )
+#PRODUCT_COPY_FILES += \
+#    device/zte/V55/proprietary/app/GooManager_2.1.2.apk:system/app/GooManager_2.1.2.apk \
 
 	
 PRODUCT_LOCALES += hdpi
@@ -120,8 +122,8 @@ PRODUCT_PACKAGES += \
     Mms \
     Music \
 	MusicFX \
-    Phone \
-    Provision \
+#    Phone \
+#    Provision \
     Protips \
     QuickSearchBox \
 	hcitool \
@@ -133,7 +135,7 @@ PRODUCT_PACKAGES += \
     CalendarProvider \
     SyncProvider \
     IM \
-    VoiceDialer \
+#    VoiceDialer \
     hciconfig \
 	hciattach \
 	CMParts \
@@ -181,7 +183,7 @@ PRODUCT_PACKAGES += \
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+#    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
@@ -197,8 +199,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 	device/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
-	device/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
-	device/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
+#	device/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
+#	device/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
 	#frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	#frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 	#frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
@@ -270,26 +272,26 @@ PRODUCT_COPY_FILES += \
 
 	
 # GSM files
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \
-	device/zte/V55/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \
-	device/zte/V55/proprietary/lib/libqmi.so:system/lib/libqmi.so \
-	device/zte/V55/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
-	device/zte/V55/proprietary/lib/libqmiservices.so:system/lib/libqmiservices.so \
-	device/zte/V55/proprietary/lib/libidl.so:system/lib/libidl.so \
-	device/zte/V55/proprietary/lib/libdsi_netctrl.so:system/lib/libdsi_netctrl.so \
-	device/zte/V55/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so \
-	device/zte/V55/proprietary/lib/libqdp.so:system/lib/libqdp.so \
-	device/zte/V55/proprietary/lib/libtime_genoff.so:system/lib/libtime_genoff.so \
-	device/zte/V55/proprietary/lib/libreference-ril.so:system/lib/libreference-ril.so \
-	device/zte/V55/proprietary/lib/libreference-ril.so:obj/lib/libreference-ril.so \
-	device/zte/V55/proprietary/lib/libril.so:system/lib/libril.so \
-	device/zte/V55/proprietary/lib/libril.so:obj/lib/libril.so \
-	device/zte/V55/proprietary/bin/rild:system/bin/rild \
-	device/zte/V55/proprietary/bin/rild:obj/bin/rild \
-	device/zte/V55/proprietary/bin/netmgrd:system/bin/netmgrd \
-	device/zte/V55/proprietary/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
-	device/zte/V55/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so \
+#PRODUCT_COPY_FILES += \
+#	device/zte/V55/proprietary/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \
+#	device/zte/V55/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \
+#	device/zte/V55/proprietary/lib/libqmi.so:system/lib/libqmi.so \
+#	device/zte/V55/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
+#	device/zte/V55/proprietary/lib/libqmiservices.so:system/lib/libqmiservices.so \
+#	device/zte/V55/proprietary/lib/libidl.so:system/lib/libidl.so \
+#	device/zte/V55/proprietary/lib/libdsi_netctrl.so:system/lib/libdsi_netctrl.so \
+#	device/zte/V55/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so \
+#	device/zte/V55/proprietary/lib/libqdp.so:system/lib/libqdp.so \
+#	device/zte/V55/proprietary/lib/libtime_genoff.so:system/lib/libtime_genoff.so \
+#	device/zte/V55/proprietary/lib/libreference-ril.so:system/lib/libreference-ril.so \
+#	device/zte/V55/proprietary/lib/libreference-ril.so:obj/lib/libreference-ril.so \
+#	device/zte/V55/proprietary/lib/libril.so:system/lib/libril.so \
+#	device/zte/V55/proprietary/lib/libril.so:obj/lib/libril.so \
+#	device/zte/V55/proprietary/bin/rild:system/bin/rild \
+#	device/zte/V55/proprietary/bin/rild:obj/bin/rild \
+#	device/zte/V55/proprietary/bin/netmgrd:system/bin/netmgrd \
+#	device/zte/V55/proprietary/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
+#	device/zte/V55/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so \
 	
 #root dir
 PRODUCT_COPY_FILES += \
@@ -353,13 +355,13 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw 
 
 #modem Scripts 	
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-	device/zte/V55/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-	device/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-	device/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-	device/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-	device/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
+#PRODUCT_COPY_FILES += \
+#	device/zte/V55/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
+#	device/zte/V55/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
+#	device/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+#	device/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+#	device/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+#	device/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
 	
 	
 #codecs	
@@ -384,24 +386,24 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	device/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
 	device/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
-	device/zte/V55/proprietary/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
-	device/zte/V55/proprietary/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
+#	device/zte/V55/proprietary/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
+#	device/zte/V55/proprietary/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
 	device/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
 	device/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
 
 #Sprint
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/app/Activation4005.apk:system/app/Activation4005.apk \
-	device/zte/V55/proprietary/app/SMPSClient_NonDebug.apk:system/app/SMPSClient_NonDebug.apk \
-	device/zte/V55/proprietary/app/Sprint_InstallerNC_2101-2.apk:system/app/Sprint_InstallerNC_2101-2.apk \
-	device/zte/V55/proprietary/app/sprint-android-release-prod2033-4.1.39-new.apk:system/app/sprint-android-release-prod2033-4.1.39-new.apk \
-	device/zte/V55/proprietary/app/SprintPermissions.apk:system/app/SprintPermissions.apk \
-	device/zte/V55/proprietary/app/tn70-tablet-sprint-7101357.apk:system/app/tn70-tablet-sprint-7101357.apk \
-	device/zte/V55/proprietary/app/vdmc_hfa.apk:system/app/vdmc_hfa.apk \
-	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
-	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
-	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
-	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar
+#PRODUCT_COPY_FILES += \
+#	device/zte/V55/proprietary/app/Activation4005.apk:system/app/Activation4005.apk \
+#	device/zte/V55/proprietary/app/SMPSClient_NonDebug.apk:system/app/SMPSClient_NonDebug.apk \
+#	device/zte/V55/proprietary/app/Sprint_InstallerNC_2101-2.apk:system/app/Sprint_InstallerNC_2101-2.apk \
+#	device/zte/V55/proprietary/app/sprint-android-release-prod2033-4.1.39-new.apk:system/app/sprint-android-release-prod2033-4.1.39-new.apk \
+#	device/zte/V55/proprietary/app/SprintPermissions.apk:system/app/SprintPermissions.apk \
+#	device/zte/V55/proprietary/app/tn70-tablet-sprint-7101357.apk:system/app/tn70-tablet-sprint-7101357.apk \
+#	device/zte/V55/proprietary/app/vdmc_hfa.apk:system/app/vdmc_hfa.apk \
+#	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
+#	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
+#	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
+#	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar
 	
 #wifi
 PRODUCT_COPY_FILES += \
