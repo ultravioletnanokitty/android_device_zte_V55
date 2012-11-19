@@ -25,11 +25,11 @@ $BINDIR/busybox du -sm $LOGDIR | $BINDIR/busybox grep [89]
 case "$?" in
    0) echo "du > 8 $?"
    rm -r $LOGDIR/loglast5.tar.gz
-   $BINDIR/busybox tar cf $LOGDIR/loglast1.tar.gz logs/kernel logs/logcat logs/smem logs/resetlog
+   $BINDIR/busybox tar cf $LOGDIR/loglast1.tar.gz logs/kernel logs/logcat logs/smem logs/resetlog logs/smem*.gz 
    ;;
    
    1) echo "du < 8 $?"
-   $BINDIR/busybox tar cf $LOGDIR/loglast1.tar.gz logs/kernel logs/logcat logs/smem logs/resetlog
+   $BINDIR/busybox tar cf $LOGDIR/loglast1.tar.gz logs/kernel logs/logcat logs/smem logs/resetlog logs/smem*.gz 
    ;;
 esac
    
@@ -37,6 +37,7 @@ rm -r logs/kernel/*
 rm -r logs/logcat/*
 rm -r logs/smem/*
 rm -r logs/resetlog/*
+rm -r logs/smem*.tar.gz
 
 # ZTE_MODIFY caoyaobin fanwuxun, 2011-10-1, log service use memeory proprity
 setprop sys.service.filelog 1
@@ -87,13 +88,21 @@ do
                  $BINDIR/busybox du -sm $LOGDIR | $BINDIR/busybox grep [789]
                  case "$?" in
                     0) echo "du > 7 $?"                       
-                       rm -r $LOGDIR/kernel/log_kernel.last.4.txt     
+                       rm -r $LOGDIR/kernel/log_kernel.last.4.txt
+                       rm -r $LOGDIR/smem_log.last.5.tar.gz            
                     ;;
                  esac
          ;;
          esac
          
          dmesg -c >> $LOGDIR/kernel/log_kernel.txt
+         
+         mv $LOGDIR/smem_log.last.4.tar.gz $LOGDIR/smem_log.last.5.tar.gz
+         mv $LOGDIR/smem_log.last.3.tar.gz $LOGDIR/smem_log.last.4.tar.gz
+         mv $LOGDIR/smem_log.last.2.tar.gz $LOGDIR/smem_log.last.3.tar.gz
+         mv $LOGDIR/smem_log.last.1.tar.gz $LOGDIR/smem_log.last.2.tar.gz
+         mv $LOGDIR/smem_log.last.tar.gz $LOGDIR/smem_log.last.1.tar.gz
+         $BINDIR/busybox tar cf $LOGDIR/smem_log.last.tar.gz logs/smem
       ;;
       
       1) echo "linux $?"

@@ -2,7 +2,7 @@ USE_CAMERA_STUB := false
     BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
     BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
 
-TARGET_SPECIFIC_HEADER_PATH := device/zte/smarttab_common/include
+TARGET_SPECIFIC_HEADER_PATH := device/zte/V55/include
 
 #Board Settings
 TARGET_NO_BOOTLOADER := true
@@ -23,7 +23,7 @@ BOARD_USES_ADRENO_200 := true
 #TARGET_USES_ION := false
 TARGET_PROVIDES_INIT_RC := true
 TARGET_PROVIDES_RECOVERY_INIT_RC := true
-TARGET_RECOVERY_INITRC := device/zte/smarttab_common/recovery/init.rc
+TARGET_RECOVERY_INITRC := device/zte/V55/recovery/init.rc
 TARGET_EXTRA_CFLAGS += $(call cc-option,-mtune=cortex-a9,$(call cc-option,-mtune=cortex-a8)) $(call cc-option,-mcpu=cortex-a9,$(call cc-option,-mcpu=cortex-a8))
 
 # QCOM hardware
@@ -44,7 +44,7 @@ BOARD_NEEDS_MEMORYHEAPPMEM := true
 
 
 #Graphics
-BOARD_EGL_CFG := device/zte/smarttab_common/proprietary/lib/egl/egl.cfg
+BOARD_EGL_CFG := device/zte/V55/proprietary/lib/egl/egl.cfg
 USE_OPENGL_RENDERER := true
 TARGET_HAVE_BYPASS := true
 TARGET_USES_C2D_COMPOSITION := true
@@ -157,7 +157,7 @@ TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/V55/kernel
 BOARD_HAS_NO_SELECT_BUTTON := true
 # Use this flag if the board has a ext4 partition larger than 2gb
 BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_CUSTOM_GRAPHICS := ../../../device/zte/smarttab_common/recovery/minui/graphics.c 
+BOARD_CUSTOM_GRAPHICS := ../../../device/zte/V55/recovery/minui/graphics.c 
 
 # SD Card
 #BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1	#  9 /sdcard vfat /dev/block/mmcblk1p1

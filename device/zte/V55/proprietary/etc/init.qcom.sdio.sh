@@ -32,7 +32,7 @@
 # SDIO slot on the MSM target (e.g. slot 3 on 7x30 surf).
 
 arg=$1
-target=`getprop ro.product.device`
+target=`getprop ro.board.platform`
 
 case "$target" in
     "msm7627_surf")
@@ -63,7 +63,7 @@ case "$target" in
         echo "$arg" > /sys/devices/platform/msm_sdcc.3/polling
         ;;
 
-    "msm8660_surf")
+    "msm8660")
         echo "$arg" > /sys/devices/platform/msm_sdcc.4/polling
         ;;
 
