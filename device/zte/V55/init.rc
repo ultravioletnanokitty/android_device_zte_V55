@@ -1,6 +1,24 @@
 on early-init
     start ueventd
 
+# set up sdcard stuff
+    mkdir /storage 0050 system sdcard_r
+    mkdir /storage/sdcard0 0000 system system
+    mkdir /storage/sdcard1 0000 system system
+
+    symlink /storage/sdcard0 /sdcard
+    symlink /storage/sdcard0 /mnt/sdcard
+    symlink /storage/sdcard1 /external_sd
+    symlink /storage/sdcard1 /mnt/external_sd
+
+    mkdir /mnt/usbdisk 0755 system system
+
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export SECONDARY_STORAGE /storage/sdcard1
+# covering all the bases. This may do nothing.
+    export EXTERNAL_ALT_STORAGE /storage/sdcard1
+    export EXTERNAL_USB_STORAGE /mnt/usbdisk
+
 
 
 
@@ -20,13 +38,6 @@ loglevel 3
     export ANDROID_ROOT /system
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
-    export EXTERNAL_STORAGE /mnt/sdcard
-# ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
-    export EXTERNAL_ALT_STORAGE /mnt/sdcard-ext
-	#ZTE_MODIFY jijie 2011-10-03 start
-    export EXTERNAL_USB_STORAGE /mnt/sdcard-usb
-	#ZTE_MODIFY jijie 2011-10-03 end
-# ZTE_MODIFY yuanbo0015 end
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
 # ZTE_MODIFY pujia add qcnvitems.jar qcrilhook.jar sprint.jar 20110810  shizengzeng add networktimer.jar
@@ -44,24 +55,12 @@ loglevel 3
 # but someday that may change.
     symlink /system/vendor /vendor
 
-# create mountpoints
-    mkdir /mnt/sdcard 0000 system system
-# ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
-    mkdir /mnt/sdcard-ext 0000 system system
-    mkdir /mnt/sdcard-usb 0000 system system
-# ZTE_MODIFY yuanbo0015 end
-
 # Create cgroup mount point for cpu accounting
     mkdir /acct
     mount cgroup none /acct cpuacct
     mkdir /acct/uid
 
-# Backwards Compat - XXX: Going away in G*
-    symlink /mnt/sdcard /sdcard
-# ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
-    symlink /mnt/sdcard-ext /sdcard-ext
-    symlink /mnt/sdcard-usb /sdcard-usb
-# ZTE_MODIFY yuanbo0015 end
+# Create more mountpoints
 
     mkdir /system
     mkdir /data 0771 system system
