@@ -308,8 +308,6 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
 	device/zte/V55/proprietary/bin/sdcard:recovery/root/sbin/sdcard \
 	device/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-	device/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-	device/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
 
 	
 # VOLD files
