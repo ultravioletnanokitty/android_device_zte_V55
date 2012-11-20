@@ -307,6 +307,9 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/root/init:recovery/root/init \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
 	device/zte/V55/proprietary/bin/sdcard:recovery/root/sbin/sdcard \
+	device/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+	device/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+	device/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
 
 	
 # VOLD files
@@ -314,9 +317,6 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/etc/vold.fstab:system/etc/vold.fstab \
 	device/zte/V55/recovery/recovery.fstab:recovery/root/etc/recovery.fstab 
 
-# usb profiles
-#PRODUCT_COPY_FILES += \
-#    device/zte/V11A/init.smarttab.usb.rc:root/init.smarttab.usb.rc
 	
 #adreno200 	
 PRODUCT_COPY_FILES += \
@@ -358,10 +358,7 @@ PRODUCT_COPY_FILES += \
 #PRODUCT_COPY_FILES += \
 #	device/zte/V55/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
 #	device/zte/V55/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-	device/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
 #	device/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-#	device/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-#	device/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
 	
 	
 #codecs	
