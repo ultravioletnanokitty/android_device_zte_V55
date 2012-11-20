@@ -45,8 +45,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 #    ro.goo.board=$(subst full_,,$(PRODUCT_DEVICE)) \
 #	ro.goo.rom=CM10_SprintOptik \
 #	ro.goo.version=$(shell date +%Y%m%d )
-#PRODUCT_COPY_FILES += \
-#    device/zte/V55/proprietary/app/GooManager_2.1.2.apk:system/app/GooManager_2.1.2.apk \
 
 	
 PRODUCT_LOCALES += hdpi
@@ -385,20 +383,6 @@ PRODUCT_COPY_FILES += \
 #	device/zte/V55/proprietary/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
 	device/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
 	device/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
-
-#Sprint
-#PRODUCT_COPY_FILES += \
-#	device/zte/V55/proprietary/app/Activation4005.apk:system/app/Activation4005.apk \
-#	device/zte/V55/proprietary/app/SMPSClient_NonDebug.apk:system/app/SMPSClient_NonDebug.apk \
-#	device/zte/V55/proprietary/app/Sprint_InstallerNC_2101-2.apk:system/app/Sprint_InstallerNC_2101-2.apk \
-#	device/zte/V55/proprietary/app/sprint-android-release-prod2033-4.1.39-new.apk:system/app/sprint-android-release-prod2033-4.1.39-new.apk \
-#	device/zte/V55/proprietary/app/SprintPermissions.apk:system/app/SprintPermissions.apk \
-#	device/zte/V55/proprietary/app/tn70-tablet-sprint-7101357.apk:system/app/tn70-tablet-sprint-7101357.apk \
-#	device/zte/V55/proprietary/app/vdmc_hfa.apk:system/app/vdmc_hfa.apk \
-#	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
-#	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
-#	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
-#	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar
 	
 #wifi
 PRODUCT_COPY_FILES += \
