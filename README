@@ -1,4 +1,7 @@
-# This is device tree and kernel to build CM10 for ZTE V11A/V55/V71A
+This device tree turns the ZTE V55 (Optik) into a WiFi only tablet and contains improvements over the original. Please note that it may also be wildly broken because I'm not that great of a dev.
+
+Most of the credit for this goes to joestone, who originally wrote the tree and continues to assist me in its development.
+
 Kernel Source is newkernel.zip under kernel/zte/ folder. Credit goes to all kernel devs.
 
-http://forum.xda-developers.com/showthread.php?t=1629630
+joestone's original thread, including builds for the V11A and V71A: http://forum.xda-developers.com/showthread.php?t=1629630
