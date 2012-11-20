@@ -306,7 +306,30 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
 	device/zte/V55/proprietary/bin/sdcard:recovery/root/sbin/sdcard \
 	device/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-
+	
+# Kernel modules
+PRODUCT_COPY_FILES += \
+	device/zte/V55/proprietary/lib/modules/ansi_cprng.ko \
+	device/zte/V55/proprietary/lib/modules/cpaccess.ko \
+	device/zte/V55/proprietary/lib/modules/dal_remotetest.ko \
+#	device/zte/V55/proprietary/lib/modules/dhd.ko.ok \
+	device/zte/V55/proprietary/lib/modules/dhd.ko \
+#	device/zte/V55/proprietary/lib/modules/dhd.ko.ori \
+	device/zte/V55/proprietary/lib/modules/dma_test.ko \
+	device/zte/V55/proprietary/lib/modules/evbug.ko \
+	device/zte/V55/proprietary/lib/modules/gspca_main.ko \
+	device/zte/V55/proprietary/lib/modules/ksapi.ko \
+	device/zte/V55/proprietary/lib/modules/lcd.ko \
+	device/zte/V55/proprietary/lib/modules/librasdioif.ko \
+	device/zte/V55/proprietary/lib/modules/msm_tsif.ko \
+	device/zte/V55/proprietary/lib/modules/oprofile.ko \
+	device/zte/V55/proprietary/lib/modules/qce.ko \
+	device/zte/V55/proprietary/lib/modules/qcedev.ko \
+	device/zte/V55/proprietary/lib/modules/qcrypto.ko \
+	device/zte/V55/proprietary/lib/modules/scsi_wait_scan.ko \
+	device/zte/V55/proprietary/lib/modules/tsif_chrdev.ko \
+	device/zte/V55/proprietary/lib/modules/WCN1314_rf_ftm.ko \
+	device/zte/V55/proprietary/lib/modules/wlan.ko 
 	
 # VOLD files
 PRODUCT_COPY_FILES += \
