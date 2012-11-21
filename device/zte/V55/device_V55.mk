@@ -120,8 +120,6 @@ PRODUCT_PACKAGES += \
     Mms \
     Music \
 	MusicFX \
-#    Phone \
-#    Provision \
     Protips \
     QuickSearchBox \
 	hcitool \
@@ -133,7 +131,6 @@ PRODUCT_PACKAGES += \
     CalendarProvider \
     SyncProvider \
     IM \
-#    VoiceDialer \
     hciconfig \
 	hciattach \
 	CMParts \
@@ -152,6 +149,9 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
     VideoEditor \
 	libI420colorconvert \
+#	Phone \
+#	Provision \
+#	VoiceDialer \
 #	rild \
 #	libril \
 #	libreference-ril \
@@ -181,7 +181,6 @@ PRODUCT_PACKAGES += \
 # These are the hardware-specific features
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
-#    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
@@ -199,9 +198,10 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
 #	device/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
 #	device/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
-	#frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-	#frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
-	#frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+#	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+#	frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
+#	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+#	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
 
 	
 # kcm keymaps
@@ -312,9 +312,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/modules/ansi_cprng.ko:system/lib/modules/ansi_cprng.ko \
 	device/zte/V55/proprietary/lib/modules/cpaccess.ko:system/lib/modules/cpaccess.ko \
 	device/zte/V55/proprietary/lib/modules/dal_remotetest.ko:system/lib/modules/dal_remotetest.ko \
-#	device/zte/V55/proprietary/lib/modules/dhd.ko.ok:system/lib/modules/dhd.ko.ok \
 	device/zte/V55/proprietary/lib/modules/dhd.ko:system/lib/modules/dhd.ko \
-#	device/zte/V55/proprietary/lib/modules/dhd.ko.ori:system/lib/modules/dhd.ko.ori \
 	device/zte/V55/proprietary/lib/modules/dma_test.ko:system/lib/modules/dma_test.ko \
 	device/zte/V55/proprietary/lib/modules/evbug.ko:system/lib/modules/evbug.ko \
 	device/zte/V55/proprietary/lib/modules/gspca_main.ko:system/lib/modules/gspca_main.ko \
@@ -402,11 +400,11 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	device/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
 	device/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
-#	device/zte/V55/proprietary/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
-#	device/zte/V55/proprietary/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
 	device/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
 	device/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
-	
+#	device/zte/V55/proprietary/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
+#	device/zte/V55/proprietary/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
+
 #wifi
 PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/etc/wifi/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
