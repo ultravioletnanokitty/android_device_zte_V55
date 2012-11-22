@@ -57,9 +57,9 @@ PRODUCT_AAPT_CONFIG := hdpi xhdpi
 #$(call inherit-product, external/llvm/llvm-select.mk)
 LLVM_ROOT_PATH := external/llvm
 
-PRODUCT_PACKAGES += audio.primary.msm8660
-PRODUCT_PACKAGES += audio_policy.msm8660
-PRODUCT_PACKAGES += audio_policy.conf
+#PRODUCT_PACKAGES += audio.primary.msm8660
+#PRODUCT_PACKAGES += audio_policy.msm8660
+#PRODUCT_PACKAGES += audio_policy.conf
 PRODUCT_PACKAGES += copybit.msm8660
 PRODUCT_PACKAGES += gralloc.msm8660
 PRODUCT_PACKAGES += lights.msm8660
@@ -230,23 +230,23 @@ PRODUCT_COPY_FILES += \
     device/zte/V55/proprietary/usr/icu/icudt44l.dat:system/usr/icu/icudt44l.dat
 	
 # Audio files
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/lib/libaudioalsa.so:system/lib/libaudioalsa.so \
-	device/zte/V55/proprietary/lib/libaudioalsa.so:obj/lib/libaudioalsa.so \
-	device/zte/V55/proprietary/lib/libacdbloader.so:system/lib/libacdbloader.so \
-	device/zte/V55/proprietary/lib/libacdbloader.so:obj/lib/libacdbloader.so \
-	device/zte/V55/proprietary/lib/libacdbmapper.so:system/lib/libacdbmapper.so \
-	device/zte/V55/proprietary/lib/libacdbmapper.so:obj/lib/libacdbmapper.so \
-	device/zte/V55/proprietary/lib/libaudcal.so:obj/lib/libaudcal.so \
-	device/zte/V55/proprietary/lib/libaudio.so:obj/lib/libaudio.so \
-	device/zte/V55/proprietary/lib/libdiag.so:obj/lib/libdiag.so \
-	device/zte/V55/proprietary/lib/libaudcal.so:system/lib/libaudcal.so \
-	device/zte/V55/proprietary/lib/libaudio.so:system/lib/libaudio.so \
-	device/zte/V55/proprietary/lib/libaudiopolicy.so:system/lib/libaudiopolicy.so \
-	device/zte/V55/proprietary/lib/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
-	device/zte/V55/proprietary/lib/libdiag.so:system/lib/libdiag.so \
-	device/zte/V55/proprietary/etc/media_profiles.xml:system/etc/media_profiles.xml \
-	device/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
+#PRODUCT_COPY_FILES += \
+#	device/zte/V55/proprietary/lib/libaudioalsa.so:system/lib/libaudioalsa.so \
+#	device/zte/V55/proprietary/lib/libaudioalsa.so:obj/lib/libaudioalsa.so \
+#	device/zte/V55/proprietary/lib/libacdbloader.so:system/lib/libacdbloader.so \
+#	device/zte/V55/proprietary/lib/libacdbloader.so:obj/lib/libacdbloader.so \
+#	device/zte/V55/proprietary/lib/libacdbmapper.so:system/lib/libacdbmapper.so \
+#	device/zte/V55/proprietary/lib/libacdbmapper.so:obj/lib/libacdbmapper.so \
+#	device/zte/V55/proprietary/lib/libaudcal.so:obj/lib/libaudcal.so \
+#	device/zte/V55/proprietary/lib/libaudio.so:obj/lib/libaudio.so \
+#	device/zte/V55/proprietary/lib/libdiag.so:obj/lib/libdiag.so \
+#	device/zte/V55/proprietary/lib/libaudcal.so:system/lib/libaudcal.so \
+#	device/zte/V55/proprietary/lib/libaudio.so:system/lib/libaudio.so \
+#	device/zte/V55/proprietary/lib/libaudiopolicy.so:system/lib/libaudiopolicy.so \
+#	device/zte/V55/proprietary/lib/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
+#	device/zte/V55/proprietary/lib/libdiag.so:system/lib/libdiag.so \
+#	device/zte/V55/proprietary/etc/media_profiles.xml:system/etc/media_profiles.xml \
+#	device/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
 
 #Bluetooth setup
 PRODUCT_COPY_FILES += \
