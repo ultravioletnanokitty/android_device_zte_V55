@@ -187,6 +187,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.xml:system/etc/permissions/android.hardware.touchscreen.xml \
@@ -198,7 +199,6 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
 #	device/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
 #	device/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
-#	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 #	frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 #	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 #	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
@@ -456,7 +456,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/bin/usbhub:system/bin/usbhub \
 	device/zte/V55/proprietary/bin/wiperiface:system/bin/wiperiface \
 	device/zte/V55/proprietary/bin/usbhub_init:system/bin/usbhub_init \
-	device/zte/V55/proprietary/bin/sdcard:system/bin/sdcard \
 	device/zte/V55/proprietary/bin/radish:system/bin/radish \
 	device/zte/V55/proprietary/bin/hdmid:system/bin/hdmid \
+#	device/zte/V55/proprietary/bin/sdcard:system/bin/sdcard \
 #	device/zte/V55/proprietary/bin/ash:system/bin/sh \
