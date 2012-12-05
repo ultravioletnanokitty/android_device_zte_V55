@@ -38,12 +38,11 @@ loglevel 3
     export ANDROID_DATA /data
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
-# ZTE_MODIFY pujia add qcnvitems.jar qcrilhook.jar sprint.jar 20110810  shizengzeng add networktimer.jar
+    
+# set up BOOTCLASSPATH
 #	export BOOTCLASSPATH /system/framework/core.jar:/system/framework/apache-xml.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/core-junit.jar:/system/framework/ZteDrmClient.jar:/system/framework/qcnvitems.jar:/system/framework/qcrilhook.jar:/system/framework/sprint.jar:/system/framework/networktimer.jar
 #	export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/filterfw.jar:system/framework/framework2.jar
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/framework2.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar
-
-# ZTE_MODIFY pujia 20110810
 
 # Backward compatibility
     symlink /system/etc /etc
@@ -146,7 +145,6 @@ on fs
 
 on emmc-fs
 # mount mmc partitions
-    # ZTE_MODIFY lixinyu adjust partition,mark old data 20110721
     #wait /dev/block/mmcblk0p12
     #mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
     #wait /dev/block/mmcblk0p13
@@ -156,16 +154,13 @@ on emmc-fs
     #mount ext4 /dev/block/mmcblk0p15 /cache nosuid nodev barrier=1
     wait /dev/block/mmcblk0p12
     mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
-	
-# ZTE_MODIFY jiangzhifeng0004: move "/data mount" operation here.20110803
-# ZTE_MODIFY yuanbo boot error in data partition mounting yuanbo00017 2011-8-4
+
 on data-msm8x60
     wait /dev/block/mmcblk0p21
     #exec /system/bin/e2fsck -p /dev/block/mmcblk0p21
     exec /system/bin/resize2fs_wrapper /dev/block/mmcblk0p21 120M
     mount ext4 /dev/block/mmcblk0p21 /data nosuid nodev barrier=1
 
-    # ZTE_MODIFY lixinyu modify mount sequence here 20110917
     wait /dev/block/mmcblk0p13
     mount ext4 /dev/block/mmcblk0p13 /persist nosuid nodev barrier=1
 
@@ -181,7 +176,6 @@ on data-svlte2a
     exec /system/bin/resize2fs_wrapper /dev/block/mmcblk0p26 120M
     mount ext4 /dev/block/mmcblk0p26 /data nosuid nodev barrier=1
 
-    # ZTE_MODIFY lixinyu modify mount sequence here 20110917
     wait /dev/block/mmcblk0p13
     mount ext4 /dev/block/mmcblk0p13 /persist nosuid nodev barrier=1
 
@@ -190,9 +184,6 @@ on data-svlte2a
     exec /system/bin/e2fsck -p /dev/block/mmcblk0p14
     mount ext4 /dev/block/mmcblk0p14 /cache nosuid nodev barrier=1
     #end lixinyu
-
-# ZTE_MODIFY yuanbo00017 end
-# ZTE_MODIFY_END jiangzhifeng
 
 on post-fs
     # once everything is setup, no need to modify /
@@ -288,12 +279,7 @@ on post-fs-data
     mkdir /data/ssh 0750 root shell
     mkdir /data/ssh/empty 0700 root root
     mkdir /data/radio 0770 radio radio
-
-
-
-#** ZTE_MODIFY zhaoyang, 2011-07-25, for adding logcat process #
     mkdir /data/local/logs 0771 system system
-# ZTE_MODIFY end 
 
     # create dalvik-cache and double-check the perms
     mkdir /data/dalvik-cache 0771 system system
@@ -322,30 +308,18 @@ on post-fs-data
     # create directory for DRM plug-ins
     mkdir /data/drm 0774 drm drm
     
-    #** ZTE_MODIFY yangyang10099103, 2011-08-01, create the OMA directories, so as to enforce our permissions #
     mkdir /data/oma 0777
     mkdir /data/oma/conf 0777
     mkdir /data/oma/rights 0777
     mkdir /data/oma/rights/objects 0777
-    #** ZTE_MODIFY END
-    
-    # If there is no fs-post-data action in the init.<device>.rc file, you
-    # must uncomment this line, otherwise encrypted filesystems
-    # won't work.
-    # Set indication (checked by vold) that we have finished this action
 	
-# ZTE_MODIFY niugang for encryption ext4 fs 2011-10-18	
     setprop vold.post_fs_data_done 1
-# ZTE_MODIFY END
-	
-# ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
+    
     mkdir /data/media 0777 media_rw media_rw
-# ZTE_MODIFY yuanbo0015 end
-
-    # ZTE_MODIFY wangzhaojin for PST FOTA 2011.10.26
+# Apparently FOTA related. Must investigate.
     mkdir /data/dm 0777 system system
     mkdir /data/dm/delta 0777 system system
-    # ZTE_MODIFY
+
 #BT mac
     setprop ro.bt.bdaddr_path "/persist/zte/bt/bt_addr.txt"	
     setprop bt.bcm_bdaddr_path "/persist/zte/bt/bt_addr.txt"	
@@ -537,11 +511,9 @@ on boot
     chown system system /sys/class/leds/red/device/grppwm
     chown system system /sys/class/leds/red/device/blink
 	
-	# ZTE_MODIFY lvzhenzhong, 2011-10-29, for change the owner of leds #
 	chown system system /sys/class/leds/green/blink
 	chown system system /sys/class/leds/green/grpfreq
 	chown system system /sys/class/leds/green/grppwm
-	# ZTE_MODIFY END 
 	
     chown system system /sys/class/timed_output/vibrator/enable
     chown system system /sys/module/sco/parameters/disable_esco
@@ -552,20 +524,15 @@ on boot
     chown system system /sys/kernel/ipv4/tcp_rmem_def
     chown system system /sys/kernel/ipv4/tcp_rmem_max
     chown root radio /proc/cmdline
-	# ZTE_MODIFY maxiaoqiang, 2011-07-21, for adding permission on MPU #
 	chmod 0777 /dev/taos
 	chmod 0777 /dev/mpu
 	chmod 0777 /dev/mpuirq
 	chmod 0777 /dev/accelirq
     chmod 0777 /dev/timerirq
-	# ZTE_MODIFY end maxiaoqiang, 2011-07-21
 
-    #**  ZTE_MODIFY, LiuTao, 2011-07-25, for open permission writeRoamingListFile#
     chmod 777 /persist/zte/prldata/prl_data.txt
-    # ZTE_MODIFY_END
 	chown system system /sys/devices/platform/usb_mass_storage/lun0/file
 	chmod 0660 /sys/devices/platform/usb_mass_storage/lun0/file
-    #**  ZTE_MODIFY, LiuTao, 2011-09-19, Commnent for CTS Test #
     #chmod 777 /sys/class/usb_composite/modem/enable
     #chmod 777 /sys/class/usb_composite/diag/enable
     
@@ -576,11 +543,9 @@ on boot
     chmod 777 /sys/class/usb_composite/nmea/enable
     chmod 777 /sys/class/usb_composite/rndis/enable
     chmod 777 /sys/class/usb_composite/usb_mass_storage/enable
-    # ZTE_MODIFY_END  
+
     
-    # ZTE_MODIFY, LiuTao, 2011-08-12, for open permission usb_switch #
-    chmod 777 /persist/zte/usb_dbg.txt
-    # ZTE_MODIFY_END      
+    chmod 777 /persist/zte/usb_dbg.txt    
 # allow system to modify cpufreq control files
     chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -691,7 +656,6 @@ on property:vold.decrypt=trigger_shutdown_framework
     class_reset late_start
     class_reset main
 
-# ZTE_MODIFY, fanwuxun, 2011-10-13, for open permission usb charger switch
 
 on property:persist.sys.usbcharger.enable=1
 	chmod 664 /sys/devices/platform/max8903-charger/usb_chg_enable
@@ -703,18 +667,12 @@ on property:persist.sys.usbcharger.enable=0
 	write /sys/devices/platform/max8903-charger/usb_chg_enable "00"
 	chmod 644 /sys/devices/platform/max8903-charger/usb_chg_enable
 
-# ZTE_MODIFY_END fanwuxun
-	
-# ZTE_MODIFY wangzhaojin for get system log to file 2011.09.14
-# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
 service getlog /system/bin/sh /system/etc/getlogtofile.sh
     class main
     user root
     disabled
     oneshot
-# ZTE_MODIFY yuanbo 2011-10-18 end
 
-# ZTE_MODIFY fanwuxun, caoyaobin 2011-10-1, log service use memeory proprity 
 on property:persist.sys.ztelog.enable=1
     setprop sys.service.filelog 0
     chmod 0777 /data/local/logs
@@ -725,12 +683,10 @@ on property:persist.sys.ztelog.enable=0
     chmod 0771 /data/local/logs
     stop getlog
     
-# ZTE_MODIFY fanwuxun, caoyaobin 2011-10-1, log service use memeory proprity end
+
 
 ## Daemon processes to be run by init.
 ##
-#** ZTE_MODIFY zhaoyang, 2011-09-15, for adding logcat process #
-# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
 service logcat_system /system/bin/logcat -v time -r 1014 -n 9 -b system -f /data/local/logs/logcat/logcat_system.log
     class main
     disabled 
@@ -750,9 +706,7 @@ service logcat_events /system/bin/logcat -v time -r 1014 -n 9 -b events -f /data
 service logcat_kernel /system/bin/logcat -v time -r 1014 -n 9 -b kernel -f /data/local/logs/logcat/logcat_kernel.log 
     class main
     disabled
-# ZTE_MODIFY yuanbo 2011-10-18 end
-
-# ZTE_MODIFY fanwuxun, caoyaobin 2011-10-1, log service use memeory proprity 
+    
 on property:sys.service.filelog=1
     start logcat_system    
     start logcat_main 
@@ -767,17 +721,12 @@ on property:sys.service.filelog=0
     stop logcat_events 
     stop logcat_kernel    
 
-# ZTE_MODIFY 2011-10-1, log service use memeory proprity end 
 
-#** ZTE_MODIFY zhaoyang, 2011-07-05, for adding klogd process #
-# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
 service klogd /system/bin/klogd
     class late_start
     user root 
     group root
     oneshot
-# ZTE_MODIFY yuanbo 2011-10-18 end
-# ZTE_MODIFY end 
 
 service ueventd /sbin/ueventd
     class core
@@ -789,13 +738,8 @@ service console /system/bin/sh
     disabled
     user shell
     group log
+    start console
 
-on property:ro.debuggable=1
-    start console
-#** ZTE_MODIFY hezhibin, 2011-10-01, add for debug user version resume delay
-on property:ro.debuggable=0
-    start console
-# ZTE_MODIFY end	
 
 
 #USB ???
@@ -1047,11 +991,10 @@ service mdnsd /system/bin/mdnsd
     disabled
     oneshot
 
-# ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
+
 service sdcard /system/bin/sdcard /data/media 1023 1023
     class late_start
 #    oneshot
-# ZTE_MODIFY yuanbo0015 end
 
 # adb over network
 on property:service.adb.tcp.port=5555
