@@ -376,8 +376,8 @@ on boot
     hostname localhost
     domainname localdomain
 #wifi
-#I think this is causing problems... trying things without it.
-#	insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
+#I think this is causing problems... trying things without it. -- NOPE
+	insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
 
 	#setprop wlan.interface "eth0"	
 	setprop wifi.interface "eth0"	
