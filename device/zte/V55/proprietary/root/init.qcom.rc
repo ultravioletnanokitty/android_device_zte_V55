@@ -53,10 +53,9 @@ on boot
     chown dhcp dhcp /data/misc/dhcp
     symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
     symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
-# ZTE_MODIFY wangjw0002: modified by wangjunwei 2011/05/05 for porting Wi-Fi to honeycomb
     #setprop wifi.interface wlan0
     setprop wifi.interface eth0
-# ZTE_MODIFY end wangjunwei 2011/05/05
+
 
      # Create directories for wiper services
     mkdir /data/wpstiles/ 0777 shell
@@ -208,11 +207,10 @@ on property:ro.emmc=1
     start rmt_storage
 setprop bt.bcm_bdaddr_path /persist/zte/bt/bt_addr.txt
 setprop bt.bdaddr_path /persist/zte/bt/bt_addr.txt
-# ZTE_MODIFY wangjw0001: modified by wangjunwei 2011/05/05 for porting bluetooth to honeycomb
 service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0 any &
 #service hciattach /system/bin/brcm_patchram_plus --no2bytes --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0 any &
 # service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
-# ZTE_MODIFY end wangjunwei 2011/05/05
+
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin system
     disabled
@@ -241,18 +239,18 @@ service qmuxd /system/bin/qmuxd
 service qmiproxy /system/bin/qmiproxy
     class main
 
-service netmgrd /system/bin/netmgrd
-    class late_start
-	#socket rild stream 660 root radio
-    #socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag system qcom_diag log 
-    #disabled
-    #oneshot
+#service netmgrd /system/bin/netmgrd
+#    class late_start
+#	 socket rild stream 660 root radio
+#    socket rild-debug stream 660 radio system
+#    user root
+#    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag system qcom_diag log 
+#    disabled
+#    oneshot
 
-on property:ro.use_data_netmgrd=false
+#on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
-    stop netmgrd
+#    stop netmgrd
 	
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
 # but only if ro.data.large_tcp_window_size property is set.
@@ -263,19 +261,14 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     disabled
     oneshot
 
-# ZTE_MODIFY wangjw0002: modified by wangjunwei 2011/05/05 for porting Wi-Fi to honeycomb
+
 # service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf -dd
 service wpa_supplicant /system/bin/wpa_supplicant -Dwext -ieth0 -c/data/misc/wifi/wpa_supplicant.conf 
-# ZTE_MODIFY end wangjunwei 2011/05/05
-# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
     class main
-# ZTE_MODIFY yuanbo 2011-10-18 end
     #user root
     #group wifi inet
-# ZTE_MODIFY wangjw0002: modified by wangjunwei 2011/05/05 for porting Wi-Fi to honeycomb
 #     socket wpa_wlan0 dgram 660 wifi wifi
     socket wpa_eth0 dgram 660 wifi wifi
-# ZTE_MODIFY end wangjunwei 2011/05/05
     disabled
     oneshot
 
@@ -295,24 +288,22 @@ service wpa_supplicant /system/bin/wpa_supplicant -Dwext -ieth0 -c/data/misc/wif
 #    disabled
 #    oneshot
 
-# ZTE_MODIFY wangjw0002: modified by wangjunwei 2011/05/05 for porting Wi-Fi to honeycomb
 #service dhcpcd_eth0 /system/bin/dhcpcd -BKLA eth0
 #    disabled
 #    oneshot
-# ZTE_MODIFY end wangjunwei 2011/05/05
+
 
 service wiperiface /system/bin/wiperiface
     user location
     group qcom_oncrpc system
     oneshot
 
-# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
+
 service gpsone_daemon /system/bin/gpsone_daemon
     class main
     user root
     group qcom_oncrpc system
     disabled
-# ZTE_MODIFY yuanbo 2011-10-18 end
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
     user root
@@ -352,11 +343,11 @@ on property:init.svc.bootanim=stopped
     start qcom-post-boot
     start qcom-wifi
 
-service atfwd /system/bin/ATFWD-daemon
-    class main
-    user system
-    group system radio
-    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
+#service atfwd /system/bin/ATFWD-daemon
+#    class main
+#    user system
+#    group system radio
+#    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
 
 service hdmid /system/bin/hdmid
     socket hdmid stream 0660 root system graphics
@@ -365,14 +356,12 @@ service hdmid /system/bin/hdmid
 on property:ro.hdmi.enable=true
     start hdmid
 
-# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
 service hostapd /system/bin/hostapd -dddd /data/hostapd/hostapd.conf
     class main
     user root
     group root
     oneshot
     disabled
-# ZTE_MODIFY yuanbo 2011-10-18 end
 
 service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
     class late_start

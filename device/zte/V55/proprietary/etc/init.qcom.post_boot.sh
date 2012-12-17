@@ -52,10 +52,6 @@
 	 #chown system /sys/devices/system/cpu/cpu1/cpufreq/ondemand/sampling_rate
 	 echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	 echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
-	 #chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
-	 #chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-	 #chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
-	 #chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
 	 #chown system /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
 	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
 	 chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq

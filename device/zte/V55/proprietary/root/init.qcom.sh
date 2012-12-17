@@ -29,11 +29,11 @@
 #
 # start ril-daemon only for targets on which radio is present
 #
-baseband=`getprop ro.baseband`
-case "$baseband" in
-        "svlte2a" | "csfb")
-        start qmiproxy
-esac
+#baseband=`getprop ro.baseband`
+#case "$baseband" in
+#        "svlte2a" | "csfb")
+#        start qmiproxy
+#esac
 
 #
 # Allow unique persistent serial numbers for devices connected via usb
