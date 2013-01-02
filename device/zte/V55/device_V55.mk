@@ -195,14 +195,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 	device/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
 #	device/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
 #	device/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
 #	frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 #	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 #	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
-
+#	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 	
 # kcm keymaps
 PRODUCT_COPY_FILES += \
@@ -213,19 +212,14 @@ PRODUCT_COPY_FILES += \
 
 # kl keylayouts
 PRODUCT_COPY_FILES += \
-    device/zte/V55/proprietary/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
 	device/zte/V55/proprietary/usr/keylayout/matrix-keypad.kl:system/usr/keylayout/matrix-keypad.kl \
 	device/zte/V55/proprietary/usr/keylayout/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
     device/zte/V55/proprietary/usr/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl \
-    device/zte/V55/proprietary/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     device/zte/V55/proprietary/usr/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
-    device/zte/V55/proprietary/usr/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
-    device/zte/V55/proprietary/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl
+    device/zte/V55/proprietary/usr/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl 
 	
 # idc files
 PRODUCT_COPY_FILES += \
-    device/zte/V55/proprietary/usr/idc/qwerty2.idc:system/usr/idc/qwerty2.idc \
-    device/zte/V55/proprietary/usr/idc/qwerty.idc:system/usr/idc/qwerty.idc \
 	device/zte/V55/proprietary/usr/idc/qwerty.idc:system/usr/idc/atmel-touchscreen.idc \
     device/zte/V55/proprietary/usr/icu/icudt44l.dat:system/usr/icu/icudt44l.dat
 	
@@ -249,8 +243,8 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
 
 #Bluetooth setup
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
+#PRODUCT_COPY_FILES += \
+#	device/zte/V55/proprietary/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
 #	device/zte/V55/proprietary/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
 #	device/zte/V55/proprietary/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
 #	device/zte/V55/proprietary/etc/bluetooth/network.conf:system/etc/bluetooth/network.conf \
@@ -296,11 +290,9 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/root/initlogo.rle:root/initlogo.rle \
 	device/zte/V55/proprietary/root/sbin/resize2fs:root/sbin/resize2fs \
 	device/zte/V55/proprietary/root/init.rc:root/init.rc \
-	device/zte/V55/proprietary/root/ueventd.rc:root/ueventd.rc \
 	device/zte/V55/proprietary/root/init.target.rc:root/init.target.rc \
 	device/zte/V55/proprietary/root/init.qcom.sh:root/init.qcom.sh \
 	device/zte/V55/proprietary/root/init.qcom.rc:root/init.qcom.rc \
-	device/zte/V55/proprietary/root/init:root/init \
 	device/zte/V55/proprietary/root/ueventd.rc:recovery/root/ueventd.rc \
 	device/zte/V55/proprietary/root/init:recovery/root/init \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
@@ -338,16 +330,16 @@ PRODUCT_COPY_FILES += \
 #adreno200 	
 PRODUCT_COPY_FILES += \
     device/zte/V55/proprietary/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
-	device/zte/V55/proprietary/lib/egl/libGLES_android.so:system/lib/egl/libGLES_android.so \
     device/zte/V55/proprietary/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     device/zte/V55/proprietary/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
     device/zte/V55/proprietary/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so \
 	device/zte/V55/proprietary/lib/egl/eglsubAndroid.so:system/lib/egl/eglsubAndroid.so \
-	device/zte/V55/proprietary/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
 	device/zte/V55/proprietary/lib/libgsl.so:system/lib/libgsl.so \
 	device/zte/V55/proprietary/lib/libC2D2.so:system/lib/libC2D2.so \
 	device/zte/V55/proprietary/lib/libOpenVG.so:system/lib/libOpenVG.so \
 	device/zte/V55/proprietary/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
+#	device/zte/V55/proprietary/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
+#	device/zte/V55/proprietary/lib/egl/libGLES_android.so:system/lib/egl/libGLES_android.so \
 #	device/zte/V55/proprietary/lib/liboverlay.so:system/lib/liboverlay.so \
 #	device/zte/V55/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180 \
 
@@ -400,8 +392,8 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	device/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
 	device/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
-	device/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
-	device/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
+#	device/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
+#	device/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
 #	device/zte/V55/proprietary/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
 #	device/zte/V55/proprietary/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
 
@@ -410,8 +402,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/proprietary/etc/wifi/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
 	device/zte/V55/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
 	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
-	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin \
-	device/zte/V55/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
+	device/zte/V55/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin 
 	
 #camera
 PRODUCT_COPY_FILES += \
