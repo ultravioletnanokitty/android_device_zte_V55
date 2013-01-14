@@ -14,7 +14,7 @@ $(LOCAL_KERNEL):kernel \
 PRODUCT_NAME := cm_V55
 PRODUCT_DEVICE := V55
 PRODUCT_MANUFACTURER := ZTE
-PRODUCT_BRAND :=Sprint 
+PRODUCT_BRAND := ZTE 
 PRODUCT_MODEL := Optik
 PRODUCT_BOARD := V55
 PRODUCT_CHARACTERISTICS :=tablet,nosdcard
@@ -36,16 +36,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=5m \
     dalvik.vm.heapgrowthlimit=48m \
     dalvik.vm.heapsize=256m
-
-#### Goo Manager support
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.goo.developerid=joestone \
-    ro.goo.board=$(subst full_,,$(PRODUCT_DEVICE)) \
-	ro.goo.rom=CM10_SprintOptik \
-	ro.goo.version=$(shell date +%Y%m%d )
-PRODUCT_COPY_FILES += \
-    device/zte/smarttab_common/proprietary/app/GooManager_2.1.2.apk:system/app/GooManager_2.1.2.apk \
-
 	
 PRODUCT_LOCALES += hdpi
 PRODUCT_LOCALES += xhdpi
@@ -270,26 +260,26 @@ PRODUCT_COPY_FILES += \
 
 	
 # GSM files
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \
-	device/zte/V55/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \
-	device/zte/V55/proprietary/lib/libqmi.so:system/lib/libqmi.so \
-	device/zte/V55/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
-	device/zte/V55/proprietary/lib/libqmiservices.so:system/lib/libqmiservices.so \
-	device/zte/V55/proprietary/lib/libidl.so:system/lib/libidl.so \
-	device/zte/V55/proprietary/lib/libdsi_netctrl.so:system/lib/libdsi_netctrl.so \
-	device/zte/V55/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so \
-	device/zte/V55/proprietary/lib/libqdp.so:system/lib/libqdp.so \
-	device/zte/V55/proprietary/lib/libtime_genoff.so:system/lib/libtime_genoff.so \
-	device/zte/V55/proprietary/lib/libreference-ril.so:system/lib/libreference-ril.so \
-	device/zte/V55/proprietary/lib/libreference-ril.so:obj/lib/libreference-ril.so \
-	device/zte/V55/proprietary/lib/libril.so:system/lib/libril.so \
-	device/zte/V55/proprietary/lib/libril.so:obj/lib/libril.so \
-	device/zte/V55/proprietary/bin/rild:system/bin/rild \
-	device/zte/V55/proprietary/bin/rild:obj/bin/rild \
-	device/zte/V55/proprietary/bin/netmgrd:system/bin/netmgrd \
-	device/zte/V55/proprietary/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
-	device/zte/V55/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so \
+#PRODUCT_COPY_FILES += \
+#	device/zte/V55/proprietary/lib/libril-qc-qmi-1.so:system/lib/libril-qc-qmi-1.so \
+#	device/zte/V55/proprietary/lib/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \
+#	device/zte/V55/proprietary/lib/libqmi.so:system/lib/libqmi.so \
+#	device/zte/V55/proprietary/lib/libdsutils.so:system/lib/libdsutils.so \
+#	device/zte/V55/proprietary/lib/libqmiservices.so:system/lib/libqmiservices.so \
+#	device/zte/V55/proprietary/lib/libidl.so:system/lib/libidl.so \
+#	device/zte/V55/proprietary/lib/libdsi_netctrl.so:system/lib/libdsi_netctrl.so \
+#	device/zte/V55/proprietary/lib/libnetmgr.so:system/lib/libnetmgr.so \
+#	device/zte/V55/proprietary/lib/libqdp.so:system/lib/libqdp.so \
+#	device/zte/V55/proprietary/lib/libtime_genoff.so:system/lib/libtime_genoff.so \
+#	device/zte/V55/proprietary/lib/libreference-ril.so:system/lib/libreference-ril.so \
+#	device/zte/V55/proprietary/lib/libreference-ril.so:obj/lib/libreference-ril.so \
+#	device/zte/V55/proprietary/lib/libril.so:system/lib/libril.so \
+#	device/zte/V55/proprietary/lib/libril.so:obj/lib/libril.so \
+#	device/zte/V55/proprietary/bin/rild:system/bin/rild \
+#	device/zte/V55/proprietary/bin/rild:obj/bin/rild \
+#	device/zte/V55/proprietary/bin/netmgrd:system/bin/netmgrd \
+#	device/zte/V55/proprietary/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
+#	device/zte/V55/proprietary/lib/libqc-opt.so:system/lib/libqc-opt.so \
 	
 #root dir
 PRODUCT_COPY_FILES += \
@@ -390,18 +380,18 @@ PRODUCT_COPY_FILES += \
 	device/zte/smarttab_common/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
 
 #Sprint
-PRODUCT_COPY_FILES += \
-	device/zte/V55/proprietary/app/Activation4005.apk:system/app/Activation4005.apk \
-	device/zte/V55/proprietary/app/SMPSClient_NonDebug.apk:system/app/SMPSClient_NonDebug.apk \
-	device/zte/V55/proprietary/app/Sprint_InstallerNC_2101-2.apk:system/app/Sprint_InstallerNC_2101-2.apk \
-	device/zte/V55/proprietary/app/sprint-android-release-prod2033-4.1.39-new.apk:system/app/sprint-android-release-prod2033-4.1.39-new.apk \
-	device/zte/V55/proprietary/app/SprintPermissions.apk:system/app/SprintPermissions.apk \
-	device/zte/V55/proprietary/app/tn70-tablet-sprint-7101357.apk:system/app/tn70-tablet-sprint-7101357.apk \
-	device/zte/V55/proprietary/app/vdmc_hfa.apk:system/app/vdmc_hfa.apk \
-	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
-	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
-	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
-	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar
+#PRODUCT_COPY_FILES += \
+#	device/zte/V55/proprietary/app/Activation4005.apk:system/app/Activation4005.apk \
+#	device/zte/V55/proprietary/app/SMPSClient_NonDebug.apk:system/app/SMPSClient_NonDebug.apk \
+#	device/zte/V55/proprietary/app/Sprint_InstallerNC_2101-2.apk:system/app/Sprint_InstallerNC_2101-2.apk \
+#	device/zte/V55/proprietary/app/sprint-android-release-prod2033-4.1.39-new.apk:system/app/sprint-android-release-prod2033-4.1.39-new.apk \
+#	device/zte/V55/proprietary/app/SprintPermissions.apk:system/app/SprintPermissions.apk \
+#	device/zte/V55/proprietary/app/tn70-tablet-sprint-7101357.apk:system/app/tn70-tablet-sprint-7101357.apk \
+#	device/zte/V55/proprietary/app/vdmc_hfa.apk:system/app/vdmc_hfa.apk \
+#	device/zte/V55/proprietary/app/Zone-Sprint.apk:system/app/Zone-Sprint.apk \
+#	device/zte/V55/proprietary/bin/sprintdiag:system/bin/sprintdiag \
+#	device/zte/V55/proprietary/etc/permissions/com.sprint.internal.xml:/system/etc/permissions/com.sprint.internal.xml \
+#	device/zte/V55/proprietary/framework/sprint.jar:system/framework/sprint.jar
 	
 #wifi
 PRODUCT_COPY_FILES += \
