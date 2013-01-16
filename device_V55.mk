@@ -2,14 +2,6 @@
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
 #$(call inherit-product, device/zte/V11A/libcamera/Android.mk)
 
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-LOCAL_KERNEL := device/zte/V55/kernel
-else
-LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-endif
-PRODUCT_COPY_FILES += \
-$(LOCAL_KERNEL):kernel \
-
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := cm_V55
 PRODUCT_DEVICE := V55
