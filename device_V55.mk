@@ -257,16 +257,16 @@ PRODUCT_COPY_FILES += \
 	
 #root dir
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/root/initlogo.rle:root/initlogo.rle \
-	vendor/zte/V55/proprietary/root/sbin/resize2fs:root/sbin/resize2fs \
-	vendor/zte/V55/proprietary/root/init.rc:root/init.rc \
-	vendor/zte/V55/proprietary/root/ueventd.rc:root/ueventd.rc \
-	vendor/zte/V55/proprietary/root/init.target.rc:root/init.target.rc \
-	vendor/zte/V55/proprietary/root/init.qcom.sh:root/init.qcom.sh \
-	vendor/zte/V55/proprietary/root/init.qcom.rc:root/init.qcom.rc \
-	vendor/zte/V55/proprietary/root/init:root/init \
-	vendor/zte/V55/proprietary/root/ueventd.rc:recovery/root/ueventd.rc \
-	vendor/zte/V55/proprietary/root/init:recovery/root/init \
+	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
+	device/zte/V55/root/sbin/resize2fs:root/sbin/resize2fs \
+	device/zte/V55/root/init.rc:root/init.rc \
+	device/zte/V55/root/ueventd.rc:root/ueventd.rc \
+	device/zte/V55/root/init.target.rc:root/init.target.rc \
+	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
+	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
+	device/zte/V55/root/init:root/init \
+	device/zte/V55/root/ueventd.rc:recovery/root/ueventd.rc \
+	device/zte/V55/root/init:recovery/root/init \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
 	vendor/zte/V55/proprietary/bin/sdcard:recovery/root/sbin/sdcard \
 
