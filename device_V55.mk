@@ -18,7 +18,7 @@ PRODUCT_BRAND := ZTE
 PRODUCT_MODEL := Optik
 PRODUCT_BOARD := V55
 PRODUCT_CHARACTERISTICS :=tablet,nosdcard
-DEVICE_PACKAGE_OVERLAYS := device/zte/smarttab_common/overlay
+DEVICE_PACKAGE_OVERLAYS := device/zte/V55/overlay
 PRODUCT_TAGS += dalvik.gc.type-precise
 #shell_ash
 PRODUCT_PROPERTY_OVERRIDES+= dalvik.vm.execution-mode=int:jit \
