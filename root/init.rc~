@@ -1,3 +1,4 @@
+#import /init.smarttab.usb.rc
 on early-init
     start ueventd
 
@@ -17,6 +18,7 @@ loglevel 3
     export PATH /sbin:/vendor/bin:/system/sbin:/system/bin:/system/xbin
     export LD_LIBRARY_PATH /vendor/lib:/system/lib
     export ANDROID_BOOTLOGO 1
+    export ANDROID_CACHE /cache
     export ANDROID_ROOT /system
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
@@ -31,7 +33,8 @@ loglevel 3
     export LOOP_MOUNTPOINT /mnt/obb
 # ZTE_MODIFY pujia add qcnvitems.jar qcrilhook.jar sprint.jar 20110810  shizengzeng add networktimer.jar
  #   export BOOTCLASSPATH /system/framework/core.jar:/system/framework/apache-xml.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/core-junit.jar:/system/framework/ZteDrmClient.jar:/system/framework/qcnvitems.jar:/system/framework/qcrilhook.jar:/system/framework/sprint.jar:/system/framework/networktimer.jar
-    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/filterfw.jar:/system/framework/sprint.jar
+#    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar:/system/framework/filterfw.jar:system/framework/framework2.jar
+    export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/framework2.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar
 
  # ZTE_MODIFY pujia 20110810
 
@@ -43,7 +46,9 @@ loglevel 3
 # Right now vendor lives on the same filesystem as system,
 # but someday that may change.
     symlink /system/vendor /vendor
-
+	mkdir /storage 0050 system sdcard_r
+   mkdir /storage/sdcard0 0000 system system
+   symlink /mnt/sdcard /storage/sdcard0
 # create mountpoints
     mkdir /mnt/sdcard 0000 system system
 # ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
@@ -66,7 +71,7 @@ loglevel 3
     mkdir /system
     mkdir /data 0771 system system
     mkdir /persist 0771 system system
-    mkdir /cache 0770 system cache
+    mkdir /cache 0771 system cache
     mkdir /config 0500 root root
     mkdir /persist 0771 system system
 
@@ -95,29 +100,45 @@ loglevel 3
     write /proc/sys/kernel/sched_wakeup_granularity_ns 2000000
     write /proc/sys/kernel/sched_compat_yield 1
     write /proc/sys/kernel/sched_child_runs_first 0
-
+    write /proc/sys/kernel/randomize_va_space 2
+    write /proc/sys/kernel/kptr_restrict 2
+    write /proc/sys/kernel/dmesg_restrict 1
+    write /proc/sys/vm/mmap_min_addr 32768
+    write /proc/sys/kernel/sched_rt_runtime_us 950000
+    write /proc/sys/kernel/sched_rt_period_us 1000000
 
 # Create cgroup mount points for process groups
+
     mkdir /dev/cpuctl
     mount cgroup none /dev/cpuctl cpu
     chown system system /dev/cpuctl
     chown system system /dev/cpuctl/tasks
-    chmod 0777 /dev/cpuctl/tasks
+    chmod 0660 /dev/cpuctl/tasks
     write /dev/cpuctl/cpu.shares 1024
+    write /dev/cpuctl/cpu.rt_runtime_us 950000
+    write /dev/cpuctl/cpu.rt_period_us 1000000
 
-    mkdir /dev/cpuctl/fg_boost
-    chown system system /dev/cpuctl/fg_boost/tasks
-    chmod 0777 /dev/cpuctl/fg_boost/tasks
-    write /dev/cpuctl/fg_boost/cpu.shares 1024
+    mkdir /dev/cpuctl/apps
+    chown system system /dev/cpuctl/apps/tasks
+    chmod 0666 /dev/cpuctl/apps/tasks
+    write /dev/cpuctl/apps/cpu.shares 1024
+    write /dev/cpuctl/apps/cpu.rt_runtime_us 800000
+    write /dev/cpuctl/apps/cpu.rt_period_us 1000000
 
-    mkdir /dev/cpuctl/bg_non_interactive
-    chown system system /dev/cpuctl/bg_non_interactive/tasks
-    chmod 0777 /dev/cpuctl/bg_non_interactive/tasks
+    mkdir /dev/cpuctl/apps/bg_non_interactive
+    chown system system /dev/cpuctl/apps/bg_non_interactive/tasks
+    chmod 0666 /dev/cpuctl/apps/bg_non_interactive/tasks
     # 5.0 %
-    write /dev/cpuctl/bg_non_interactive/cpu.shares 52
-#Genlock hack
-#	chmod 0777 /dev/genlock
+    write /dev/cpuctl/apps/bg_non_interactive/cpu.shares 52
+    write /dev/cpuctl/apps/bg_non_interactive/cpu.rt_runtime_us 700000
+    write /dev/cpuctl/apps/bg_non_interactive/cpu.rt_period_us 1000000
 
+# Allow everybody to read the xt_qtaguid resource tracking misc dev.
+# This is needed by any process that uses socket tagging.
+    chmod 0644 /dev/xt_qtaguid
+
+# Backward compatibility
+    symlink /sys/module/xt_quota2 /sys/module/xt_quota
 
 
 
@@ -186,7 +207,7 @@ on post-fs
 
     # We chown/chmod /cache again so because mount is run as root + defaults
     chown system cache /cache
-    chmod 0770 /cache
+    chmod 0771 /cache
 
     # This may have been created by the recovery system with odd permissions
     chown system cache /cache/recovery
@@ -202,6 +223,7 @@ on post-fs
     chown root system /proc/sysrq-trigger
     chmod 0220 /proc/sysrq-trigger
 
+	
     # create the lost+found directories, so as to enforce our permissions
     mkdir /cache/lost+found 0770
 
@@ -255,7 +277,8 @@ on post-fs-data
     mkdir /data/misc/bluetoothd 0770 bluetooth bluetooth
     mkdir /data/misc/bluetooth 0770 system system
     mkdir /data/misc/keystore 0700 keystore keystore
-    mkdir /data/misc/vpn 0770 system system
+    mkdir /data/misc/keychain 0771 system system 
+    mkdir /data/misc/vpn 0770 system vpn
     mkdir /data/misc/systemkeys 0700 system system
     mkdir /data/misc/vpn/profiles 0770 system system
     # give system access to wpa_supplicant.conf for backup and restore
@@ -266,9 +289,14 @@ on post-fs-data
     mkdir /data/local/tmp 0771 shell shell
     mkdir /data/data 0771 system system
     mkdir /data/app-private 0771 system system
+	mkdir /data/app-asec 0771 system system
     mkdir /data/app 0771 system system
     mkdir /data/property 0700 root root
+    mkdir /data/ssh 0750 root shell
+    mkdir /data/ssh/empty 0700 root root
     mkdir /data/radio 0770 radio radio
+
+
 
 #** ZTE_MODIFY zhaoyang, 2011-07-25, for adding logcat process #
     mkdir /data/local/logs 0771 system system
@@ -278,12 +306,15 @@ on post-fs-data
     mkdir /data/dalvik-cache 0771 system system
     chown system system /data/dalvik-cache
     chmod 0771 /data/dalvik-cache
+   
+    mkdir /cache/dalvik-cache 0771 system system
+    chown system system /cache/dalvik-cache
+    chmod 0771 /cache/dalvik-cache
 
-
-
-
-
-
+    # create resource-cache and double-check the perms
+    mkdir /data/resource-cache 0771 system system
+    chown system system /data/resource-cache
+    chmod 0771 /data/resource-cache
 
 
 
@@ -322,19 +353,88 @@ on post-fs-data
     mkdir /data/dm 0777 system system
     mkdir /data/dm/delta 0777 system system
     # ZTE_MODIFY
+#BT mac
+    setprop ro.bt.bdaddr_path "/persist/zte/bt/bt_addr.txt"	
+    setprop bt.bcm_bdaddr_path "/persist/zte/bt/bt_addr.txt"	
+# permissions for bluetooth.
+    chown bluetooth bluetooth /persist/zte/bt
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0600 /dev/ttyHS0
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+
+# We chown/chmod /efs because mount is run as root + defaults
+#    chown radio radio /efs
+#    chmod 0775 /efs	
 # Include extra init file
     import /system/etc/init.local.rc    
 on boot
+#BT mac
+#    setprop ro.bt.bdaddr_path "/persist/zte/bt/bt_addr.txt"
+
+
+# Allow writing to the kernel trace log.
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
+# Allow the shell group to enable (some) kernel tracing.
+    chown root shell /sys/kernel/debug/tracing/trace_clock
+    chown root shell /sys/kernel/debug/tracing/buffer_size_kb
+    chown root shell /sys/kernel/debug/tracing/options/overwrite
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chown root shell /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chown root shell /sys/kernel/debug/tracing/tracing_on
+
+    chmod 0664 /sys/kernel/debug/tracing/trace_clock
+    chmod 0664 /sys/kernel/debug/tracing/buffer_size_kb
+    chmod 0664 /sys/kernel/debug/tracing/options/overwrite
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chmod 0664 /sys/kernel/debug/tracing/tracing_on
+
+# Allow only the shell group to read and truncate the kernel trace.
+    chown root shell /sys/kernel/debug/tracing/trace
+    chmod 0660 /sys/kernel/debug/tracing/trace
+
+
 # basic network init
     ifup lo
     hostname localhost
     domainname localdomain
+#wifi
+	insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
+
+	#setprop wlan.interface "eth0"	
+	setprop wifi.interface "eth0"	
+	#setprop wlan.driver.status "ok"
 
 # set RLIMIT_NICE to allow priorities from 19 to -20
     setrlimit 13 40 40
 
+# Memory management.  Basic kernel parameters, and allow the high
+# level system server to be able to adjust the kernel OOM driver
+# paramters to match how it is managing things.
+    write /proc/sys/vm/overcommit_memory 1
+    write /proc/sys/vm/min_free_order_shift 4
+    chown root system /sys/module/lowmemorykiller/parameters/adj
+    chmod 0664 /sys/module/lowmemorykiller/parameters/adj
+    chown root system /sys/module/lowmemorykiller/parameters/minfree
+    chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
+
+    # Tweak background writeout
+    write /proc/sys/vm/dirty_expire_centisecs 200
+    write /proc/sys/vm/dirty_background_ratio  5
+
+
 # set RLIMIT_MEMLOCK to 64MB
-    setrlimit 8 67108864 67108864
+	#setrlimit 8 67108864 67108864
 
 # Define the oom_adj values for the classes of processes that can be
 # killed by the kernel.  These are used in ActivityManagerService.
@@ -398,12 +498,34 @@ on boot
     chown radio system /sys/android_power/acquire_full_wake_lock
     chown radio system /sys/android_power/acquire_partial_wake_lock
     chown radio system /sys/android_power/release_wake_lock
-    chown radio system /sys/power/state
+    chown system system /sys/power/state
+    chown system system /sys/power/wakeup_count
     chown radio system /sys/power/wake_lock
     chown radio system /sys/power/wake_unlock
     chmod 0660 /sys/power/state
     chmod 0660 /sys/power/wake_lock
     chmod 0660 /sys/power/wake_unlock
+
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boost
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/boost
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/boostpulse
+    chown system system /sys/devices/system/cpu/cpufreq/interactive/input_boost
+    chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/input_boost
+
+    # Assume SMP uses shared cpufreq policy for all CPUs
+    chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+
     chown system system /sys/class/timed_output/vibrator/enable
     chown system system /sys/class/leds/keyboard-backlight/brightness
     chown system system /sys/class/leds/lcd-backlight/brightness
@@ -466,25 +588,79 @@ on boot
     #**  ZTE_MODIFY, LiuTao, 2011-08-12, for open permission usb_switch #
     chmod 777 /persist/zte/usb_dbg.txt
     # ZTE_MODIFY_END      
+# allow system to modify cpufreq control files
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	# allow system to modify cpufreq control files
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    # bluetooth power up/down interface
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0660                /sys/class/rfkill/rfkill0/state
+ chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+ chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+ chown system system /sys/module/sco/parameters/disable_esco
+ chmod 0660 /sys/module/bluetooth_power/parameters/power
+ chmod 0660 /proc/bluetooth/sleep/proto
+ chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
+ chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
 # Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.wifi    4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.umts    4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsdpa   4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.default 4094,87380,404480,4096,16384,404480
+    setprop net.tcp.buffersize.wifi    4094,87380,404480,4096,16384,404480
+    setprop net.tcp.buffersize.umts    4094,87380,404480,4096,16384,404480
+    setprop net.tcp.buffersize.hspa    4094,87380,404480,4096,16384,404480
+    setprop net.tcp.buffersize.hsupa   4094,87380,404480,4096,16384,404480
+    setprop net.tcp.buffersize.hsdpa   4094,87380,404480,4096,16384,404480
     setprop net.tcp.buffersize.edge    4094,87380,262144,4096,16384,262144
     setprop net.tcp.buffersize.gprs    4094,87380,262144,4096,16384,262144
-    setprop net.tcp.buffersize.lte     4094,87380,1220608,4096,16384,1220608
+    setprop net.tcp.buffersize.lte     4094,87380,404480,4096,16384,404480
     setprop net.tcp.buffersize.evdo_b  4094,87380,262144,4096,16384,262144
-
+	
+	
+	
 # Assign TCP buffer thresholds to be ceiling value of technology maximums
 # Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max  1220608
-    write /proc/sys/net/core/wmem_max  1220608
+    write /proc/sys/net/core/rmem_max  404480
+    write /proc/sys/net/core/wmem_max  404480
+# allow system to modify ksm control files
+#    chown root system /proc/sys/net/
+#    chmod 0664 /proc/sys/net/
+#	chown root system /proc/sys/net/ipv4
+#    chmod 0664 /proc/sys/net/ipv4
+#	chown root system /proc/sys/net/ipv6
+#    chmod 0664 /proc/sys/net/ipv6
 
+# for disabling IPv6 over mobile network.
+    write /proc/sys/net/ipv6/conf/rmnet0/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet1/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet2/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet_sdio0/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet_sdio1/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet_sdio2/disable_ipv6 1
+	
+	
+# allow system to modify ksm control files
+    chown root system /sys/kernel/mm/ksm/pages_to_scan
+    chmod 0664 /sys/kernel/mm/ksm/pages_to_scan
+    chown root system /sys/kernel/mm/ksm/sleep_millisecs
+    chmod 0664 /sys/kernel/mm/ksm/sleep_millisecs
+    chown root system /sys/kernel/mm/ksm/run
+    chmod 0664 /sys/kernel/mm/ksm/run
+    write /sys/kernel/mm/ksm/sleep_millisecs 1500
+    write /sys/kernel/mm/ksm/pages_to_scan 256
+	
+	
 # Set this property so surfaceflinger is not started by system_init
     setprop system_init.startsurfaceflinger 0
 
@@ -492,8 +668,17 @@ on boot
     class_start main
     class_start default
 
+# Run sysinit
+    exec /system/bin/sysinit
+
+    class_start core
+    class_start main	
+	
 on nonencrypted
     class_start late_start
+
+on charger
+    class_start charger
 
 on property:vold.decrypt=trigger_reset_main
     class_reset main
@@ -621,23 +806,6 @@ on property:ro.debuggable=0
     start console
 # ZTE_MODIFY end	
 
-# adbd is controlled by the persist.service.adb.enable system property
-#service adbd /sbin/adbd
-#    class core
-#    disabled
-
-#on property:sys.usb.config=none
-#    exec /system/bin/netcfg usb0 down
-#    stop adbd
-#    write /sys/class/usb_composite/adb/enable 0
-#    write /sys/class/usb_composite/usb_mass_storage/enable 0
-#    write /sys/class/usb_composite/rndis/enable 0
-#    setprop sys.usb.state $sys.usb.config
-
-#on property:sys.usb.config=adb
-#    write /sys/class/usb_composite/adb/enable 1
-#    start adbd
-#    setprop sys.usb.state $sys.usb.config
 
 #USB ???
 setprop persist.sys.usb.config mtp,adb
@@ -782,6 +950,8 @@ service servicemanager /system/bin/servicemanager
     critical
     onrestart restart zygote
     onrestart restart media
+    onrestart restart surfaceflinger
+    onrestart restart drm
 
 service vold /system/bin/vold
     class core
@@ -792,16 +962,17 @@ service netd /system/bin/netd
     class main
     socket netd stream 0660 root system
     socket dnsproxyd stream 0660 root inet
+    socket mdns stream 0660 root system
 
 service debuggerd /system/bin/debuggerd
     class main
 
 service ril-daemon /system/bin/rild
-    class late_start
+    class main
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
     user root
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag system qcom_diag log 
 	
 #  ZTE_MODIFY sunwei for start sprintdiag at init tablet 2011.08.18
 service sprintdiag /system/bin/sprintdiag
@@ -816,29 +987,21 @@ service surfaceflinger /system/bin/surfaceflinger
 
 service zygote /system/bin/app_process -Xzygote /system/bin --zygote --start-system-server
     class main
-    socket zygote stream 666
+    socket zygote stream 660 root system
     onrestart write /sys/android_power/request_state wake
     onrestart write /sys/power/state on
-    onrestart restart surfaceflinger
     onrestart restart media
     onrestart restart netd
 
 service drm /system/bin/drmserver
     class main
     user drm
-    group system inet
-
-#** ZTE_MODIFY yangyang10099103, 2011-08-01, for start DRM service #
-# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
-service DrmHost /system/bin/DrmHost
-    class late_start
-# ZTE_MODIFY yuanbo 2011-10-18 end
-#** ZTE_MODIFY end
+    group drm system inet drmrpc sdcard_r
 
 service media /system/bin/mediaserver
     class main
     user media
-    group system audio camera graphics inet net_bt net_bt_admin net_raw  qcom_oncrpc
+    group system audio camera graphics inet net_bt net_bt_admin net_bw_acct drmrpc net_raw  qcom_oncrpc
     ioprio rt 4
 
 service bootanim /system/bin/bootanimation
@@ -854,35 +1017,24 @@ service dbus /system/bin/dbus-daemon --system --nofork
     user bluetooth
     group bluetooth net_bt_admin
 
-service bluetoothd /system/bin/bluetoothd -n
-    class main
-    socket bluetooth stream 660 bluetooth bluetooth
-    socket dbus_bluetooth stream 660 bluetooth bluetooth
-    # init.rc does not yet support applying capabilities, so run as root and
-    # let bluetoothd drop uid to bluetooth with the right linux capabilities
-    group bluetooth net_bt_admin misc
-    disabled
+
+
+
+
+
+
+
+
 
 service installd /system/bin/installd
     class main
     socket installd stream 600 system system
 
-#** ZTE_MODIFY xiedongren, 2011-09-08, for restore customized apps #
-service  copypartnerpp  /system/bin/copypartnerpp
-    class main
-    user root
-    oneshot
-#** ZTE_MODIFY end
-
-service flash_recovery /system/etc/install-recovery.sh
-    class main
-    oneshot
-
 service racoon /system/bin/racoon
     class main
     socket racoon stream 600 system system
     # racoon will setuid to vpn after getting necessary resources.
-    group net_admin
+    group vpn net_admin inet
     disabled
     oneshot
 
@@ -890,19 +1042,31 @@ service mtpd /system/bin/mtpd
     class main
     socket mtpd stream 600 system system
     user vpn
-    group vpn net_admin net_raw
+    group vpn net_admin inet net_raw
     disabled
     oneshot
 
 service keystore /system/bin/keystore /data/misc/keystore
     class main
     user keystore
-    group keystore
+    group keystore drmrpc
     socket keystore stream 666
 
 service dumpstate /system/bin/dumpstate -s
     class main
     socket dumpstate stream 0660 shell log
+    disabled
+    oneshot
+
+service sshd /system/bin/start-ssh
+    class main
+    disabled
+
+service mdnsd /system/bin/mdnsd
+    class main
+    user mdnsr
+    group inet net_raw
+    socket mdnsd stream 0660 mdnsr inet
     disabled
     oneshot
 
@@ -919,4 +1083,18 @@ on property:service.adb.tcp.port=5555
 on property:service.adb.tcp.port=-1
     stop adbd
     start adbd
-
+service dhcpcd_eth0 /system/bin/dhcpcd -BKL
+    disabled
+    oneshot
+service iprenew_eth0 /system/bin/dhcpcd -n
+    disabled
+    oneshot 
+service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+service dhcpcd_rmnet0 /system/bin/dhcpcd -BKL
+    disabled
+    oneshot
+service iprenew_rmnet0 /system/bin/dhcpcd -n
+    disabled
+    oneshot 
