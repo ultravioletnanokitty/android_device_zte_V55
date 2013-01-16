@@ -203,19 +203,15 @@ PRODUCT_COPY_FILES += \
 
 # kl keylayouts
 PRODUCT_COPY_FILES += \
-    vendor/zte/V55/proprietary/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
 	vendor/zte/V55/proprietary/usr/keylayout/matrix-keypad.kl:system/usr/keylayout/matrix-keypad.kl \
 	vendor/zte/V55/proprietary/usr/keylayout/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
     vendor/zte/V55/proprietary/usr/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl \
-    vendor/zte/V55/proprietary/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     vendor/zte/V55/proprietary/usr/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
     vendor/zte/V55/proprietary/usr/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
-    vendor/zte/V55/proprietary/usr/keylayout/qwerty.kl:system/usr/keylayout/qwerty.kl
+
 	
 # idc files
 PRODUCT_COPY_FILES += \
-    vendor/zte/V55/proprietary/usr/idc/qwerty2.idc:system/usr/idc/qwerty2.idc \
-    vendor/zte/V55/proprietary/usr/idc/qwerty.idc:system/usr/idc/qwerty.idc \
 	vendor/zte/V55/proprietary/usr/idc/qwerty.idc:system/usr/idc/atmel-touchscreen.idc \
     vendor/zte/V55/proprietary/usr/icu/icudt44l.dat:system/usr/icu/icudt44l.dat
 	
@@ -239,8 +235,8 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
 
 #Bluetooth setup
-PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
+#PRODUCT_COPY_FILES += \
+#	vendor/zte/V55/proprietary/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
 #	vendor/zte/V55/proprietary/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
 #	vendor/zte/V55/proprietary/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
 #	vendor/zte/V55/proprietary/etc/bluetooth/network.conf:system/etc/bluetooth/network.conf \
@@ -260,16 +256,10 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
 	device/zte/V55/root/sbin/resize2fs:root/sbin/resize2fs \
 	device/zte/V55/root/init.rc:root/init.rc \
-	device/zte/V55/root/ueventd.rc:root/ueventd.rc \
 	device/zte/V55/root/init.target.rc:root/init.target.rc \
 	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
-	device/zte/V55/root/init:root/init \
-	device/zte/V55/root/ueventd.rc:recovery/root/ueventd.rc \
-	device/zte/V55/root/init:recovery/root/init \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
-	vendor/zte/V55/proprietary/bin/sdcard:recovery/root/sbin/sdcard \
-
 	
 # VOLD files
 PRODUCT_COPY_FILES += \
@@ -279,12 +269,10 @@ PRODUCT_COPY_FILES += \
 #adreno200 	
 PRODUCT_COPY_FILES += \
     vendor/zte/V55/proprietary/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
-	vendor/zte/V55/proprietary/lib/egl/libGLES_android.so:system/lib/egl/libGLES_android.so \
     vendor/zte/V55/proprietary/lib/egl/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \
     vendor/zte/V55/proprietary/lib/egl/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \
     vendor/zte/V55/proprietary/lib/egl/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so \
 	vendor/zte/V55/proprietary/lib/egl/eglsubAndroid.so:system/lib/egl/eglsubAndroid.so \
-	vendor/zte/V55/proprietary/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
 	vendor/zte/V55/proprietary/lib/libgsl.so:system/lib/libgsl.so \
 	vendor/zte/V55/proprietary/lib/libC2D2.so:system/lib/libC2D2.so \
 	vendor/zte/V55/proprietary/lib/libOpenVG.so:system/lib/libOpenVG.so \
@@ -314,13 +302,12 @@ PRODUCT_COPY_FILES += \
 
 #modem Scripts 	
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-	vendor/zte/V55/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
 	vendor/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-	vendor/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh 
-	
+	vendor/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh 
+#	vendor/zte/V55/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
+#	vendor/zte/V55/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
+#	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \	
 	
 #codecs	
 PRODUCT_COPY_FILES += \
@@ -344,10 +331,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	vendor/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
 	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
-	vendor/zte/V55/proprietary/framework/com.google.android.maps.jar:system/framework/com.google.android.maps.jar \
-	vendor/zte/V55/proprietary/framework/com.google.android.media.effects.jar:system/framework/com.google.android.media.effects.jar \
-	vendor/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
-	vendor/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
 	
 #wifi
 PRODUCT_COPY_FILES += \
@@ -355,7 +338,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin \
-	vendor/zte/V55/proprietary/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf 
 	
 #camera
 PRODUCT_COPY_FILES += \
@@ -400,7 +382,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/bin/usbhub:system/bin/usbhub \
 	vendor/zte/V55/proprietary/bin/wiperiface:system/bin/wiperiface \
 	vendor/zte/V55/proprietary/bin/usbhub_init:system/bin/usbhub_init \
-	vendor/zte/V55/proprietary/bin/sdcard:system/bin/sdcard \
 	vendor/zte/V55/proprietary/bin/radish:system/bin/radish \
 	vendor/zte/V55/proprietary/bin/hdmid:system/bin/hdmid \
 #	vendor/zte/V55/proprietary/bin/ash:system/bin/sh \
