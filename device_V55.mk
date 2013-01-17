@@ -352,3 +352,7 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/bin/radish:system/bin/radish \
 	vendor/zte/V55/proprietary/bin/hdmid:system/bin/hdmid \
 #	vendor/zte/V55/proprietary/bin/ash:system/bin/sh \
+
+# libv8
+PRODUCT_COPY_FILES += \
+	vendor/zte/V55/proprietary/libv8.so:obj/lib/libv8.so \
