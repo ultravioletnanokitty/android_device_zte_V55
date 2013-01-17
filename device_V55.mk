@@ -269,12 +269,12 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
 	vendor/zte/V55/proprietary/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw 
 
-#modem Scripts 	
+#modem Scripts
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
 	vendor/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
 	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \	
-	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
+#	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
 #   vendor/zte/V55/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
 #   vendor/zte/V55/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
 
