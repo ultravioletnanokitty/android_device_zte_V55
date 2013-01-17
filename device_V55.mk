@@ -99,11 +99,8 @@ PRODUCT_PACKAGES += \
     Gallery2 \
     LatinIME \
     Launcher2 \
-    Mms \
     Music \
 	MusicFX \
-    Phone \
-    Provision \
     Protips \
     QuickSearchBox \
 	hcitool \
@@ -134,9 +131,6 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
     VideoEditor \
 	libI420colorconvert \
-#	rild \
-#	libril \
-#	libreference-ril \
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -225,23 +219,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libdiag.so:system/lib/libdiag.so \
 	vendor/zte/V55/proprietary/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	vendor/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
-
-#Bluetooth setup
-#PRODUCT_COPY_FILES += \
-#	vendor/zte/V55/proprietary/bin/brcm_patchram_plus:system/bin/brcm_patchram_plus \
-#	vendor/zte/V55/proprietary/etc/bluetooth/input.conf:system/etc/bluetooth/input.conf \
-#	vendor/zte/V55/proprietary/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf \
-#	vendor/zte/V55/proprietary/etc/bluetooth/network.conf:system/etc/bluetooth/network.conf \
-#	vendor/zte/V55/proprietary/lib/bluez-plugin/audio.so:system/lib/bluez-plugin/audio.so \
-#	vendor/zte/V55/proprietary/lib/bluez-plugin/input.so:system/lib/bluez-plugin/input.so \
-#	vendor/zte/V55/proprietary/lib/bluez-plugin/network.so:system/lib/bluez-plugin/network.so \
-#	vendor/zte/V55/proprietary/lib/libbluedroid.so:system/lib/libbluedroid.so \
-#	vendor/zte/V55/proprietary/lib/libbluetooth.so:system/lib/libbluetooth.so \
-#	vendor/zte/V55/proprietary/lib/libbluetoothd.so:system/lib/libbluetoothd.so \
-#	vendor/zte/V55/proprietary/lib/libdbus.so:system/lib/libdbus.so \
-#	vendor/zte/V55/proprietary/bin/bluetoothd:system/bin/bluetoothd \
-#	vendor/zte/V55/proprietary/bin/hciattach:system/bin/hciattach \
-#	vendor/zte/V55/proprietary/bin/sdptool:system/bin/sdptool \
 	
 #root dir
 PRODUCT_COPY_FILES += \
@@ -296,10 +273,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
 	vendor/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \	
 	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh 
 #	vendor/zte/V55/proprietary/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
 #	vendor/zte/V55/proprietary/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-#	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \	
 	
 #codecs	
 PRODUCT_COPY_FILES += \
