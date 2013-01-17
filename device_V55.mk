@@ -303,8 +303,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/wifi/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
-	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin \
+#	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
 
 #camera
 PRODUCT_COPY_FILES += \
