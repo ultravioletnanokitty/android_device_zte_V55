@@ -303,8 +303,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/wifi/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
-#	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin \
-#	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
 
 #camera
 PRODUCT_COPY_FILES += \
@@ -332,7 +330,7 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \
     vendor/zte/V55/proprietary/lib/libloc_ext.so:system/lib/libloc_ext.so \
     vendor/zte/V55/proprietary/lib/libwiperjni.so:system/lib/libwiperjni.so \
-    vendor/zte/V55/proprietary/lib/libtcpfinaggr.so:system/lib/libtcpfinaggr.so \
+#    vendor/zte/V55/proprietary/lib/libtcpfinaggr.so:system/lib/libtcpfinaggr.so \
 
 # Binary files
 PRODUCT_COPY_FILES += \
