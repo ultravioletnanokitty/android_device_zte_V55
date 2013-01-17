@@ -283,9 +283,9 @@ PRODUCT_COPY_FILES += \
     vendor/zte/V55/proprietary/lib/libOmxEvrcDec.so:/system/lib/libOmxEvrcDec.so \
     vendor/zte/V55/proprietary/lib/libOmxWmaDec.so:/system/lib/libOmxWmaDec.so \
 	vendor/zte/V55/proprietary/lib/libmmparser.so:/system/lib/libmmparser.so \
-	vendor/zte/V55/proprietary/lib/libDivxDrm.so:/system/lib/libDivxDrm.so \
 	vendor/zte/V55/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
 	vendor/zte/V55/proprietary/lib/libmmosal.so:/system/lib/libmmosal.so \
+#	vendor/zte/V55/proprietary/lib/libDivxDrm.so:/system/lib/libDivxDrm.so \
 #    vendor/zte/V55/proprietary/lib/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
 #    vendor/zte/V55/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
 #	vendor/zte/V55/proprietary/lib/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
