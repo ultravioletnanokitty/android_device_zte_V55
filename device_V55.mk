@@ -28,7 +28,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=5m \
     dalvik.vm.heapgrowthlimit=48m \
     dalvik.vm.heapsize=256m
-	
+
 PRODUCT_LOCALES += hdpi
 PRODUCT_LOCALES += xhdpi
 #PRODUCT_LOCALES += nodpi
@@ -147,7 +147,7 @@ PRODUCT_PACKAGES += \
 	com.tmobile.themes \
 	Androidian \
 	Cyanbread
-		
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
@@ -179,7 +179,7 @@ PRODUCT_COPY_FILES += \
 	#frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
 	#frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 
-	
+
 # kcm keymaps
 PRODUCT_COPY_FILES += \
     vendor/zte/V55/proprietary/usr/keychars/Generic.kcm:system/usr/keylayout/Generic.kcm \
@@ -195,12 +195,12 @@ PRODUCT_COPY_FILES += \
     vendor/zte/V55/proprietary/usr/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
     vendor/zte/V55/proprietary/usr/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
 
-	
+
 # idc files
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/usr/idc/qwerty.idc:system/usr/idc/atmel-touchscreen.idc \
     vendor/zte/V55/proprietary/usr/icu/icudt44l.dat:system/usr/icu/icudt44l.dat
-	
+
 # Audio files
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libaudioalsa.so:system/lib/libaudioalsa.so \
@@ -219,7 +219,7 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libdiag.so:system/lib/libdiag.so \
 	vendor/zte/V55/proprietary/etc/media_profiles.xml:system/etc/media_profiles.xml \
 	vendor/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
-	
+
 #root dir
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
@@ -229,12 +229,12 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
-	
+
 # VOLD files
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/vold.fstab:system/etc/vold.fstab \
 	device/zte/V55/recovery/recovery.fstab:recovery/root/etc/recovery.fstab 
-	
+
 #adreno200 	
 PRODUCT_COPY_FILES += \
     vendor/zte/V55/proprietary/lib/egl/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \
@@ -249,7 +249,7 @@ PRODUCT_COPY_FILES += \
 #	vendor/zte/V55/proprietary/lib/liboverlay.so:system/lib/liboverlay.so \
 #	vendor/zte/V55/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180 \
 
-	
+
 #firmware 	
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
@@ -300,14 +300,14 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	vendor/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
 	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
-	
+
 #wifi
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/wifi/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_apsta_b2.bin:system/etc/wifi/fw_bcm4330_apsta_b2.bin \
 	vendor/zte/V55/proprietary/etc/wifi/fw_bcm4330_b2.bin:system/etc/wifi/fw_bcm4330_b2.bin \
-	
+
 #camera
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libmmipl.so:system/lib/libmmipl.so \
