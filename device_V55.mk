@@ -79,6 +79,9 @@ PRODUCT_PACKAGES += libcamera
 #ash shell
 PRODUCT_PACKAGES += liblinenoise
 
+# libv8
+PRODUCT_PACKAGES += libv8
+
 # Sensors
 PRODUCT_PACKAGES += libinvensense_hal
 
@@ -131,7 +134,6 @@ PRODUCT_PACKAGES += \
 	audio.usb.default \
     VideoEditor \
 	libI420colorconvert \
-	libv8 \
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
