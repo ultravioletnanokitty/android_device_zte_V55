@@ -10,19 +10,13 @@ on emmc-fs
     # mount mmc partitions
     wait /dev/block/mmcblk0p12
     mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
-    
-on data-msm8x60
-    wait /dev/block/mmcblk0p21
-    exec /system/bin/resize2fs_wrapper /dev/block/mmcblk0p21 120M
-    mount ext4 /dev/block/mmcblk0p21 /data nosuid nodev barrier=1
     wait /dev/block/mmcblk0p13
     mount ext4 /dev/block/mmcblk0p13 /persist nosuid nodev barrier=1
-
+    wait /dev/block/mmcblk0p21
+    mount ext4 /dev/block/mmcblk0p21 /data nosuid nodev barrier=1
     wait /dev/block/mmcblk0p14
-    exec /sbin/resize2fs -f /dev/block/mmcblk0p14
-    exec /system/bin/e2fsck -p /dev/block/mmcblk0p14
     mount ext4 /dev/block/mmcblk0p14 /cache nosuid nodev barrier=1
-    
+
 on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
