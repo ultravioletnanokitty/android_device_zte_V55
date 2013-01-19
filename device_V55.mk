@@ -232,6 +232,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
 	device/zte/V55/recovery/init.rc:recovery/root/init.rc \
+	device/zte/V55/root/ueventd.rc:root/ueventd.rc \
 
 # VOLD files
 PRODUCT_COPY_FILES += \
