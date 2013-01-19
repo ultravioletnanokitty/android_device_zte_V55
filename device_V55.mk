@@ -336,7 +336,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/bin/battery_charging:system/bin/battery_charging \
 	vendor/zte/V55/proprietary/bin/bridgemgrd:system/bin/bridgemgrd \
-	vendor/zte/V55/proprietary/bin/port-bridge:system/bin/port-bridge \init
+	vendor/zte/V55/proprietary/bin/port-bridge:system/bin/port-bridge \
 	vendor/zte/V55/proprietary/bin/qmiproxy:system/bin/qmiproxy \
 	vendor/zte/V55/proprietary/bin/mpdecision:system/bin/mpdecision \
 	vendor/zte/V55/proprietary/bin/ds_fmc_appd:system/bin/ds_fmc_appd \
