@@ -1,7 +1,9 @@
+# real time clock
 /dev/rtc0                 0666   system     system
 
 # the genlock client device node is world writable/readable.
 /dev/genlock              0666   root      root
+
 # the net client device node is world writable/readable.
 /proc/sys/net              0666   root      root
 
@@ -11,7 +13,6 @@
 /dev/kgsl-2d1             0666   root       root
 
 # these should not be world writable
-
 /dev/ttyHS0               0666   bluetooth  bluetooth
 /dev/ttyGS0               0666   system     system
 /dev/rfkill          	  0666    root        root
@@ -59,19 +60,13 @@
 /dev/hsicctl2             0640   radio      radio
 /dev/hsicctl3             0640   radio      radio
 /dev/qemu_trace           0666   system     system
-/dev/qmi                  0640   radio      radio
-/dev/qmi0                 0640   radio      radio
-/dev/qmi1                 0640   radio      radio
-/dev/qmi2                 0640   radio      radio
-/dev/bus/usb/*            0660   root       usb
-/dev/mtp_usb              0660   root       mtp
 /dev/gemini0              0660   system     system
 /dev/mdm                  0660   system     system
 /dev/ttyHSL1              0660   system     system
 /dev/tty_sdio_00          0660   system     system
 /dev/block/mmcblk0p17     0660   system     system
 /dev/block/mmcblk0p18     0660   system     system
-/dev/video*	          0777   system     camera 
+/dev/video*	              0777   system     camera 
 /dev/oncrpc/300000ba:00010000  0660   system     drmrpc
 
 #regular apps need to be able to open ion
@@ -80,16 +75,15 @@
 /dev/rfcomm0              0666   bluetooth   bluetooth
 
 # sysfs properties
-/sys/devices/virtual/input/input*   enable      0660  root   input
-/sys/devices/virtual/input/input*   poll_delay  0660  root   input
-
 /sys/module/lowmemorykiller/*	enable	0666  root   system
 /sys/devices/system/*	enable	0666  root   system
+
 #permissions for video
 /dev/msm_vidc_reg         0660  system       audio
 /dev/msm_vidc_dec         0660  system       audio
 /dev/msm_vidc_dec_sec     0660  system       audio
 /dev/msm_vidc_enc         0660  system       audio
+
 #permissions for audio
 /dev/msm_amrnb            0660  system       audio
 /dev/msm_amrwb            0660  system       audio
@@ -108,11 +102,11 @@
 /dev/msm_preproc_ctl      0660  system       audio
 /dev/msm_a2dp_in          0640  system       audio
 /dev/msm_amrnb_in         0640  system       audio
-/sys/devices/virtual/usb_composite/*   enable      0664  root   system
+
 /sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio
-#permissions for sensors
+
+# permissions for sensors
 /dev/msm_dsps             0664  system       system
 
-# ZTE_MODIFY wangzhaojin for fota partition 20110908
+# fota partition
 /dev/block/mmcblk0p20     0660  system       system
-# ZTE_MODIFY end
