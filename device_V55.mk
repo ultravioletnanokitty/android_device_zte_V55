@@ -227,7 +227,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
 	device/zte/V55/root/sbin/resize2fs:root/sbin/resize2fs \
-	device/zte/V55/root/init.rc:root/init.rc \
 	device/zte/V55/root/init.target.rc:root/init.target.rc \
 	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \

@@ -1,0 +1,593 @@
+on init
+    export ANDROID_CACHE /cache
+    export EXTERNAL_STORAGE /mnt/sdcard
+    export EXTERNAL_ALT_STORAGE /mnt/sdcard-ext
+    export EXTERNAL_USB_STORAGE /mnt/sdcard-usb
+
+	mkdir /storage 0050 system sdcard_r
+   mkdir /storage/sdcard0 0000 system system
+   symlink /mnt/sdcard /storage/sdcard0
+# create mountpoints
+    mkdir /mnt/sdcard 0000 system system
+    mkdir /mnt/sdcard-ext 0000 system system
+    mkdir /mnt/sdcard-usb 0000 system system
+
+
+# Backwards Compat - XXX: Going away in G*
+    symlink /mnt/sdcard /sdcard
+    symlink /mnt/sdcard-ext /sdcard-ext
+    symlink /mnt/sdcard-usb /sdcard-usb
+
+    mkdir /persist 0771 system system
+
+# Backward compatibility
+    symlink /sys/module/xt_quota2 /sys/module/xt_quota
+
+
+
+on fs
+    mount yaffs2 mtd@persist /persist nosuid nodev
+
+on emmc-fs
+# mount mmc partitions
+    # ZTE_MODIFY lixinyu adjust partition,mark old data 20110721
+    #wait /dev/block/mmcblk0p12
+    #mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
+    #wait /dev/block/mmcblk0p13
+    #exec /system/bin/e2fsck -p /dev/block/mmcblk0p13
+    #mount ext4 /dev/block/mmcblk0p13 /data nosuid nodev barrier=1 noauto_da_alloc
+    #mount ext4 /dev/block/mmcblk0p14 /persist nosuid nodev barrier=1
+    #mount ext4 /dev/block/mmcblk0p15 /cache nosuid nodev barrier=1
+    wait /dev/block/mmcblk0p12
+    mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
+	
+# ZTE_MODIFY jiangzhifeng0004: move "/data mount" operation here.20110803
+# ZTE_MODIFY yuanbo boot error in data partition mounting yuanbo00017 2011-8-4
+on data-msm8x60
+    wait /dev/block/mmcblk0p21
+    #exec /system/bin/e2fsck -p /dev/block/mmcblk0p21
+    exec /system/bin/resize2fs_wrapper /dev/block/mmcblk0p21 120M
+    mount ext4 /dev/block/mmcblk0p21 /data nosuid nodev barrier=1
+
+    # ZTE_MODIFY lixinyu modify mount sequence here 20110917
+    wait /dev/block/mmcblk0p13
+    mount ext4 /dev/block/mmcblk0p13 /persist nosuid nodev barrier=1
+
+    wait /dev/block/mmcblk0p14
+    exec /sbin/resize2fs -f /dev/block/mmcblk0p14
+    exec /system/bin/e2fsck -p /dev/block/mmcblk0p14
+    mount ext4 /dev/block/mmcblk0p14 /cache nosuid nodev barrier=1
+    #end lixinyu
+
+on data-svlte2a
+    wait /dev/block/mmcblk0p26
+    #exec /system/bin/e2fsck -p /dev/block/mmcblk0p26
+    exec /system/bin/resize2fs_wrapper /dev/block/mmcblk0p26 120M
+    mount ext4 /dev/block/mmcblk0p26 /data nosuid nodev barrier=1
+
+    # ZTE_MODIFY lixinyu modify mount sequence here 20110917
+    wait /dev/block/mmcblk0p13
+    mount ext4 /dev/block/mmcblk0p13 /persist nosuid nodev barrier=1
+
+    wait /dev/block/mmcblk0p14
+    exec /sbin/resize2fs -f /dev/block/mmcblk0p14
+    exec /system/bin/e2fsck -p /dev/block/mmcblk0p14
+    mount ext4 /dev/block/mmcblk0p14 /cache nosuid nodev barrier=1
+    #end lixinyu
+
+# ZTE_MODIFY yuanbo00017 end
+# ZTE_MODIFY_END jiangzhifeng
+
+on post-fs
+    # double check the perms, in case lost+found already exists, and set owner
+    chown root root /cache/lost+found
+    chmod 0770 /cache/lost+found
+
+on post-fs-data
+    # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
+    # We chown/chmod /persist again so because mount is run as root + defaults
+    chown system system /persist
+    chmod 0771 /persist
+
+    chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
+
+    # Chown polling nodes as needed from UI running on system server
+    chown system system /sys/devices/platform/msm_sdcc.1/polling
+    chown system system /sys/devices/platform/msm_sdcc.2/polling
+    chown system system /sys/devices/platform/msm_sdcc.3/polling
+    chown system system /sys/devices/platform/msm_sdcc.4/polling
+
+
+
+    mkdir /data/misc/vpn/profiles 0770 system system
+
+
+
+#** ZTE_MODIFY zhaoyang, 2011-07-25, for adding logcat process #
+    mkdir /data/local/logs 0771 system system
+# ZTE_MODIFY end 
+    mkdir /cache/dalvik-cache 0771 system system
+    chown system system /cache/dalvik-cache
+    chmod 0771 /cache/dalvik-cache
+
+    # double check the perms, in case lost+found already exists, and set owner
+    chown root root /data/lost+found
+    chmod 0770 /data/lost+found
+
+    #** ZTE_MODIFY yangyang10099103, 2011-08-01, create the OMA directories, so as to enforce our permissions #
+    mkdir /data/oma 0777
+    mkdir /data/oma/conf 0777
+    mkdir /data/oma/rights 0777
+    mkdir /data/oma/rights/objects 0777
+
+    setprop vold.post_fs_data_done 1
+
+	
+# ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
+    mkdir /data/media 0777 media_rw media_rw
+# ZTE_MODIFY yuanbo0015 end
+
+    # ZTE_MODIFY wangzhaojin for PST FOTA 2011.10.26
+    mkdir /data/dm 0777 system system
+    mkdir /data/dm/delta 0777 system system
+    # ZTE_MODIFY
+#BT mac
+    setprop ro.bt.bdaddr_path "/persist/zte/bt/bt_addr.txt"	
+    setprop bt.bcm_bdaddr_path "/persist/zte/bt/bt_addr.txt"	
+# permissions for bluetooth.
+    chown bluetooth bluetooth /persist/zte/bt
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0600 /dev/ttyHS0
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+
+# We chown/chmod /efs because mount is run as root + defaults
+#    chown radio radio /efs
+#    chmod 0775 /efs	
+# Include extra init file
+    import /system/etc/init.local.rc    
+on boot
+#BT mac
+#    setprop ro.bt.bdaddr_path "/persist/zte/bt/bt_addr.txt"
+
+
+# Allow writing to the kernel trace log.
+    chmod 0222 /sys/kernel/debug/tracing/trace_marker
+
+# Allow the shell group to enable (some) kernel tracing.
+    chown root shell /sys/kernel/debug/tracing/trace_clock
+    chown root shell /sys/kernel/debug/tracing/buffer_size_kb
+    chown root shell /sys/kernel/debug/tracing/options/overwrite
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chown root shell /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chown root shell /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chown root shell /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chown root shell /sys/kernel/debug/tracing/tracing_on
+
+    chmod 0664 /sys/kernel/debug/tracing/trace_clock
+    chmod 0664 /sys/kernel/debug/tracing/buffer_size_kb
+    chmod 0664 /sys/kernel/debug/tracing/options/overwrite
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_switch/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/sched/sched_wakeup/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_frequency/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/power/cpu_idle/enable
+    chmod 0664 /sys/kernel/debug/tracing/events/cpufreq_interactive/enable
+    chmod 0664 /sys/kernel/debug/tracing/tracing_on
+
+# Allow only the shell group to read and truncate the kernel trace.
+    chown root shell /sys/kernel/debug/tracing/trace
+    chmod 0660 /sys/kernel/debug/tracing/trace
+
+
+#wifi
+	insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
+
+	#setprop wlan.interface "eth0"	
+	setprop wifi.interface "eth0"	
+	#setprop wlan.driver.status "ok"
+
+
+# set RLIMIT_MEMLOCK to 64MB
+	#setrlimit 8 67108864 67108864
+
+# Define the oom_adj values for the classes of processes that can be
+# killed by the kernel.  These are used in ActivityManagerService.
+    setprop ro.FOREGROUND_APP_ADJ 0
+    setprop ro.VISIBLE_APP_ADJ 1
+    setprop ro.PERCEPTIBLE_APP_ADJ 2
+    setprop ro.HEAVY_WEIGHT_APP_ADJ 3
+    setprop ro.SECONDARY_SERVER_ADJ 4
+    setprop ro.BACKUP_APP_ADJ 5
+    setprop ro.HOME_APP_ADJ 6
+    setprop ro.HIDDEN_APP_MIN_ADJ 7
+    setprop ro.EMPTY_APP_ADJ 15
+
+# Define the memory thresholds at which the above process classes will
+# be killed.  These numbers are in pages (4k).
+    # These are currently tuned for tablets with approx 1GB RAM.
+    setprop ro.FOREGROUND_APP_MEM 8192
+    setprop ro.VISIBLE_APP_MEM 10240
+    setprop ro.PERCEPTIBLE_APP_MEM 12288
+    setprop ro.HEAVY_WEIGHT_APP_MEM 12288
+    setprop ro.SECONDARY_SERVER_MEM 14336
+    setprop ro.BACKUP_APP_MEM 14336
+    setprop ro.HOME_APP_MEM 14336
+    setprop ro.HIDDEN_APP_MEM 16384
+    setprop ro.EMPTY_APP_MEM 20480
+
+    # Old values for phones.  Should probably be adjusted up for the next
+    # phone version.
+    #setprop ro.FOREGROUND_APP_MEM 2048
+    #setprop ro.VISIBLE_APP_MEM 3072
+    #setprop ro.PERCEPTIBLE_APP_MEM 4096
+    #setprop ro.HEAVY_WEIGHT_APP_MEM 4096
+    #setprop ro.SECONDARY_SERVER_MEM 6144
+    #setprop ro.BACKUP_APP_MEM 6144
+    #setprop ro.HOME_APP_MEM 6144
+    #setprop ro.HIDDEN_APP_MEM 7168
+    #setprop ro.EMPTY_APP_MEM 8192
+
+# Write value must be consistent with the above properties.
+# Note that the driver only supports 6 slots, so we have combined some of
+# the classes into the same memory level; the associated processes of higher
+# classes will still be killed first.
+	chmod 0666	/sys/module/lowmemorykiller/parameters/adj
+    write /sys/module/lowmemorykiller/parameters/adj 0,1,2,4,7,15
+
+    write /proc/sys/vm/overcommit_memory 1
+    write /proc/sys/vm/min_free_order_shift 4
+	chmod 0666 /sys/module/lowmemorykiller/parameters/minfree
+    write /sys/module/lowmemorykiller/parameters/minfree 8192,10240,12288,14336,16384,20480
+
+    # Set init its forked children's oom_adj.
+    write /proc/1/oom_adj -16
+
+    # Tweak background writeout
+    write /proc/sys/vm/dirty_expire_centisecs 200
+    write /proc/sys/vm/dirty_background_ratio  5
+
+	# ZTE_MODIFY lvzhenzhong, 2011-10-29, for change the owner of leds #
+	chown system system /sys/class/leds/green/blink
+	chown system system /sys/class/leds/green/grpfreq
+	chown system system /sys/class/leds/green/grppwm
+	# ZTE_MODIFY END 
+
+	# ZTE_MODIFY maxiaoqiang, 2011-07-21, for adding permission on MPU #
+	chmod 0777 /dev/taos
+	chmod 0777 /dev/mpu
+	chmod 0777 /dev/mpuirq
+	chmod 0777 /dev/accelirq
+    chmod 0777 /dev/timerirq
+	# ZTE_MODIFY end maxiaoqiang, 2011-07-21
+
+    #**  ZTE_MODIFY, LiuTao, 2011-07-25, for open permission writeRoamingListFile#
+    chmod 777 /persist/zte/prldata/prl_data.txt
+    # ZTE_MODIFY_END
+	chown system system /sys/devices/platform/usb_mass_storage/lun0/file
+	chmod 0660 /sys/devices/platform/usb_mass_storage/lun0/file
+    #**  ZTE_MODIFY, LiuTao, 2011-09-19, Commnent for CTS Test #
+    #chmod 777 /sys/class/usb_composite/modem/enable
+    #chmod 777 /sys/class/usb_composite/diag/enable
+    
+    chmod 777 /sys/class/usb_composite/adb/enable
+    chmod 777 /sys/class/usb_composite/diag/enable
+    chmod 777 /sys/class/usb_composite/modem/enable
+    chmod 777 /sys/class/usb_composite/mtp/enable
+    chmod 777 /sys/class/usb_composite/nmea/enable
+    chmod 777 /sys/class/usb_composite/rndis/enable
+    chmod 777 /sys/class/usb_composite/usb_mass_storage/enable
+    # ZTE_MODIFY_END  
+    
+    #**  ZTE_MODIFY, LiuTao, 2011-08-12, for open permission usb_switch #
+    chmod 777 /persist/zte/usb_dbg.txt
+    # ZTE_MODIFY_END      
+# allow system to modify cpufreq control files
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+    chown root system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	# allow system to modify cpufreq control files
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+    chown root system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    chmod 0664 /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+    # bluetooth power up/down interface
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chmod 0660                /sys/class/rfkill/rfkill0/state
+ chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+ chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+ chown system system /sys/module/sco/parameters/disable_esco
+ chmod 0660 /sys/module/bluetooth_power/parameters/power
+ chmod 0660 /proc/bluetooth/sleep/proto
+ chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
+ chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
+
+
+# Assign TCP buffer thresholds to be ceiling value of technology maximums
+# Increased technology maximums should be reflected here.
+    write /proc/sys/net/core/rmem_max  1220608
+    write /proc/sys/net/core/wmem_max  1220608
+# allow system to modify ksm control files
+#    chown root system /proc/sys/net/
+#    chmod 0664 /proc/sys/net/
+#	chown root system /proc/sys/net/ipv4
+#    chmod 0664 /proc/sys/net/ipv4
+#	chown root system /proc/sys/net/ipv6
+#    chmod 0664 /proc/sys/net/ipv6
+
+# for disabling IPv6 over mobile network.
+    write /proc/sys/net/ipv6/conf/rmnet0/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet1/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet2/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet_sdio0/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet_sdio1/disable_ipv6 1
+    write /proc/sys/net/ipv6/conf/rmnet_sdio2/disable_ipv6 1
+	
+	
+# allow system to modify ksm control files
+    chown root system /sys/kernel/mm/ksm/pages_to_scan
+    chmod 0664 /sys/kernel/mm/ksm/pages_to_scan
+    chown root system /sys/kernel/mm/ksm/sleep_millisecs
+    chmod 0664 /sys/kernel/mm/ksm/sleep_millisecs
+    chown root system /sys/kernel/mm/ksm/run
+    chmod 0664 /sys/kernel/mm/ksm/run
+    write /sys/kernel/mm/ksm/sleep_millisecs 1500
+    write /sys/kernel/mm/ksm/pages_to_scan 256
+
+# ZTE_MODIFY, fanwuxun, 2011-10-13, for open permission usb charger switch
+
+on property:persist.sys.usbcharger.enable=1
+	chmod 664 /sys/devices/platform/max8903-charger/usb_chg_enable
+	write /sys/devices/platform/max8903-charger/usb_chg_enable "10"
+	chmod 644 /sys/devices/platform/max8903-charger/usb_chg_enable
+	
+on property:persist.sys.usbcharger.enable=0
+	chmod 664 /sys/devices/platform/max8903-charger/usb_chg_enable
+	write /sys/devices/platform/max8903-charger/usb_chg_enable "00"
+	chmod 644 /sys/devices/platform/max8903-charger/usb_chg_enable
+
+# ZTE_MODIFY_END fanwuxun
+	
+# ZTE_MODIFY wangzhaojin for get system log to file 2011.09.14
+# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
+service getlog /system/bin/sh /system/etc/getlogtofile.sh
+    class main
+    user root
+    disabled
+    oneshot
+# ZTE_MODIFY yuanbo 2011-10-18 end
+
+# ZTE_MODIFY fanwuxun, caoyaobin 2011-10-1, log service use memeory proprity 
+on property:persist.sys.ztelog.enable=1
+    setprop sys.service.filelog 0
+    chmod 0777 /data/local/logs
+    start getlog
+    
+on property:persist.sys.ztelog.enable=0
+    setprop sys.service.filelog 0
+    chmod 0771 /data/local/logs
+    stop getlog
+    
+# ZTE_MODIFY fanwuxun, caoyaobin 2011-10-1, log service use memeory proprity end
+
+## Daemon processes to be run by init.
+##
+#** ZTE_MODIFY zhaoyang, 2011-09-15, for adding logcat process #
+# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
+service logcat_system /system/bin/logcat -v time -r 1014 -n 9 -b system -f /data/local/logs/logcat/logcat_system.log
+    class main
+    disabled 
+
+service logcat_main /system/bin/logcat -v time -r 1024 -n 9 -b main -f /data/local/logs/logcat/logcat_main.log
+    class main
+    disabled 
+
+service logcat_radio /system/bin/logcat -v time -r 1014 -n 9 -b radio -f /data/local/logs/logcat/logcat_radio.log 
+    class main
+    disabled
+
+service logcat_events /system/bin/logcat -v time -r 1014 -n 9 -b events -f /data/local/logs/logcat/logcat_events.log
+    class main
+    disabled
+
+service logcat_kernel /system/bin/logcat -v time -r 1014 -n 9 -b kernel -f /data/local/logs/logcat/logcat_kernel.log 
+    class main
+    disabled
+# ZTE_MODIFY yuanbo 2011-10-18 end
+
+# ZTE_MODIFY fanwuxun, caoyaobin 2011-10-1, log service use memeory proprity 
+on property:sys.service.filelog=1
+    start logcat_system    
+    start logcat_main 
+    start logcat_radio 
+    start logcat_events 
+    start logcat_kernel
+
+on property:sys.service.filelog=0
+    stop logcat_system    
+    stop logcat_main 
+    stop logcat_radio 
+    stop logcat_events 
+    stop logcat_kernel    
+
+# ZTE_MODIFY 2011-10-1, log service use memeory proprity end 
+
+#** ZTE_MODIFY zhaoyang, 2011-07-05, for adding klogd process #
+# ZTE_MODIFY yuanbo for encryption bug 2011-10-18
+service klogd /system/bin/klogd
+    class late_start
+    user root 
+    group root
+    oneshot
+# ZTE_MODIFY yuanbo 2011-10-18 end
+# ZTE_MODIFY end 
+
+#USB ???
+setprop persist.sys.usb.config mtp,adb
+on property:sys.usb.config=none
+    exec /system/bin/netcfg usb0 down
+    stop adbd
+    write /sys/class/usb_composite/accessory/enable 0
+    write /sys/class/usb_composite/adb/enable 0
+	write /sys/class/usb_composite/diag/enable 0
+	write /sys/class/usb_composite/modem/enable 0
+	write /sys/class/usb_composite/mtp/enable 0
+	write /sys/class/usb_composite/nmea/enable 0
+	write /sys/class/usb_composite/rmnet/enable 0
+	write /sys/class/usb_composite/rndis/enable 0
+    write /sys/class/usb_composite/usb_mass_storage/enable 0
+    setprop sys.usb.state none
+#	setprop persist.sys.usb.config $sys.usb.config
+	
+on property:sys.usb.config=adb
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state adb
+
+on property:sys.usb.config=mass_storage
+    write /sys/class/usb_composite/usb_mass_storage/enable 1
+    start adbd
+    setprop sys.usb.state mass_storage
+	
+on property:sys.usb.config=mtp
+    write /sys/class/usb_composite/mtp/enable 1
+	start adbd
+    setprop sys.usb.state mtp
+	
+on property:sys.usb.config=mass_storage,adb
+    write /sys/class/usb_composite/usb_mass_storage/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state mass_storage,adb
+#	setprop persist.sys.usb.config $sys.usb.config
+	
+on property:sys.usb.config=mtp,adb
+    write /sys/class/usb_composite/mtp/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+	start adbd
+    setprop sys.usb.state mtp,adb
+#	setprop persist.sys.usb.config $sys.usb.config
+	
+on property:sys.usb.config=rndis
+    write /sys/class/usb_composite/rndis/enable 1
+    exec /system/bin/netcfg usb0 up
+    start adbd
+    setprop sys.usb.state rndis
+	
+on property:sys.usb.config=rndis,mtp
+	write /sys/class/usb_composite/mtp/enable 1
+    write /sys/class/usb_composite/rndis/enable 1
+    exec /system/bin/netcfg usb0 up
+    start adbd
+    setprop sys.usb.state rndis,mtp
+#	setprop persist.sys.usb.config $sys.usb.config
+	
+	
+on property:sys.usb.config=rndis,adb
+    write /sys/class/usb_composite/rndis/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    exec /system/bin/netcfg usb0 up
+    setprop sys.usb.state rndis,adb
+
+#	setprop persist.sys.usb.config $sys.usb.config
+	
+on property:sys.usb.config=mass_storage,rndis,adb
+    write /sys/class/usb_composite/usb_mass_storage/enable 1
+    write /sys/class/usb_composite/rndis/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    setprop sys.usb.state mass_storage,rndis,adb
+    exec /system/bin/netcfg usb0 up
+#	setprop persist.sys.usb.config $sys.usb.config
+	
+on property:sys.usb.config=rndis,mtp,adb
+    write /sys/class/usb_composite/mtp/enable 1
+    write /sys/class/usb_composite/rndis/enable 1
+    write /sys/class/usb_composite/adb/enable 1
+    start adbd
+    exec /system/bin/netcfg usb0 up
+    setprop sys.usb.state rndis,mtp,adb
+
+#	setprop persist.sys.usb.config $sys.usb.config
+# Used to set USB configuration at boot and to switch the configuration
+# when changing the default configuration
+#on property:persist.sys.usb.config=adb
+#    setprop sys.usb.config adb
+#on property:persist.sys.usb.config=mtp
+#    setprop sys.usb.config mtp
+#on property:persist.sys.usb.config=mtp,adb
+#    setprop sys.usb.config mtp,adb
+#on property:persist.sys.usb.config=rndis,mtp,adb
+#    setprop sys.usb.config rndis,mtp,adb
+#on property:persist.sys.usb.config=rndis,adb
+#    setprop sys.usb.config rndis,adb
+#on property:persist.sys.usb.config=rndis,mtp
+#    setprop sys.usb.config rndis,mtp
+#on property:persist.sys.usb.config=rndis
+#    setprop sys.usb.config rndis
+#on property:persist.sys.usb.config=none
+#    setprop sys.usb.config none
+on property:persist.sys.usb.config=*
+    setprop sys.usb.config $persist.sys.usb.config	
+	
+#######USB END
+# adbd is controlled via property triggers in init.<platform>.usb.rc
+
+# This property trigger has added to imitiate the previous behavior of "adb root".
+# The adb gadget driver used to reset the USB bus when the adbd daemon exited,
+# and the host side adb relied on this behavior to force it to reconnect with the
+# new adbd instance after init relaunches it. So now we force the USB bus to reset
+# here when adbd sets the service.adb.root property to 1.  We also restart adbd here
+# rather than waiting for init to notice its death and restarting it so the timing
+# of USB resetting and adb restarting more closely matches the previous behavior.
+on property:service.adb.root=1
+    write /sys/class/usb_composite/adb/enable 0
+    restart adbd
+    write /sys/class/usb_composite/adb/enable 1
+	
+on property:persist.service.adb.enable=1
+    start adbd
+
+on property:persist.service.adb.enable=0
+    stop adbd
+
+# ZTE_MODIFY yuanbo FUSE disk yuanbo0015 2011-7-28
+service sdcard /system/bin/sdcard /data/media 1023 1023
+    class late_start
+    oneshot
+# ZTE_MODIFY yuanbo0015 end
+
+# adb over network
+on property:service.adb.tcp.port=5555
+    stop adbd
+    start adbd
+on property:service.adb.tcp.port=-1
+    stop adbd
+    start adbd
+service dhcpcd_eth0 /system/bin/dhcpcd -BKL
+    disabled
+    oneshot
+service iprenew_eth0 /system/bin/dhcpcd -n
+    disabled
+    oneshot 
+service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
+    disabled
+    oneshot
+service dhcpcd_rmnet0 /system/bin/dhcpcd -BKL
+    disabled
+    oneshot
+service iprenew_rmnet0 /system/bin/dhcpcd -n
+    disabled
+    oneshot 
