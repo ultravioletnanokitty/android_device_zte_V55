@@ -1,10 +1,6 @@
 on init
     # create /persist
     mkdir /persist 0771 system system
-    
-on fs
-    # mount /persist
-    mount yaffs2 mtd@persist /persist nosuid nodev
 
 on emmc-fs
     # mount mmc partitions
@@ -23,20 +19,20 @@ on post-fs-data
     chmod 0771 /persist
 
 setprop persist.sys.usb.config mtp,adb
+
 on property:sys.usb.config=none
     exec /system/bin/netcfg usb0 down
     stop adbd
     write /sys/class/usb_composite/accessory/enable 0
     write /sys/class/usb_composite/adb/enable 0
-write /sys/class/usb_composite/diag/enable 0
-write /sys/class/usb_composite/modem/enable 0
-write /sys/class/usb_composite/mtp/enable 0
-write /sys/class/usb_composite/nmea/enable 0
-write /sys/class/usb_composite/rmnet/enable 0
-write /sys/class/usb_composite/rndis/enable 0
+    write /sys/class/usb_composite/diag/enable 0
+    write /sys/class/usb_composite/modem/enable 0
+    write /sys/class/usb_composite/mtp/enable 0
+    write /sys/class/usb_composite/nmea/enable 0
+    write /sys/class/usb_composite/rmnet/enable 0
+    write /sys/class/usb_composite/rndis/enable 0
     write /sys/class/usb_composite/usb_mass_storage/enable 0
     setprop sys.usb.state none
-# setprop persist.sys.usb.config $sys.usb.config
 
 on property:sys.usb.config=adb
     write /sys/class/usb_composite/adb/enable 1
@@ -50,7 +46,7 @@ on property:sys.usb.config=mass_storage
 
 on property:sys.usb.config=mtp
     write /sys/class/usb_composite/mtp/enable 1
-start adbd
+    start adbd
     setprop sys.usb.state mtp
 
 on property:sys.usb.config=mass_storage,adb
@@ -58,14 +54,12 @@ on property:sys.usb.config=mass_storage,adb
     write /sys/class/usb_composite/adb/enable 1
     start adbd
     setprop sys.usb.state mass_storage,adb
-# setprop persist.sys.usb.config $sys.usb.config
 
 on property:sys.usb.config=mtp,adb
     write /sys/class/usb_composite/mtp/enable 1
     write /sys/class/usb_composite/adb/enable 1
-start adbd
+    start adbd
     setprop sys.usb.state mtp,adb
-# setprop persist.sys.usb.config $sys.usb.config
 
 on property:sys.usb.config=rndis
     write /sys/class/usb_composite/rndis/enable 1
@@ -74,13 +68,11 @@ on property:sys.usb.config=rndis
     setprop sys.usb.state rndis
 
 on property:sys.usb.config=rndis,mtp
-write /sys/class/usb_composite/mtp/enable 1
+    write /sys/class/usb_composite/mtp/enable 1
     write /sys/class/usb_composite/rndis/enable 1
     exec /system/bin/netcfg usb0 up
     start adbd
     setprop sys.usb.state rndis,mtp
-# setprop persist.sys.usb.config $sys.usb.config
-
 
 on property:sys.usb.config=rndis,adb
     write /sys/class/usb_composite/rndis/enable 1
@@ -89,8 +81,6 @@ on property:sys.usb.config=rndis,adb
     exec /system/bin/netcfg usb0 up
     setprop sys.usb.state rndis,adb
 
-# setprop persist.sys.usb.config $sys.usb.config
-
 on property:sys.usb.config=mass_storage,rndis,adb
     write /sys/class/usb_composite/usb_mass_storage/enable 1
     write /sys/class/usb_composite/rndis/enable 1
@@ -98,7 +88,6 @@ on property:sys.usb.config=mass_storage,rndis,adb
     start adbd
     setprop sys.usb.state mass_storage,rndis,adb
     exec /system/bin/netcfg usb0 up
-# setprop persist.sys.usb.config $sys.usb.config
 
 on property:sys.usb.config=rndis,mtp,adb
     write /sys/class/usb_composite/mtp/enable 1
@@ -108,3 +97,18 @@ on property:sys.usb.config=rndis,mtp,adb
     exec /system/bin/netcfg usb0 up
     setprop sys.usb.state rndis,mtp,adb
 
+on boot
+    # set up wifi
+    symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
+    symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
+    setprop wifi.interface eth0
+
+service wpa_supplicant /system/bin/wpa_supplicant -Dwext -ieth0 -c/data/misc/wifi/wpa_supplicant.conf 
+    class main
+    socket wpa_eth0 dgram 660 wifi wifi
+    disabled
+    oneshot
+
+on property:init.svc.bootanim=stopped
+    start qcom-post-boot
+    start qcom-wifi

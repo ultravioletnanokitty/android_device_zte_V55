@@ -20,7 +20,7 @@ PRODUCT_PROPERTY_OVERRIDES+= dalvik.vm.execution-mode=int:jit \
 	debug.enabletr=true \
 	persist.sys.use_dithering=0 \
 	ro.com.google.locationfeatures=1 \
-	mobiledata.interfaces = eth0,rmnet0
+	mobiledata.interfaces = eth0
 
 # Provides overrides to configure the Dalvik heap for a standard tablet device.
 
@@ -46,6 +46,7 @@ PRODUCT_PACKAGES += copybit.msm8660
 PRODUCT_PACKAGES += gralloc.msm8660
 PRODUCT_PACKAGES += lights.msm8660
 PRODUCT_PACKAGES += hwcomposer.msm8660
+PRODUCT_PACKAGES += sensors.msm8660
 PRODUCT_PACKAGES += libmemalloc
 PRODUCT_PACKAGES += libstagefrighthw
 PRODUCT_PACKAGES += libaudioutils
@@ -81,10 +82,6 @@ PRODUCT_PACKAGES += liblinenoise
 
 # libv8
 PRODUCT_PACKAGES += libv8
-
-# Sensors
-PRODUCT_PACKAGES += libinvensense_hal
-
 
 PRODUCT_PACKAGES += \
     AccountAndSyncSettings \
@@ -227,12 +224,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
 	device/zte/V55/root/sbin/resize2fs:root/sbin/resize2fs \
-	device/zte/V55/root/init.target.rc:root/init.target.rc \
-	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
-	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
 	device/zte/V55/root/ueventd.V55.rc:root/ueventd.V55.rc \
 	device/zte/V55/root/ueventd.qcom.rc:root/ueventd.qcom.rc \
 
+# init scripts
+PRODUCT_COPY_FILES += \
+	device/zte/V55/root/init.target.rc:root/init.target.rc \
+	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
+	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
+	vendor/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
+	vendor/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
+	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+	
 # VOLD files
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/vold.fstab:system/etc/vold.fstab \
@@ -271,13 +275,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw 
 #	vendor/zte/V55/proprietary/etc/firmware/a300_pfp.fw:system/etc/firmware/a300_pfp.fw \
 #	vendor/zte/V55/proprietary/etc/firmware/a300_pm4.fw:system/etc/firmware/a300_pm4.fw \
-
-#modem Scripts
-PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-	vendor/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
 
 #codecs	
 PRODUCT_COPY_FILES += \
@@ -324,7 +321,7 @@ PRODUCT_COPY_FILES += \
 #	vendor/zte/V55/proprietary/lib/libcamera.so:obj/lib/libcamera.so \
 #   vendor/zte/V55/proprietary/lib/libcamera.so:system/lib/libcamera.so \
 #	vendor/zte/V55/proprietary/lib/hw/camera.msm8660.so:obj/lib/camera.msm8660.so \
-#   vendor/zte/V55/proprietary/lib/hw/camera.msm8660.so:system/lib/hw/camera.msm8660.so \
+#   vendor/zte/V55/proprietary/lib/hw/camera.msm8660.so:system/linitinitib/hw/camera.msm8660.so \
 
 
 #wiperiface
@@ -339,7 +336,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/bin/battery_charging:system/bin/battery_charging \
 	vendor/zte/V55/proprietary/bin/bridgemgrd:system/bin/bridgemgrd \
-	vendor/zte/V55/proprietary/bin/port-bridge:system/bin/port-bridge \
+	vendor/zte/V55/proprietary/bin/port-bridge:system/bin/port-bridge \init
 	vendor/zte/V55/proprietary/bin/qmiproxy:system/bin/qmiproxy \
 	vendor/zte/V55/proprietary/bin/mpdecision:system/bin/mpdecision \
 	vendor/zte/V55/proprietary/bin/ds_fmc_appd:system/bin/ds_fmc_appd \
