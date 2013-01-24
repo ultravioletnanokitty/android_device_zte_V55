@@ -232,6 +232,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/root/init.target.rc:root/init.target.rc \
 	device/zte/V55/root/init.qcom.sh:root/init.qcom.sh \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
+	device/zte/V55/root/init.qcom.usb.rc:root/init.qcom.usb.rc \
 	vendor/zte/V55/proprietary/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
 	vendor/zte/V55/proprietary/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
 	vendor/zte/V55/proprietary/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
