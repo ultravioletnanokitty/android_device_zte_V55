@@ -224,7 +224,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
 	device/zte/V55/root/sbin/resize2fs:root/sbin/resize2fs \
-	device/zte/V55/root/ueventd.V55.rc:root/ueventd.V55.rc \
 	device/zte/V55/root/ueventd.qcom.rc:root/ueventd.qcom.rc \
 
 # init scripts
