@@ -172,7 +172,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
-	vendor/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
+#	vendor/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
 #	vendor/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
 #	vendor/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
 	#frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
@@ -296,7 +296,7 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libmpl_sys_jni.so:system/lib/libmpl_sys_jni.so \
 	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	vendor/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
-	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
+#	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
 
 #wifi
 PRODUCT_COPY_FILES += \
