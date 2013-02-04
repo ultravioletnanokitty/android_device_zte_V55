@@ -68,7 +68,7 @@ on boot
     # set up wifi
     symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
     symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
-    insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
+    #insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
     setprop wifi.interface eth0
     
     # set permissions for invensense mpu
@@ -78,7 +78,7 @@ on boot
 	chmod 0777 /dev/accelirq
     chmod 0777 /dev/timerirq
     
-service wpa_supplicant /system/bin/wpa_supplicant -D nl80211 -i eth0 -c /data/misc/wifi/wpa_supplicant.conf 
+service wpa_supplicant /system/bin/wpa_supplicant -D Wext -i eth0 -c /data/misc/wifi/wpa_supplicant.conf 
     user root
     group wifi inet
     socket wpa_eth0 dgram 660 wifi wifi
