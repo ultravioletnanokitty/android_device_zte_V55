@@ -1,5 +1,3 @@
-setprop persist.sys.usb.config mtp,adb
-
 on property:sys.usb.config=none
     exec /system/bin/netcfg usb0 down
     stop adbd
