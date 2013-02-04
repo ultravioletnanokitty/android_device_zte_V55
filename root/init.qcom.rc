@@ -26,33 +26,58 @@ on emmc-fs
     wait /dev/block/mmcblk0p14
     mount ext4 /dev/block/mmcblk0p14 /cache nosuid nodev barrier=1
 
-    # for Invense MPU3050 (taken from shooter init.rc)
-    chmod 0664 /dev/mpu
-    chmod 0664 /dev/mpuirq
-    chmod 0664 /dev/timerirq
-    chown system system /dev/mpu
-    chown system system /dev/mpuirq
-    chown system system /dev/timerirq
-    
-    # wifi (taken from shooter init.rc)
-    mkdir /data/misc 1771 system misc
-    mkdir /data/misc/wifi 0770 wifi wifi
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
-
 on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
     chmod 0771 /persist
 
+    # chown/chmod polling nodes as needed from UI running on system server    
+    chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
+    chown system system /sys/devices/platform/msm_sdcc.1/polling
+    chown system system /sys/devices/platform/msm_sdcc.2/polling
+    chown system system /sys/devices/platform/msm_sdcc.3/polling
+    chown system system /sys/devices/platform/msm_sdcc.4/polling
+
+    mkdir /data/media 0777 media_rw media_rw
+    
+    # set bluetooth mac address
+    setprop ro.bt.bdaddr_path "/persist/zte/bt/bt_addr.txt"	
+    setprop bt.bcm_bdaddr_path "/persist/zte/bt/bt_addr.txt"	
+    
+    # permissions for bluetooth.
+    chown bluetooth bluetooth /persist/zte/bt
+    chown bluetooth bluetooth ro.bt.bdaddr_path
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0600 /dev/ttyHS0
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    
+    # for encrypted filesystems
+    setprop vold.post_fs_data_done 1
+    
 on boot
+    # create wifi directories
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+    
     # set up wifi
     symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
     symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
-    setprop wifi.interface eth0
     insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
-
+    setprop wifi.interface eth0
+    
+    # set permissions for invensense mpu
+    chmod 0777 /dev/taos
+	chmod 0777 /dev/mpu
+	chmod 0777 /dev/mpuirq
+	chmod 0777 /dev/accelirq
+    chmod 0777 /dev/timerirq
+    
 service wpa_supplicant /system/bin/wpa_supplicant -D nl80211 -i eth0 -c /data/misc/wifi/wpa_supplicant.conf 
     user root
     group wifi inet
@@ -76,3 +101,7 @@ on property:init.svc.wpa_supplicant=stopped
 on property:init.svc.bootanim=stopped
     start qcom-post-boot
     start qcom-wifi
+
+service sdcard /system/bin/sdcard /data/media 1023 1023
+    class late_start
+    oneshot
