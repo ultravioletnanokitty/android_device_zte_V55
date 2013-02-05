@@ -5,21 +5,19 @@ on init
     export PATH /sbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
-    #export EXTERNAL_STORAGE /sdcard
-	export EXTERNAL_STORAGE /sdcard-ext
+	export EXTERNAL_STORAGE /storage/sdcard1
     symlink /system/etc /etc
 	symlink /sbin/busybox /sbin/sh
 	export LD_LIBRARY_PATH .:/sbin
 	
     mkdir /boot
-    #mkdir /sdcard
-    mkdir /sdcard-ext
+    mkdir /storage
+    mkdir /storage/sdcard1
     mkdir /datadata
     mkdir /system
     mkdir /data
     mkdir /cache
     mount /tmp /tmp tmpfs
-	#symlink /data/media /sdcard
 on boot
 
     ifup lo

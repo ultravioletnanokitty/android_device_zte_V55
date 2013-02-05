@@ -152,7 +152,7 @@ TARGET_KERNEL_SOURCE := kernel/zte/newkernel
 TARGET_KERNEL_CONFIG := v55_jb_defconfig
 #TARGET_PREBUILT_KERNEL := device/zte/V55/kernel
 
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/V55/kernel
+TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/V55/recovery/kernel
 
 BOARD_HAS_NO_SELECT_BUTTON := true
 # Use this flag if the board has a ext4 partition larger than 2gb
@@ -179,7 +179,7 @@ TARGET_RECOVERY_GUI := true
 DEVICE_RESOLUTION := 1280x800
 TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/sdcard-ext"
+TW_EXTERNAL_STORAGE_PATH := "/storage/sdcard1"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "sdcard-ext"
 TW_FLASH_FROM_STORAGE := true 
 TW_DEFAULT_EXTERNAL_STORAGE := true
