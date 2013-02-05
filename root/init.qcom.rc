@@ -105,5 +105,5 @@ on property:init.svc.bootanim=stopped
     start qcom-post-boot
     start qcom-wifi
 
-service sdcard /system/bin/sdcard /data/media /storage/sdcard0 1023 1023
+service sdcard /system/bin/sdcard /data/media 1023 1023
     class late_start
