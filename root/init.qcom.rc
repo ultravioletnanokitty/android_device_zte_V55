@@ -4,6 +4,9 @@ on early-init
     mkdir /storage 0050 system sdcard_r
     mkdir /storage/sdcard0 0000 system system
     mkdir /storage/sdcard1 0000 system system
+    
+    export EXTERNAL_STORAGE /storage/sdcard0
+    export EXTERNAL_ALT_STORAGE /storage/sdcard1
 
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
@@ -102,6 +105,5 @@ on property:init.svc.bootanim=stopped
     start qcom-post-boot
     start qcom-wifi
 
-service sdcard /system/bin/sdcard /data/media 1023 1023
+service sdcard /system/bin/sdcard /data/media /storage/sdcard0 1023 1023
     class late_start
-    oneshot

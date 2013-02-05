@@ -238,7 +238,7 @@ PRODUCT_COPY_FILES += \
 	
 # VOLD files
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/etc/vold.fstab:system/etc/vold.fstab \
+	device/zte/V55/vold.fstab:system/etc/vold.fstab \
 	device/zte/V55/recovery.fstab:recovery/root/etc/recovery.fstab 
 
 #adreno200 	
