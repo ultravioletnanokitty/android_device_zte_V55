@@ -73,6 +73,9 @@ on post-fs-data
 	chmod 0777 /dev/accelirq
     chmod 0777 /dev/timerirq
     
+    # workaround for sdcard service
+    class_start late_start
+    
     # for encrypted filesystems
     setprop vold.post_fs_data_done 1
     
