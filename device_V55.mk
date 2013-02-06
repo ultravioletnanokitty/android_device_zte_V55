@@ -248,9 +248,8 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libC2D2.so:system/lib/libC2D2.so \
 	vendor/zte/V55/proprietary/lib/libOpenVG.so:system/lib/libOpenVG.so \
 	vendor/zte/V55/proprietary/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
+	vendor/zte/V55/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180.so \
 #	vendor/zte/V55/proprietary/lib/liboverlay.so:system/lib/liboverlay.so \
-#	vendor/zte/V55/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180.so \
-
 
 #firmware 	
 PRODUCT_COPY_FILES += \
