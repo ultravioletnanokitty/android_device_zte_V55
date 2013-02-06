@@ -198,7 +198,7 @@ PRODUCT_COPY_FILES += \
 
 # idc files
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/usr/idc/qwerty.idc:system/usr/idc/atmel-touchscreen.idc \
+	vendor/zte/V55/proprietary/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
     vendor/zte/V55/proprietary/usr/icu/icudt44l.dat:system/usr/icu/icudt44l.dat
 
 # Audio files
