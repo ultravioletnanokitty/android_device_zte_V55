@@ -89,7 +89,7 @@ on boot
     #insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
     setprop wifi.interface eth0
     
-service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 3000000 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
+service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
     class main
     user bluetooth
     group bluetooth net_bt_admin
