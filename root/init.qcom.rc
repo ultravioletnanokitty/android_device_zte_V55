@@ -81,6 +81,13 @@ on boot
 	chmod 0777 /dev/accelirq
     chmod 0777 /dev/timerirq
     
+service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 3000000 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
+    class main
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+    
 service wpa_supplicant /system/bin/wpa_supplicant -D wext -i eth0 -c /data/misc/wifi/wpa_supplicant.conf 
     user root
     group wifi inet
@@ -98,12 +105,12 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot 
 
+service sdcard /system/bin/sdcard /data/media 1023 1023
+    class late_start
+    
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd_eth0
     
 on property:init.svc.bootanim=stopped
     start qcom-post-boot
     start qcom-wifi
-
-service sdcard /system/bin/sdcard /data/media 1023 1023
-    class late_start
