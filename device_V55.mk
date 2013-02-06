@@ -284,9 +284,9 @@ PRODUCT_COPY_FILES += \
 
 #Sensors
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/lib/libmpl_sys_jni.so:system/lib/libmpl_sys_jni.so \
-	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	vendor/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
+#	vendor/zte/V55/proprietary/lib/libmpl_sys_jni.so:system/lib/libmpl_sys_jni.so \
+#	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 #	vendor/zte/V55/proprietary/lib/hw/sensors.msm8660.so:system/lib/hw/sensors.msm8660.so \
 #	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
 
