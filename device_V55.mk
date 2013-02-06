@@ -249,7 +249,7 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libOpenVG.so:system/lib/libOpenVG.so \
 	vendor/zte/V55/proprietary/lib/libsc-a2xx.so:system/lib/libsc-a2xx.so \
 #	vendor/zte/V55/proprietary/lib/liboverlay.so:system/lib/liboverlay.so \
-#	vendor/zte/V55/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180 \
+#	vendor/zte/V55/proprietary/lib/libc2d2_z180.so:system/lib/libc2d2_z180.so \
 
 
 #firmware 	
@@ -268,8 +268,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
 	vendor/zte/V55/proprietary/etc/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
 	vendor/zte/V55/proprietary/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw 
-#	vendor/zte/V55/proprietary/etc/firmware/a300_pfp.fw:system/etc/firmware/a300_pfp.fw \
-#	vendor/zte/V55/proprietary/etc/firmware/a300_pm4.fw:system/etc/firmware/a300_pm4.fw \
 
 #codecs	
 PRODUCT_COPY_FILES += \
@@ -280,7 +278,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libmmparser.so:/system/lib/libmmparser.so \
 	vendor/zte/V55/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
 	vendor/zte/V55/proprietary/lib/libmmosal.so:/system/lib/libmmosal.so \
-#	vendor/zte/V55/proprietary/lib/libDivxDrm.so:/system/lib/libDivxDrm.so \
 #    vendor/zte/V55/proprietary/lib/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
 #    vendor/zte/V55/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
 #	vendor/zte/V55/proprietary/lib/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
@@ -288,10 +285,10 @@ PRODUCT_COPY_FILES += \
 
 #Sensors
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/lib/hw/sensors.msm8660.so:system/lib/hw/sensors.msm8660.so \
 	vendor/zte/V55/proprietary/lib/libmpl_sys_jni.so:system/lib/libmpl_sys_jni.so \
 	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	vendor/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
+#	vendor/zte/V55/proprietary/lib/hw/sensors.msm8660.so:system/lib/hw/sensors.msm8660.so \
 #	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
 
 #wifi
