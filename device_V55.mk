@@ -134,11 +134,11 @@ PRODUCT_PACKAGES += \
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
-        librs_jni \
-		CMWallpapers \
-        LiveWallpapers \
-        VisualizationWallpapers \
-        LiveWallpapersPicker \
+    librs_jni \
+    CMWallpapers \
+    LiveWallpapers \
+    VisualizationWallpapers \
+    LiveWallpapersPicker \
 
 #Theme package
 PRODUCT_PACKAGES += \
@@ -175,9 +175,9 @@ PRODUCT_COPY_FILES += \
 #	vendor/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
 #	vendor/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
 #	vendor/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
-	#frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-	#frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
-	#frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+#	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+#	frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
+#	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 
 
 # kcm keymaps
@@ -277,8 +277,8 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libmmparser.so:/system/lib/libmmparser.so \
 	vendor/zte/V55/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
 	vendor/zte/V55/proprietary/lib/libmmosal.so:/system/lib/libmmosal.so \
-#    vendor/zte/V55/proprietary/lib/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
-#    vendor/zte/V55/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
+#   vendor/zte/V55/proprietary/lib/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
+#   vendor/zte/V55/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
 #	vendor/zte/V55/proprietary/lib/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
 #	vendor/zte/V55/proprietary/lib/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \
 
@@ -316,12 +316,12 @@ PRODUCT_COPY_FILES += \
 
 
 #wiperiface
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so \
 	vendor/zte/V55/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \
     vendor/zte/V55/proprietary/lib/libloc_ext.so:system/lib/libloc_ext.so \
     vendor/zte/V55/proprietary/lib/libwiperjni.so:system/lib/libwiperjni.so \
-#    vendor/zte/V55/proprietary/lib/libtcpfinaggr.so:system/lib/libtcpfinaggr.so \
+#   vendor/zte/V55/proprietary/lib/libtcpfinaggr.so:system/lib/libtcpfinaggr.so \
 
 # Binary files
 PRODUCT_COPY_FILES += \
