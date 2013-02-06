@@ -58,21 +58,13 @@ on post-fs-data
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
-    
-    # for encrypted filesystems
-    setprop vold.post_fs_data_done 1
-    
-on boot
-    # create wifi directories
-    mkdir /data/misc/wifi/sockets 0770 wifi wifi
-    mkdir /data/misc/dhcp 0770 dhcp dhcp
-    chown dhcp dhcp /data/misc/dhcp
-    
-    # set up wifi
-    symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
-    symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
-    #insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
-    setprop wifi.interface eth0
+    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+    chown system system /sys/module/sco/parameters/disable_esco
+    chmod 0660 /sys/module/bluetooth_power/parameters/power
+    chmod 0660 /proc/bluetooth/sleep/proto
+    chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
+    chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
     
     # set permissions for invensense mpu
     chmod 0777 /dev/taos
@@ -80,6 +72,22 @@ on boot
 	chmod 0777 /dev/mpuirq
 	chmod 0777 /dev/accelirq
     chmod 0777 /dev/timerirq
+    
+    # for encrypted filesystems
+    setprop vold.post_fs_data_done 1
+    
+on boot
+    # create wifi/bluetooth directories
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+    mkdir /data/misc/dhcp 0770 dhcp dhcp
+    chown dhcp dhcp /data/misc/dhcp
+    mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
+
+    # set up wifi
+    symlink /persist/qcom_wlan_nv.bin /etc/firmware/wlan/qcom_wlan_nv.bin
+    symlink /data/hostapd/qcom_cfg.ini /etc/firmware/wlan/qcom_cfg.ini
+    #insmod /system/lib/modules/dhd.ko firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt
+    setprop wifi.interface eth0
     
 service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 3000000 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
     class main
