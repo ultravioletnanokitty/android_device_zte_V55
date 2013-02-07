@@ -47,10 +47,10 @@ PRODUCT_PACKAGES += gralloc.msm8660
 PRODUCT_PACKAGES += lights.msm8660
 PRODUCT_PACKAGES += hwcomposer.msm8660
 PRODUCT_PACKAGES += sensors.msm8660
+PRODUCT_PACKAGES += gps.msm8660
 PRODUCT_PACKAGES += libmemalloc
 PRODUCT_PACKAGES += libstagefrighthw
 PRODUCT_PACKAGES += libaudioutils
-PRODUCT_PACKAGES += gps.default
 
 #MM_CORE
 PRODUCT_PACKAGES += libmm-omxcore
