@@ -95,7 +95,6 @@ on boot
     # create location services directories
     mkdir /data/wpstiles/ 0755 shell
     mkdir /data/wiper 0755 gps qcom_oncrpc
-    mkdir /data/misc/gpsone_d 0770 gpsone_d qcom_oncrpc
     
 service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
     class main
@@ -120,12 +119,11 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     class main
     disabled
     oneshot 
-    
-service gpsone_daemon /system/bin/gpsone_daemon
-    class main
-    user root
+
+service wiperiface /system/bin/wiperiface
+    user location
     group qcom_oncrpc system
-    disabled
+    oneshot
 
 service sdcard /system/bin/sdcard /data/media 1023 1023
     class late_start
