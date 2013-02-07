@@ -47,7 +47,7 @@ PRODUCT_PACKAGES += gralloc.msm8660
 PRODUCT_PACKAGES += lights.msm8660
 PRODUCT_PACKAGES += hwcomposer.msm8660
 PRODUCT_PACKAGES += sensors.msm8660
-PRODUCT_PACKAGES += gps.msm8660
+PRODUCT_PACKAGES += gps.default
 PRODUCT_PACKAGES += libmemalloc
 PRODUCT_PACKAGES += libstagefrighthw
 PRODUCT_PACKAGES += libaudioutils
@@ -319,9 +319,9 @@ PRODUCT_COPY_FILES += \
 #wiperiface
 #PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so \
-	vendor/zte/V55/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \
-    vendor/zte/V55/proprietary/lib/libloc_ext.so:system/lib/libloc_ext.so \
     vendor/zte/V55/proprietary/lib/libwiperjni.so:system/lib/libwiperjni.so \
+#	vendor/zte/V55/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \
+#   vendor/zte/V55/proprietary/lib/libloc_ext.so:system/lib/libloc_ext.so \
 #   vendor/zte/V55/proprietary/lib/libtcpfinaggr.so:system/lib/libtcpfinaggr.so \
 
 # Binary files
