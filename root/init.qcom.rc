@@ -139,14 +139,6 @@ service wiperiface /system/bin/wiperiface
     user location
     group qcom_oncrpc system
     oneshot
-
-service thermald /system/bin/thermald
-    user root
-    group root
-    disabled
-
-on property:persist.thermal.monitor=true
-    start thermald
     
 service sdcard /system/bin/sdcard /data/media 1023 1023
     class late_start
@@ -155,5 +147,37 @@ on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd_eth0
     
 on property:init.svc.bootanim=stopped
-    start qcom-post-boot
-    start qcom-wifi
+    # currently just a huge blob to hopefully fix issues with mpdecision and thermald
+	echo 1 > /sys/module/rpm_resources/enable_low_power/L2_cache
+	echo 1 > /sys/module/rpm_resources/enable_low_power/pxo
+	echo 2 > /sys/module/rpm_resources/enable_low_power/vdd_dig
+	echo 2 > /sys/module/rpm_resources/enable_low_power/vdd_mem
+	echo 1 > /sys/module/rpm_resources/enable_low_power/rpm_cpu
+	echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/suspend_enabled
+	echo 1 > /sys/module/pm_8x60/modes/cpu1/power_collapse/suspend_enabled
+	echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/suspend_enabled
+	echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/suspend_enabled
+	echo 1 > /sys/module/pm_8x60/modes/cpu0/power_collapse/idle_enabled
+	echo 1 > /sys/module/pm_8x60/modes/cpu1/power_collapse/idle_enabled
+	echo 1 > /sys/module/pm_8x60/modes/cpu0/standalone_power_collapse/idle_enabled
+	echo 1 > /sys/module/pm_8x60/modes/cpu1/standalone_power_collapse/idle_enabled
+	echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+	echo "ondemand" > /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor
+	echo 50000 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+	echo 50000 > /sys/devices/system/cpu/cpu1/cpufreq/ondemand/sampling_rate
+	echo 90 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold
+	echo 90 > /sys/devices/system/cpu/cpu1/cpufreq/ondemand/up_threshold
+	echo 1 > /sys/devices/system/cpu/cpufreq/ondemand/io_is_busy
+	echo 4 > /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor
+	chown system /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate
+	chown system /sys/devices/system/cpu/cpu1/cpufreq/ondemand/sampling_rate
+	echo 384000 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	echo 384000 > /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+	chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+	chown system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
+	chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_max_freq
+	chown system /sys/devices/system/cpu/cpu1/cpufreq/scaling_min_freq
+	chown root.system /sys/devices/system/cpu/mfreq
+	chmod 220 /sys/devices/system/cpu/mfreq
+	chown root.system /sys/devices/system/cpu/cpu1/online
+	chmod 664 /sys/devices/system/cpu/cpu1/online

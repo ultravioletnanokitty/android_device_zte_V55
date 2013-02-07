@@ -230,7 +230,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
 	device/zte/V55/root/init.qcom.usb.rc:root/init.qcom.usb.rc \
-	vendor/zte/V55/proprietary/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
 	
 # VOLD files
 PRODUCT_COPY_FILES += \
@@ -330,15 +329,14 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/bin/bridgemgrd:system/bin/bridgemgrd \
 	vendor/zte/V55/proprietary/bin/port-bridge:system/bin/port-bridge \
 	vendor/zte/V55/proprietary/bin/qmiproxy:system/bin/qmiproxy \
-	vendor/zte/V55/proprietary/bin/mpdecision:system/bin/mpdecision \
 	vendor/zte/V55/proprietary/bin/ds_fmc_appd:system/bin/ds_fmc_appd \
 	vendor/zte/V55/proprietary/bin/qmuxd:system/bin/qmuxd \
 	vendor/zte/V55/proprietary/bin/dcvsd:system/bin/dcvsd \
 	vendor/zte/V55/proprietary/bin/rmt_storage:system/bin/rmt_storage \
-	vendor/zte/V55/proprietary/bin/thermald:system/bin/thermald \
 	vendor/zte/V55/proprietary/bin/usbhub:system/bin/usbhub \
 	vendor/zte/V55/proprietary/bin/wiperiface:system/bin/wiperiface \
 	vendor/zte/V55/proprietary/bin/usbhub_init:system/bin/usbhub_init \
 	vendor/zte/V55/proprietary/bin/radish:system/bin/radish \
 	vendor/zte/V55/proprietary/bin/hdmid:system/bin/hdmid \
-#	vendor/zte/V55/proprietary/bin/ash:system/bin/sh \
+#	vendor/zte/V55/proprietary/bin/thermald:system/bin/thermald \
+#	vendor/zte/V55/proprietary/bin/mpdecision:system/bin/mpdecision \
