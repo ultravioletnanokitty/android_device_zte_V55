@@ -15,6 +15,8 @@ on early-init
     symlink /storage/sdcard1 /mnt/sdcard-ext
     
 on init
+    loglevel 8
+   
     # create /persist
     mkdir /persist 0771 system system
 
@@ -95,6 +97,10 @@ on boot
     # create location services directories
     mkdir /data/wpstiles/ 0755 shell
     mkdir /data/wiper 0755 gps qcom_oncrpc
+    
+    # create audio directories
+    mkdir /data/misc/audio 0770 audio audio
+    mkdir /data/audio/ 2770 media audio
     
 service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
     class main
