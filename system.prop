@@ -29,6 +29,7 @@ debug.egl.hw=1
 ro.min.fling_velocity=8000
 ro.max.fling_velocity=12000
 persist.sys.use_dithering = 0
+qemu.hw.mainkeys=0
 
 #possible screen glitch fix
 debug.gr.numframebuffers=3
