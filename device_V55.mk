@@ -230,6 +230,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
 	device/zte/V55/root/init.qcom.usb.rc:root/init.qcom.usb.rc \
+
+# ugly hack for usb
+PRODUCT_COPY_FILES += device/zte/V55/root/etc/usbhack.sh:system/etc/usbhack.sh
 	
 # VOLD files
 PRODUCT_COPY_FILES += \
