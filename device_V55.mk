@@ -227,10 +227,7 @@ PRODUCT_COPY_FILES += \
 # init scripts
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
-	device/zte/V55/root/init.qcom.usb.rc:root/init.qcom.usb.rc \
-
-# ugly hack for usb
-PRODUCT_COPY_FILES += device/zte/V55/root/etc/usbhack.sh:system/etc/usbhack.sh
+	device/zte/V55/root/init.qcom.usb.rc:root/init.qcom.usb.rc 
 	
 # VOLD files
 PRODUCT_COPY_FILES += \

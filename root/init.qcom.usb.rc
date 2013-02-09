@@ -1,3 +1,5 @@
+setprop sys.usb.config=mtp,adb
+
 on property:sys.usb.config=none
     exec /system/bin/netcfg usb0 down
     stop adbd
@@ -37,7 +39,6 @@ on property:sys.usb.config=mtp,adb
     write /sys/class/usb_composite/mtp/enable 1
     write /sys/class/usb_composite/adb/enable 1
     start adbd
-#    exec /system/xbin/bash /system/etc/usbhack.sh
     setprop sys.usb.state mtp,adb
 
 on property:sys.usb.config=rndis
