@@ -46,7 +46,6 @@ PRODUCT_PACKAGES += copybit.msm8660
 PRODUCT_PACKAGES += gralloc.msm8660
 PRODUCT_PACKAGES += lights.msm8660
 PRODUCT_PACKAGES += hwcomposer.msm8660
-PRODUCT_PACKAGES += sensors.msm8660
 PRODUCT_PACKAGES += gps.default
 PRODUCT_PACKAGES += libmemalloc
 PRODUCT_PACKAGES += libstagefrighthw
@@ -124,8 +123,6 @@ PRODUCT_PACKAGES += \
 	Superuser \
 	hdmid \
 	libinvensense_hal \
-	libmllite \
-	libmlplatform \
 	camera.msm8660 \
 	audio.a2dp.default \
 	audio.usb.default \
@@ -288,9 +285,11 @@ PRODUCT_COPY_FILES += \
 #Sensors
 PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
-#	vendor/zte/V55/proprietary/lib/libmpl_sys_jni.so:system/lib/libmpl_sys_jni.so \
-#	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
-#	vendor/zte/V55/proprietary/lib/hw/sensors.msm8660.so:system/lib/hw/sensors.msm8660.so \
+	vendor/zte/V55/proprietary/lib/libmpl_sys_jni.so:system/lib/libmpl_sys_jni.so \
+	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
+	vendor/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
+	vendor/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
+	vendor/zte/V55/proprietary/lib/hw/sensors.msm8660.so:system/lib/hw/sensors.msm8660.so \
 #	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
 
 #wifi
