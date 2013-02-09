@@ -1,6 +1,7 @@
 service usbhack /system/xbin/bash /system/etc/usbhack.sh
     user root
     group root
+    oneshot
 
 setprop sys.usb.state mtp,adb
 
