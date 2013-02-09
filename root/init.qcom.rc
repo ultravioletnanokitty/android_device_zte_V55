@@ -102,14 +102,14 @@ on boot
     mkdir /data/misc/audio 0770 audio audio
     mkdir /data/audio/ 2770 media audio
     
-service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
+service hciattach /system/bin/logwrapper /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0
     class main
     user bluetooth
     group bluetooth net_bt_admin
     disabled
     oneshot
     
-service bluetoothd /system/bin/bluetoothd -n
+service bluetoothd /system/bin/logwrapper /system/bin/bluetoothd -n
     class main
     socket bluetooth stream 660 bluetooth bluetooth
     socket dbus_bluetooth stream 660 bluetooth bluetooth
@@ -135,7 +135,7 @@ service iprenew_eth0 /system/bin/dhcpcd -n
     disabled
     oneshot 
 
-service wiperiface /system/bin/wiperiface
+service wiperiface /system/bin/logwrapper /system/bin/wiperiface
     user location
     group qcom_oncrpc system
     oneshot
