@@ -214,10 +214,11 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libaudiopolicy.so:system/lib/libaudiopolicy.so \
 	vendor/zte/V55/proprietary/lib/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
 	vendor/zte/V55/proprietary/lib/libdiag.so:system/lib/libdiag.so \
-#	vendor/zte/V55/proprietary/etc/media_profiles.xml:system/etc/media_profiles.xml \
-#	vendor/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
+	
+# media codecs list
+PRODUCT_COPY_FILES += vendor/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
 
-#root dir
+# root dir
 PRODUCT_COPY_FILES += \
 	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
 	device/zte/V55/root/sbin/resize2fs:root/sbin/resize2fs \
