@@ -137,7 +137,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom vmal
 BOARD_KERNEL_BASE := 0x40200000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
-TARGET_KERNEL_SOURCE := kernel/zte/newkernel
+TARGET_KERNEL_SOURCE := kernel/zte/V55
 TARGET_KERNEL_CONFIG := v55_jb_defconfig 
 
 # SD Card		
