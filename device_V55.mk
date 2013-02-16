@@ -207,13 +207,13 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libaudio.so:obj/lib/libaudio.so \
 	vendor/zte/V55/proprietary/lib/libdiag.so:obj/lib/libdiag.so \
 	vendor/zte/V55/proprietary/lib/libaudiopolicy.so:obj/lib/libaudiopolicy.so \
-#	vendor/zte/V55/proprietary/lib/libaudcal.so:system/lib/libaudcal.so \
+	vendor/zte/V55/proprietary/lib/libaudcal.so:system/lib/libaudcal.so \
+	vendor/zte/V55/proprietary/lib/libacdbmapper.so:system/lib/libacdbmapper.so \
+	vendor/zte/V55/proprietary/lib/libacdbloader.so:system/lib/libacdbloader.so \
+	vendor/zte/V55/proprietary/lib/libaudioalsa.so:system/lib/libaudioalsa.so \
+	vendor/zte/V55/proprietary/lib/libdiag.so:system/lib/libdiag.so \
 #	vendor/zte/V55/proprietary/lib/libaudio.so:system/lib/libaudio.so \
 #	vendor/zte/V55/proprietary/lib/libaudiopolicy.so:system/lib/libaudiopolicy.so \
-#	vendor/zte/V55/proprietary/lib/libacdbmapper.so:system/lib/libacdbmapper.so \
-#	vendor/zte/V55/proprietary/lib/libacdbloader.so:system/lib/libacdbloader.so \
-#	vendor/zte/V55/proprietary/lib/libaudioalsa.so:system/lib/libaudioalsa.so \
-#	vendor/zte/V55/proprietary/lib/libdiag.so:system/lib/libdiag.so \
 	
 # media codecs list
 PRODUCT_COPY_FILES += vendor/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
