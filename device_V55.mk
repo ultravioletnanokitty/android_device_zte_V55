@@ -1,3 +1,6 @@
+# DPI
+PRODUCT_AAPT_CONFIG := hdpi xhdpi 
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -213,3 +216,5 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/bin/hdmid:system/bin/hdmid \
 #	vendor/zte/V55/proprietary/bin/thermald:system/bin/thermald \
 #	vendor/zte/V55/proprietary/bin/mpdecision:system/bin/mpdecision \
+
+$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
