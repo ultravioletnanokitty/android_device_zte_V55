@@ -1,157 +1,47 @@
-
-$(call inherit-product, device/common/gps/gps_us_supl.mk)
-#$(call inherit-product, device/zte/V11A/libcamera/Android.mk)
-
-## Device identifier. This must come after all inclusions
-PRODUCT_NAME := cm_V55
-PRODUCT_DEVICE := V55
-PRODUCT_MANUFACTURER := ZTE
-PRODUCT_BRAND := ZTE 
-PRODUCT_MODEL := Optik
-PRODUCT_BOARD := V55
-PRODUCT_CHARACTERISTICS :=tablet,nosdcard
-DEVICE_PACKAGE_OVERLAYS := device/zte/V55/overlay
-PRODUCT_TAGS += dalvik.gc.type-precise
-#shell_ash
-PRODUCT_PROPERTY_OVERRIDES+= dalvik.vm.execution-mode=int:jit \
-	ro.telephony.call_ring.multiple=false \
-	ro.telephony.call_ring.delay=5000 \
-	dalvik.vm.dexopt-flags=m=y \
-	debug.enabletr=true \
-	persist.sys.use_dithering=0 \
-	ro.com.google.locationfeatures=1 \
-	mobiledata.interfaces = eth0
-
-# Provides overrides to configure the Dalvik heap for a standard tablet device.
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=5m \
-    dalvik.vm.heapgrowthlimit=48m \
-    dalvik.vm.heapsize=256m
-
-PRODUCT_LOCALES += hdpi
-PRODUCT_LOCALES += xhdpi
-#PRODUCT_LOCALES += nodpi
-
-PRODUCT_AAPT_CONFIG := hdpi xhdpi 
-
-#LLVM for RenderScript
-#$(call inherit-product, external/llvm/llvm-select.mk)
-LLVM_ROOT_PATH := external/llvm
-
-PRODUCT_PACKAGES += audio.primary.msm8660
-PRODUCT_PACKAGES += audio_policy.msm8660
-PRODUCT_PACKAGES += audio_policy.conf
-PRODUCT_PACKAGES += copybit.msm8660
-PRODUCT_PACKAGES += gralloc.msm8660
-PRODUCT_PACKAGES += lights.msm8660
-PRODUCT_PACKAGES += hwcomposer.msm8660
-PRODUCT_PACKAGES += gps.default
-PRODUCT_PACKAGES += libmemalloc
-PRODUCT_PACKAGES += libstagefrighthw
-PRODUCT_PACKAGES += libaudioutils
-
-#MM_CORE
-PRODUCT_PACKAGES += libmm-omxcore
-PRODUCT_PACKAGES += libOmxCore
-PRODUCT_PACKAGES += libOmxAacEnc
-PRODUCT_PACKAGES += libOmxAmrEnc
-PRODUCT_PACKAGES += libOmxEvrcEnc
-PRODUCT_PACKAGES += libOmxQcelp13Enc
-
-#MM_VIDEO
-PRODUCT_PACKAGES += ast-mm-vdec-omx-test
-PRODUCT_PACKAGES += libdivxdrmdecrypt
-PRODUCT_PACKAGES += liblasic
-PRODUCT_PACKAGES += libOmxVdec
-PRODUCT_PACKAGES += libOmxVenc
-PRODUCT_PACKAGES += libOpenMAXAL
-PRODUCT_PACKAGES += libOpenSLES
-PRODUCT_PACKAGES += libOmxVidEnc
-PRODUCT_PACKAGES += mm-vdec-omx-property-mgr
-PRODUCT_PACKAGES += mm-vdec-omx-test
-PRODUCT_PACKAGES += mm-venc-omx-test
-PRODUCT_PACKAGES += mm-venc-omx-test720p
-PRODUCT_PACKAGES += mm-video-driver-test
-PRODUCT_PACKAGES += mm-video-encdrv-test
-PRODUCT_PACKAGES += libmmjpeg_interface 
-PRODUCT_PACKAGES += libcamera
-#ash shell
-PRODUCT_PACKAGES += liblinenoise
-
-# libv8
-PRODUCT_PACKAGES += libv8
-
+# Audio
 PRODUCT_PACKAGES += \
-    AccountAndSyncSettings \
-    DeskClock \
-    AlarmProvider \
-    Bluetooth \
-	busybox \
-	applypatch \
-    Calculator \
-    LegacyCamera \
-    Calendar \
-    CertInstaller \
-    DrmProvider \
-    Email \
-    Gallery2 \
-    LatinIME \
-    Launcher2 \
-    Music \
-	MusicFX \
-    Protips \
-    QuickSearchBox \
-	hcitool \
-	brcm_patchram_plus \
-    Settings \
-    Sync \
-    SystemUI \
-    Updater \
-    CalendarProvider \
-    SyncProvider \
-    IM \
-    VoiceDialer \
-    hciconfig \
-	hciattach \
-	CMParts \
-    CMScreenshot \
-    CMStats \
-	libwpa_client \
-	hostapd \
-	hostapd_cli \
-	Superuser \
-	hdmid \
-	libinvensense_hal \
-	camera.msm8660 \
-	audio.a2dp.default \
-	audio.usb.default \
-    VideoEditor \
-	libI420colorconvert \
+    audio.a2dp.default \
+    audio_policy.msm8660 \
+    audio.primary.msm8660 \
+    libaudioutils
 
-# Live Wallpapers
+# Graphics
 PRODUCT_PACKAGES += \
-    librs_jni \
-    CMWallpapers \
-    LiveWallpapers \
-    VisualizationWallpapers \
-    LiveWallpapersPicker \
+    copybit.msm8660 \
+    gralloc.msm8660 \
+    hwcomposer.msm8660 \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libtilerenderer
 
-#Theme package
+# OMX
 PRODUCT_PACKAGES += \
-	ThemeManager \
-	ThemeChooser \
-	com.tmobile.themes \
-	Androidian \
-	Cyanbread
+    libdivxdrmdecrypt \
+    libI420colorconvert \
+    libmm-omxcore \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libstagefrighthw
+
+# HDMI
+PRODUCT_PACKAGES += \
+    hdmid
+
+# USB
+PRODUCT_PACKAGES += \
+    com.android.future.usb.accessory
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     make_ext4fs \
-	com.android.future.usb.accessory \
     setup_fs
 
-# These are the hardware-specific features
+# feature permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
@@ -169,34 +59,21 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
-#	vendor/zte/V55/proprietary/etc/permissions/com.invensense.android.hardware.xml:/system/etc/permissions/com.invensense.android.hardware.xml \
-#	vendor/zte/V55/proprietary/etc/permissions/com.google.android.maps.xml:/system/etc/permissions/com.google.android.maps.xml \
-#	vendor/zte/V55/proprietary/etc/permissions/com.google.android.media.effects.xml:/system/etc/permissions/com.google.android.media.effects.xml \
-#	frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
-#	frameworks/native/data/etc/com.tmobile.software.themes.xml:/system/etc/permissions/com.tmobile.software.themes.xml \
-#	frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-
-
-# kcm keymaps
-PRODUCT_COPY_FILES += \
-    vendor/zte/V55/proprietary/usr/keychars/Generic.kcm:system/usr/keylayout/Generic.kcm \
-    vendor/zte/V55/proprietary/usr/keychars/qwerty2.kcm:system/usr/keylayout/qwerty2.kcm \
-    vendor/zte/V55/proprietary/usr/keychars/qwerty.kcm:system/usr/keylayout/qwerty.kcm \
-    vendor/zte/V55/proprietary/usr/keychars/Virtual.kcm:system/usr/keylayout/Virtual.kcm
 
 # kl keylayouts
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/usr/keylayout/matrix-keypad.kl:system/usr/keylayout/matrix-keypad.kl \
-	vendor/zte/V55/proprietary/usr/keylayout/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
-    vendor/zte/V55/proprietary/usr/keylayout/8660_handset.kl:system/usr/keylayout/8660_handset.kl \
-    vendor/zte/V55/proprietary/usr/keylayout/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
-    vendor/zte/V55/proprietary/usr/keylayout/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
+	device/zte/V55/input/matrix-keypad.kl:system/usr/keylayout/matrix-keypad.kl \
+	device/zte/V55/input/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
+# these don't seem to be particularly relevant
+#   device/zte/V55/input/8660_handset.kl:system/usr/keylayout/8660_handset.kl \
+#   device/zte/V55/input/ffa-keypad.kl:system/usr/keylayout/ffa-keypad.kl \
+#   device/zte/V55/input/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
 
 
 # idc files
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/usr/idc/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
-    vendor/zte/V55/proprietary/usr/icu/icudt44l.dat:system/usr/icu/icudt44l.dat
+	device/zte/V55/input/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
+    device/zte/V55/input/icudt44l.dat:system/usr/icu/icudt44l.dat
 
 # Audio files
 PRODUCT_COPY_FILES += \
@@ -216,13 +93,12 @@ PRODUCT_COPY_FILES += \
 #	vendor/zte/V55/proprietary/lib/libaudiopolicy.so:system/lib/libaudiopolicy.so \
 	
 # media codecs list
-PRODUCT_COPY_FILES += vendor/zte/V55/proprietary/etc/media_codecs.xml:system/etc/media_codecs.xml 
+PRODUCT_COPY_FILES += device/zte/V55/config/media_codecs.xml:system/etc/media_codecs.xml 
 
 # root dir
 PRODUCT_COPY_FILES += \
-	device/zte/V55/root/initlogo.rle:root/initlogo.rle \
-	device/zte/V55/root/sbin/resize2fs:root/sbin/resize2fs \
-	device/zte/V55/root/ueventd.qcom.rc:root/ueventd.qcom.rc \
+	device/zte/V55/ramdisk/initlogo.rle:root/initlogo.rle \
+	device/zte/V55/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
 
 # init scripts
 PRODUCT_COPY_FILES += \
@@ -282,13 +158,12 @@ PRODUCT_COPY_FILES += \
 
 #Sensors
 PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/etc/thermald.conf:system/etc/thermald.conf \
+	device/zte/V55/config/thermald.conf:system/etc/thermald.conf \
 	vendor/zte/V55/proprietary/lib/libmpl_sys_jni.so:system/lib/libmpl_sys_jni.so \
 	vendor/zte/V55/proprietary/lib/libmpl.so:system/lib/libmpl.so \
 	vendor/zte/V55/proprietary/lib/libmllite.so:system/lib/libmllite.so \
 	vendor/zte/V55/proprietary/lib/libmlplatform.so:system/lib/libmlplatform.so \
 	vendor/zte/V55/proprietary/lib/hw/sensors.msm8660.so:system/lib/hw/sensors.msm8660.so \
-#	vendor/zte/V55/proprietary/framework/com.invensense.android.hardware.jar:system/framework/com.invensense.android.hardware.jar \
 
 #wifi
 PRODUCT_COPY_FILES += \
@@ -296,31 +171,31 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/wifi/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
 
 #camera
-PRODUCT_COPY_FILES += \
-	vendor/zte/V55/proprietary/lib/libmmipl.so:system/lib/libmmipl.so \
-	vendor/zte/V55/proprietary/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
-	vendor/zte/V55/proprietary/lib/libmmjpeg.so:obj/lib/libmmjpeg.so \
-    vendor/zte/V55/proprietary/lib/liboemcamera.so:obj/lib/liboemcamera.so \
-    vendor/zte/V55/proprietary/lib/liboemcamera.so:system/lib/liboemcamera.so \
-	vendor/zte/V55/proprietary/lib/libgemini.so:system/lib/libgemini.so \
-	vendor/zte/V55/proprietary/lib/libmmmpo.so:system/lib/libmmmpo.so \
-    vendor/zte/V55/proprietary/bin/v4l2-qcamera-app:system/bin/v4l2-qcamera-app \
-	vendor/zte/V55/proprietary/bin/mm-qcamera-daemon:system/bin/mm-qcamera-daemon \
-	vendor/zte/V55/proprietary/bin/mm-qcamera-test:system/bin/mm-qcamera-test \
-	vendor/zte/V55/proprietary/bin/mm-mpo-enc-test:system/bin/mm-mpo-enc-test \
-	vendor/zte/V55/proprietary/bin/mm-qcamera-testsuite-client:system/bin/mm-qcamera-testsuite-client \
+#PRODUCT_COPY_FILES += \
+#	vendor/zte/V55/proprietary/lib/libmmipl.so:system/lib/libmmipl.so \
+#	vendor/zte/V55/proprietary/lib/libmmjpeg.so:system/lib/libmmjpeg.so \
+#	vendor/zte/V55/proprietary/lib/libmmjpeg.so:obj/lib/libmmjpeg.so \
+#   vendor/zte/V55/proprietary/lib/liboemcamera.so:obj/lib/liboemcamera.so \
+#   vendor/zte/V55/proprietary/lib/liboemcamera.so:system/lib/liboemcamera.so \
+#	vendor/zte/V55/proprietary/lib/libgemini.so:system/lib/libgemini.so \
+#	vendor/zte/V55/proprietary/lib/libmmmpo.so:system/lib/libmmmpo.so \
+#   vendor/zte/V55/proprietary/bin/v4l2-qcamera-app:system/bin/v4l2-qcamera-app \
+#	vendor/zte/V55/proprietary/bin/mm-qcamera-daemon:system/bin/mm-qcamera-daemon \
+#	vendor/zte/V55/proprietary/bin/mm-qcamera-test:system/bin/mm-qcamera-test \
+#	vendor/zte/V55/proprietary/bin/mm-mpo-enc-test:system/bin/mm-mpo-enc-test \
+#	vendor/zte/V55/proprietary/bin/mm-qcamera-testsuite-client:system/bin/mm-qcamera-testsuite-client \
 #	vendor/zte/V55/proprietary/lib/libcamera.so:obj/lib/libcamera.so \
 #   vendor/zte/V55/proprietary/lib/libcamera.so:system/lib/libcamera.so \
 #	vendor/zte/V55/proprietary/lib/hw/camera.msm8660.so:obj/lib/camera.msm8660.so \
 #   vendor/zte/V55/proprietary/lib/hw/camera.msm8660.so:system/linitinitib/hw/camera.msm8660.so \
 
 
-#wiperiface
+# location services
 #PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/lib/libcommondefs.so:system/lib/libcommondefs.so \
     vendor/zte/V55/proprietary/lib/libwiperjni.so:system/lib/libwiperjni.so \
-#	vendor/zte/V55/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \
-#   vendor/zte/V55/proprietary/lib/libloc_ext.so:system/lib/libloc_ext.so \
+	vendor/zte/V55/proprietary/lib/libloc_api-rpc-qc.so:system/lib/libloc_api-rpc-qc.so \
+    vendor/zte/V55/proprietary/lib/libloc_ext.so:system/lib/libloc_ext.so \
 #   vendor/zte/V55/proprietary/lib/libtcpfinaggr.so:system/lib/libtcpfinaggr.so \
 
 # Binary files
