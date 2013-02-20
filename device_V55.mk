@@ -1,12 +1,15 @@
+# Overlay
+DEVICE_PACKAGE_OVERLAYS := device/zte/V55/overlay
+
 # DPI
-PRODUCT_AAPT_CONFIG := hdpi xhdpi 
+PRODUCT_AAPT_CONFIG := hdpi xhdpi
 
 # Audio
-PRODUCT_PACKAGES += \
-    audio.a2dp.default \
-    audio_policy.msm8660 \
-    audio.primary.msm8660 \
-    libaudioutils
+#PRODUCT_PACKAGES += \
+#    audio.a2dp.default \
+#    audio_policy.msm8660 \
+#    audio.primary.msm8660 \
+#    libaudioutils
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -47,7 +50,6 @@ PRODUCT_PACKAGES += \
 # feature permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.camera.xml:system/etc/permissions/android.hardware.camera.xml \
     frameworks/native/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
