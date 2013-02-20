@@ -95,17 +95,15 @@ PRODUCT_COPY_FILES += \
 # media codecs list
 PRODUCT_COPY_FILES += device/zte/V55/config/media_codecs.xml:system/etc/media_codecs.xml 
 
-# root dir
+# ramdisk
 PRODUCT_COPY_FILES += \
 	device/zte/V55/ramdisk/initlogo.rle:root/initlogo.rle \
 	device/zte/V55/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
-
-# init scripts
-PRODUCT_COPY_FILES += \
-	device/zte/V55/root/init.qcom.rc:root/init.qcom.rc \
-	device/zte/V55/root/init.qcom.usb.rc:root/init.qcom.usb.rc 
+	device/zte/V55/ramdisk/init.qcom.rc:root/init.qcom.rc \
+	device/zte/V55/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
+	device/zte/V55/ramdisk/V55.fstab:root/V55.fstab
 	
-# VOLD files
+# fstab files
 PRODUCT_COPY_FILES += \
 	device/zte/V55/vold.fstab:system/etc/vold.fstab \
 	device/zte/V55/recovery.fstab:recovery/root/etc/recovery.fstab 
