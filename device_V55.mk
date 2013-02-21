@@ -5,11 +5,11 @@ DEVICE_PACKAGE_OVERLAYS := device/zte/V55/overlay
 PRODUCT_AAPT_CONFIG := hdpi xhdpi
 
 # Audio
-#PRODUCT_PACKAGES += \
-#    audio.a2dp.default \
-#    audio_policy.msm8660 \
-#    audio.primary.msm8660 \
-#    libaudioutils
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio_policy.V55 \
+    audio.primary.V55 \
+    libaudioutils
 
 # Graphics
 PRODUCT_PACKAGES += \
@@ -32,7 +32,9 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxAacEnc \
     libOmxAmrEnc \
-    libstagefrighthw
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc \
+    libstagefrighthw 
 
 # HDMI
 PRODUCT_PACKAGES += \
@@ -145,20 +147,6 @@ PRODUCT_COPY_FILES += \
 	vendor/zte/V55/proprietary/etc/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
 	vendor/zte/V55/proprietary/etc/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw 
 
-#codecs	
-PRODUCT_COPY_FILES += \
-    vendor/zte/V55/proprietary/lib/libOmxAacDec.so:/system/lib/libOmxAacDec.so \
-    vendor/zte/V55/proprietary/lib/libOmxQcelp13Dec.so:/system/lib/libOmxQcelp13Dec.so \
-    vendor/zte/V55/proprietary/lib/libOmxEvrcDec.so:/system/lib/libOmxEvrcDec.so \
-    vendor/zte/V55/proprietary/lib/libOmxWmaDec.so:/system/lib/libOmxWmaDec.so \
-	vendor/zte/V55/proprietary/lib/libmmparser.so:/system/lib/libmmparser.so \
-	vendor/zte/V55/proprietary/lib/libmmparser_divxdrmlib.so:/system/lib/libmmparser_divxdrmlib.so \
-	vendor/zte/V55/proprietary/lib/libmmosal.so:/system/lib/libmmosal.so \
-#   vendor/zte/V55/proprietary/lib/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
-#   vendor/zte/V55/proprietary/lib/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
-#	vendor/zte/V55/proprietary/lib/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
-#	vendor/zte/V55/proprietary/lib/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \
-
 #Sensors
 PRODUCT_COPY_FILES += \
 	device/zte/V55/config/thermald.conf:system/etc/thermald.conf \
@@ -219,4 +207,4 @@ PRODUCT_COPY_FILES += \
 #	vendor/zte/V55/proprietary/bin/thermald:system/bin/thermald \
 #	vendor/zte/V55/proprietary/bin/mpdecision:system/bin/mpdecision \
 
-$(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
