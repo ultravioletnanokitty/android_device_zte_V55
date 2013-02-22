@@ -102,7 +102,7 @@ PRODUCT_COPY_FILES += \
     device/zte/V55/ramdisk/V55.fstab:root/V55.fstab
 	
 # fstab files
-PRODUCT_COPY_FILES += \$(call inherit-product, device/common/gps/gps_us_supl.mk)
+PRODUCT_COPY_FILES += \
     device/zte/V55/vold.fstab:system/etc/vold.fstab \
     device/zte/V55/recovery.fstab:recovery/root/etc/recovery.fstab 
     
