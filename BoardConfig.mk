@@ -1,3 +1,9 @@
+##### Board configuration for ZTE V55/Optik #####
+### Copyright nobody because it's a fucking   ###
+### Makefile and it's ridiculous to copyright ###
+### such a document.            --ultraviolet ###
+#################################################
+
 TARGET_SPECIFIC_HEADER_PATH := device/zte/V55/include
 
 # CPU/Board Architecture
@@ -82,22 +88,22 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
     
 # Audio
-BOARD_USES_QCOM_LPA := true
-BOARD_USES_QCOM_AUDIO_V2 := true
+#BOARD_USES_QCOM_LPA := true
+#BOARD_USES_QCOM_AUDIO_V2 := true
 #TARGET_PROVIDES_LIBAUDIO := true
-QCOM_ACDB_ENABLED := true
-QCOM_VOIP_ENABLED := true
-QCOM_TUNNEL_LPA_ENABLED := true
-QCOM_ANC_HEADSET_ENABLED := true
-LEGACY_QCOM_VOICE :=true
+#QCOM_ACDB_ENABLED := true
+#QCOM_VOIP_ENABLED := true
+#QCOM_TUNNEL_LPA_ENABLED := true
+#QCOM_ANC_HEADSET_ENABLED := true
+#LEGACY_QCOM_VOICE :=true
 
 # Wi-Fi
-WPA_SUPPLICANT_VERSION      := VER_0_8_X
+WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-#BOARD_HOSTAPD_DRIVER        := WEXT
-#BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
-BOARD_WLAN_DEVICE           := bcmdhd
-BOARD_WLAN_DEVICE_REV		:= bcm4330_b2
+#BOARD_HOSTAPD_DRIVER := WEXT
+#BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_WLAN_DEVICE := bcmdhd
+BOARD_WLAN_DEVICE_REV := bcm4330_b2
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
 WIFI_DRIVER_MODULE_NAME := "dhd"
@@ -107,9 +113,9 @@ WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/bcm4330_b2.bin"
 #WIFI_DRIVER_FW_PATH_P2P := "/system/etc/wifi/bcm4330_p2p_b2.bin"
 #WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/fw_bcm4330_apsta_b2.bin"
 WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4330_b2.bin nvram_path=/persist/zte/wifi/bcm.txt"
-#WIFI_AP_DRIVER_MODULE_ARG  := "firmware_path=/system/etc/wifi/fw_bcm4330_apsta_b2.bin nvram_path=/persist/zte/wifi/bcm.txt"
+#WIFI_AP_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/fw_bcm4330_apsta_b2.bin nvram_path=/persist/zte/wifi/bcm.txt"
 CONFIG_DRIVER_WEXT := true
-WIFI_BAND                        := 802_11_ABGN
+WIFI_BAND := 802_11_ABGN
 BOARD_WEXT_NO_COMBO_SCAN := true
 BOARD_NETWORK_INTERFACES_DIR := "/sys/devices/virtual/net"
 PRODUCT_WIRELESS_TOOLS := true
@@ -151,7 +157,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 ADDITIONAL_DEFAULT_PROPERTIES += persist.service.adb.enable=1
 
 # Vold/UMS Stuff
-BOARD_VOLD_MAX_PARTITIONS :=30
+BOARD_VOLD_MAX_PARTITIONS := 30
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun0/file"
 BOARD_UMS_LUNFILE := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
