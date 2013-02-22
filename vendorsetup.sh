@@ -22,3 +22,4 @@
 
 add_lunch_combo cm_V55-eng
 add_lunch_combo cm_V55-userdebug
+add_lunch_combo ev_V55-eng
