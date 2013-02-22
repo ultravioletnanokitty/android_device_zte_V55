@@ -5,7 +5,7 @@
 #################################################
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS := device/zte/V55/overlay
+DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
 # DPI
 PRODUCT_AAPT_CONFIG := hdpi xhdpi
@@ -83,28 +83,28 @@ PRODUCT_COPY_FILES += \
 
 # input
 PRODUCT_COPY_FILES += \
-    device/zte/V55/input/matrix-keypad.kl:system/usr/keylayout/matrix-keypad.kl \
-    device/zte/V55/input/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
-    device/zte/V55/input/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
-    device/zte/V55/input/icudt44l.dat:system/usr/icu/icudt44l.dat
+    $(LOCAL_PATH)/input/matrix-keypad.kl:system/usr/keylayout/matrix-keypad.kl \
+    $(LOCAL_PATH)/input/pmic8058_pwrkey.kl:system/usr/keylayout/pmic8058_pwrkey.kl \
+    $(LOCAL_PATH)/input/atmel-touchscreen.idc:system/usr/idc/atmel-touchscreen.idc \
+    $(LOCAL_PATH)/input/icudt44l.dat:system/usr/icu/icudt44l.dat
 	
 # Config Files
 PRODUCT_COPY_FILES += \
-    device/zte/V55/config/media_codecs.xml:system/etc/media_codecs.xml \
-    device/zte/V55/config/thermald.conf:system/etc/thermald.conf \
+    $(LOCAL_PATH)/config/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/config/thermald.conf:system/etc/thermald.conf \
 
 # ramdisk
 PRODUCT_COPY_FILES += \
-    device/zte/V55/ramdisk/initlogo.rle:root/initlogo.rle \
-    device/zte/V55/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    device/zte/V55/ramdisk/init.qcom.rc:root/init.qcom.rc \
-    device/zte/V55/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    device/zte/V55/ramdisk/V55.fstab:root/V55.fstab
+    $(LOCAL_PATH)/ramdisk/initlogo.rle:root/initlogo.rle \
+    $(LOCAL_PATH)/ramdisk/ueventd.qcom.rc:root/ueventd.qcom.rc \
+    $(LOCAL_PATH)/ramdisk/init.qcom.rc:root/init.qcom.rc \
+    $(LOCAL_PATH)/ramdisk/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    $(LOCAL_PATH)/ramdisk/V55.fstab:root/V55.fstab
 	
 # fstab files
 PRODUCT_COPY_FILES += \
-    device/zte/V55/vold.fstab:system/etc/vold.fstab \
-    device/zte/V55/recovery.fstab:recovery/root/etc/recovery.fstab 
+    $(LOCAL_PATH)/vold.fstab:system/etc/vold.fstab \
+    $(LOCAL_PATH)/recovery.fstab:recovery/root/etc/recovery.fstab 
     
 $(call inherit-product-if-exists, vendor/zte/V55/V55-vendor-blobs.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
