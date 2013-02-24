@@ -1,12 +1,12 @@
 This is a device configuration for the ZTE (Sprint branded) Optik.
 
 The 4.1 branch builds properly with CM10 (cyanogenmod's jellybean branch) and should work with minimal modification for other 4.1-based ROMs.
-	Dependencies for 4.1 branch:
-		Github repo ultravioletnanokitty/android_vendor_zte_V55 at vendor/zte/V55
-		Github repo ultravioletnanokitty/android_kernel_zte_V55 at kernel/zte/V55
+Dependencies for 4.1 branch:
+	Github repo ultravioletnanokitty/android_vendor_zte_V55 at vendor/zte/V55
+	Github repo ultravioletnanokitty/android_kernel_zte_V55 at kernel/zte/V55
 		
 The 4.2 branch does not yet build properly with CM10.1 (cyanogenmod's cm-10.1 branch) or Evervolv's jellybean branch.
-	Dependencies for 4.2 branch:
-		All 4.1 dependencies
-		Github repo Evervolv/android_hardware_qcom_display at hardware/qcom/display
-		Github repo Evervolv/android_hardware_qcom_display at hardware/qcom/display-legacy
+Dependencies for 4.2 branch:
+	All 4.1 dependencies
+	Github repo Evervolv/android_hardware_qcom_display at hardware/qcom/display
+	Github repo Evervolv/android_hardware_qcom_display at hardware/qcom/display-legacy
