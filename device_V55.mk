@@ -32,13 +32,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libdivxdrmdecrypt \
     libI420colorconvert \
-    libmm-omxcore \
-    libOmxCore \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
     libstagefrighthw 
+#   libmm-omxcore \
+#   libOmxCore \
+#   libOmxAacEnc \
+#   libOmxAmrEnc \
+#   libOmxEvrcEnc \
+#   libOmxQcelp13Enc \
 #   libOmxVdec \
 #   libOmxVenc \
 
