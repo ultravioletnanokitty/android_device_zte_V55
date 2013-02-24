@@ -34,13 +34,13 @@ PRODUCT_PACKAGES += \
     libI420colorconvert \
     libmm-omxcore \
     libOmxCore \
-    libOmxVdec \
-    libOmxVenc \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxEvrcEnc \
     libOmxQcelp13Enc \
     libstagefrighthw 
+#   libOmxVdec \
+#   libOmxVenc \
 
 # GPS
 PRUDUCT_PACKAGES += \
@@ -79,7 +79,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
-    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 # input
 PRODUCT_COPY_FILES += \
@@ -91,7 +91,7 @@ PRODUCT_COPY_FILES += \
 # Config Files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/media_codecs.xml:system/etc/media_codecs.xml \
-    $(LOCAL_PATH)/config/thermald.conf:system/etc/thermald.conf \
+    $(LOCAL_PATH)/config/thermald.conf:system/etc/thermald.conf
 
 # ramdisk
 PRODUCT_COPY_FILES += \
