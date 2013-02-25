@@ -114,7 +114,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
 	device/zte/V55/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
     device/zte/V55/firmware/bcm4330.hcd:system/vendor/firmware/bcm4330.hcd \
-    device/zte/V55/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd
+    device/zte/V55/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \
 	device/zte/V55/firmware/dsps_fluid.b00:system/etc/firmware/dsps_fluid.b00 \
 	device/zte/V55/firmware/dsps_fluid.b01:system/etc/firmware/dsps_fluid.b01 \
 	device/zte/V55/firmware/dsps_fluid.b02:system/etc/firmware/dsps_fluid.b02 \
@@ -124,7 +124,7 @@ PRODUCT_COPY_FILES += \
 	device/zte/V55/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
 	device/zte/V55/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
 	device/zte/V55/firmware/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
-	device/zte/V55/firmware/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin \
+	device/zte/V55/firmware/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin
     
 $(call inherit-product-if-exists, vendor/zte/V55/V55-vendor-blobs.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
