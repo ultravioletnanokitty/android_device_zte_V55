@@ -1,11 +1,14 @@
 import /init.${ro.hardware}.usb.rc
 
-on early-init
+on init
+    # Set permissions for persist partition
+    mkdir /persist 0771 system system
+
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage 0550 system sdcard_r
     mkdir /storage/emulated 0555 root root
 
-    #External storage directories
+    # External storage directories
     mkdir /storage/sdcard1 0000 system system
     mkdir /storage/usbdisk0 0000 system system
 
@@ -23,12 +26,6 @@ on early-init
     symlink /storage/sdcard1 /mnt/sdcard-ext
     symlink /storage/usbdisk0 /usbdisk0
     symlink /storage/usbdisk0 /mnt/usbdisk0
-    
-on init
-    loglevel 8
-   
-    # create /persist
-    mkdir /persist 0771 system system
 
 on fs
     # mount mmc partitions
