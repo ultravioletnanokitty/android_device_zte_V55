@@ -20,17 +20,10 @@ on init
     # create /persist
     mkdir /persist 0771 system system
 
-on emmc-fs
+on fs
     # mount mmc partitions
-    wait /dev/block/mmcblk0p12
-    mount ext4 /dev/block/mmcblk0p12 /system ro barrier=1
-    wait /dev/block/mmcblk0p13
-    mount ext4 /dev/block/mmcblk0p13 /persist nosuid nodev barrier=1
-    wait /dev/block/mmcblk0p21
-    mount ext4 /dev/block/mmcblk0p21 /data nosuid nodev barrier=1
-    wait /dev/block/mmcblk0p14
-    mount ext4 /dev/block/mmcblk0p14 /cache nosuid nodev barrier=1
-
+    mount_all /V55.fstab
+    
 on post-fs-data
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
