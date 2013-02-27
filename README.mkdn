@@ -1,0 +1,20 @@
+Device Configuration for ZTE Optik (V55)
+===============
+
+Building
+---------------
+
+Initialise the CM10 repo with the following:
+
+    repo init -u git://github.com/CyanogenMod/android.git -b jellybean
+
+Copy the device local manifest to the appropriate location:
+
+	mkdir .repo/local_manifests
+	wget https://raw.github.com/ultravioletnanokitty/android_device_zte_V55-wifionly/4.1/V55.xml -O .repo/local_manifests/V55.xml
+	
+Sync and build as usual:
+
+	repo sync
+	. build/envsetup.sh
+	brunch V55
