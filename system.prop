@@ -1,15 +1,14 @@
 wifi.interface=eth0
-wifi.supplicant_scan_interval=15
+wifi.supplicant_scan_interval=90
 ro.bt.bdaddr_path=/persist/zte/bt/bt_addr.txt
 wifi.chip.type=BCM4330
 
-dalvik.vm.dexopt-data-only=1
 qemu.hw.mainkeys=0
 persist.sys.usbcharger.enable=1
 
 # graphics
 com.qc.hardware=true
-debug.composition.type=dyn
+debug.composition.type=gpu
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
