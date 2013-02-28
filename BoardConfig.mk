@@ -145,7 +145,7 @@ BOARD_UMS_LUNFILE := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
 # Recovery (TWRP)
 
-TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/V55/recovery/kernel
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/V55/recovery/kernel
 TARGET_PROVIDES_RECOVERY_INIT_RC := true
 TARGET_RECOVERY_INITRC := device/zte/V55/recovery/init.rc
 TARGET_RECOVERY_GUI := true
