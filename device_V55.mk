@@ -92,6 +92,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/media_codecs.xml:system/etc/media_codecs.xml \
     $(LOCAL_PATH)/config/thermald.conf:system/etc/thermald.conf \
+    $(LOCAL_PATH)/config/egl.cfg:system/lib/egl/egl.cfg
 
 # ramdisk
 PRODUCT_COPY_FILES += \
