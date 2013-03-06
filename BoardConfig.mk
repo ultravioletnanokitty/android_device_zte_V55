@@ -58,7 +58,7 @@ TARGET_HAVE_TSLIB := false
 #USE_CAMERA_STUB := false
 
 # Graphics
-BOARD_EGL_CFG := vendor/zte/V55/proprietary/lib/egl/egl.cfg
+BOARD_EGL_CFG := device/zte/V55/config/egl.cfg
 TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
 TARGET_USE_SCORPION_PLD_SET := true
 TARGET_SCORPION_BIONIC_PLDOFFS := 6
