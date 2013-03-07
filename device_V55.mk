@@ -109,23 +109,23 @@ PRODUCT_COPY_FILES += \
     
 # Firmware	
 PRODUCT_COPY_FILES += \
-	device/zte/V55/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
-	device/zte/V55/firmware/a225_pm4.fw:system/etc/firmware/a225_pm4.fw \
-	device/zte/V55/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
-	device/zte/V55/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
-	device/zte/V55/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
-    device/zte/V55/firmware/bcm4330.hcd:system/vendor/firmware/bcm4330.hcd \
-    device/zte/V55/firmware/bcm4329.hcd:system/vendor/firmware/bcm4329.hcd \
-	device/zte/V55/firmware/dsps_fluid.b00:system/etc/firmware/dsps_fluid.b00 \
-	device/zte/V55/firmware/dsps_fluid.b01:system/etc/firmware/dsps_fluid.b01 \
-	device/zte/V55/firmware/dsps_fluid.b02:system/etc/firmware/dsps_fluid.b02 \
-	device/zte/V55/firmware/dsps_fluid.b03:system/etc/firmware/dsps_fluid.b03 \
-	device/zte/V55/firmware/dsps_fluid.mdt:system/etc/firmware/dsps_fluid.mdt \
-	device/zte/V55/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
-	device/zte/V55/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
-	device/zte/V55/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
-	device/zte/V55/firmware/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
-	device/zte/V55/firmware/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin
+    $(LOCAL_PATH)/firmware/a225_pfp.fw:system/etc/firmware/a225_pfp.fw \
+    $(LOCAL_PATH)/firmware/a225_pm4.fw:system/etc/firmware/a225_pm4.fw \
+    $(LOCAL_PATH)/firmware/a225p5_pm4.fw:system/etc/firmware/a225p5_pm4.fw \
+    $(LOCAL_PATH)/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
+    $(LOCAL_PATH)/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
+    $(LOCAL_PATH)/firmware/bcm4330.hcd:system/etc/firmware/bcm4330.hcd \
+    $(LOCAL_PATH)/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd \
+    $(LOCAL_PATH)/firmware/dsps_fluid.b00:system/etc/firmware/dsps_fluid.b00 \
+    $(LOCAL_PATH)/firmware/dsps_fluid.b01:system/etc/firmware/dsps_fluid.b01 \
+    $(LOCAL_PATH)/firmware/dsps_fluid.b02:system/etc/firmware/dsps_fluid.b02 \
+    $(LOCAL_PATH)/firmware/dsps_fluid.b03:system/etc/firmware/dsps_fluid.b03 \
+    $(LOCAL_PATH)/firmware/dsps_fluid.mdt:system/etc/firmware/dsps_fluid.mdt \
+    $(LOCAL_PATH)/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
+    $(LOCAL_PATH)/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
+    $(LOCAL_PATH)/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
+    $(LOCAL_PATH)/firmware/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
+    $(LOCAL_PATH)/firmware/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin
 
 $(call inherit-product-if-exists, vendor/zte/V55/V55-vendor-blobs.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
