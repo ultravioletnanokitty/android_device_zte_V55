@@ -96,7 +96,7 @@ on boot
     mkdir /data/misc/audio 0770 audio audio
     mkdir /data/audio/ 2770 media audio
     
-service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm.hcd /dev/ttyHS0 any &
+service hciattach /system/bin/brcm_patchram_plus --enable_lpm --enable_hci --baudrate 921600 --patchram /etc/firmware/bcm4330.hcd /dev/ttyHS0 any &
     class main
     user bluetooth
     group bluetooth net_bt_admin
