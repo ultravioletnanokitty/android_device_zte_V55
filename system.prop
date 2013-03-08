@@ -12,7 +12,7 @@ debug.composition.type=gpu
 debug.enabletr=true
 debug.sf.hw=1
 ro.opengles.version=131072
-ro.sf.lcd_density=213
+ro.sf.lcd_density=216
 #
 # Power Saving/Sleep
 #
