@@ -4,7 +4,8 @@
   <project path="vendor/zte/V55" name="ultravioletnanokitty/android_vendor_zte_V55" remote="private" revision="master" />
   <project path="kernel/zte/V55" name="ultravioletnanokitty/android_kernel_zte_V55" remote="private" revision="master" /
 
-  <remove-project name="CyanogenMod/android_hardware_qcom_display" />
+  <remove-project name="CyanogenMod/android_hardware_libhardware" />
+  <project name="Albinoman887/android_hardware_libhardware" path="hardware/libhardware" revision="cm-10.1" />
   <remove-project name="CyanogenMod/android_frameworks_native" />
   <project name="Albinoman887/android_frameworks_native" path="frameworks/native" revision="cm-10.1" />
   <remove-project name="CyanogenMod/android_frameworks_av" />
@@ -13,6 +14,7 @@
   <project name="Albinoman887/android_frameworks_base" path="frameworks/base" revision="cm-10.1" />
   <remove-project name="CyanogenMod/android_hardware_qcom_media" />
   <project name="Albinoman887/android_hardware_qcom_media" path="hardware/qcom/media" revision="cm-10.1" />
-  <project name="Albinoman887/android_hardware_qcom_display-legacy" path="hardware/qcom/display-legacy" revision="cm-10.1" />
-  <project name="Albinoman887/android_hardware_qcom_media-legacy" path="hardware/qcom/media-legacy" revision="cm-10.1" />
+  <project name="Team-Hydra/android_hardware_qcom_display-legacy" path="hardware/qcom/display-legacy" revision="cm-10.1" />
+  <project name="Team-Hydra/android_hardware_qcom_media-legacy" path="hardware/qcom/media-legacy" revision="cm-10.1" />
+  <project name="Albinoman887/android_hardware_qcom_audio-legacy" path="hardware/qcom/audio-legacy" revision="jellybean" />
 </manifest>
