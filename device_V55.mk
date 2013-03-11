@@ -127,8 +127,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/firmware/leia_pfp_470.fw:system/etc/firmware/leia_pfp_470.fw \
     $(LOCAL_PATH)/firmware/leia_pm4_470.fw:system/etc/firmware/leia_pm4_470.fw \
     $(LOCAL_PATH)/firmware/vidc_1080p.fw:system/etc/firmware/vidc_1080p.fw \
-    $(LOCAL_PATH)/firmware/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
-    $(LOCAL_PATH)/firmware/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin
+    $(LOCAL_PATH)/firmware/fw_bcm4330_apsta_bg.bin:system/etc/firmware/fw_bcm4330_apsta_bg.bin \
+    $(LOCAL_PATH)/firmware/fw_bcm4330_abg.bin:system/etc/firmware/fw_bcm4330_abg.bin
     
 $(call inherit-product-if-exists, vendor/zte/V55/V55-vendor-blobs.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
