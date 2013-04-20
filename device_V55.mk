@@ -18,6 +18,7 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio_policy.msm8660 \
     audio.primary.msm8660 \
+    audio_policy.conf \
     libaudioutils
 
 # Graphics
@@ -28,22 +29,23 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libmemalloc \
     liboverlay \
-    libQcomUI \
+    libqdutils \
     libtilerenderer
 
 # OMX
 PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
     libdivxdrmdecrypt \
-    libI420colorconvert \
-    libstagefrighthw \
     libmm-omxcore \
     libOmxCore \
+    libOmxVdec \
+    libOmxVenc \
     libOmxAacEnc \
     libOmxAmrEnc \
-    libOmxEvrcEnc \
+    libstagefrighthw \
     libOmxQcelp13Enc \
-    libOmxVdec \
-    libOmxVenc 
+    libOmxEvrcEnc \
+    libOmxAmrEnc
 
 # GPS
 PRUDUCT_PACKAGES += \
