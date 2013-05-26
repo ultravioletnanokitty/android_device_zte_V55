@@ -139,26 +139,62 @@ static uint32_t SND_DEVICE_VR_HEADSET                 = 71;
 static uint32_t SND_DEVICE_HAC                        = 252;
 static uint32_t SND_DEVICE_USB_HEADSET                = 253;
 #endif
-static const uint32_t DEVICE_HANDSET_RX            = 0; // handset_rx
-static const uint32_t DEVICE_HANDSET_TX            = 1;//handset_tx
-static const uint32_t DEVICE_SPEAKER_RX            = 2; //speaker_stereo_rx
-static const uint32_t DEVICE_SPEAKER_TX            = 3;//speaker_mono_tx
-static const uint32_t DEVICE_HEADSET_RX            = 4; //headset_stereo_rx
-static const uint32_t DEVICE_HEADSET_TX            = 5; //headset_mono_tx
-static const uint32_t DEVICE_FMRADIO_HANDSET_RX    = 6; //fmradio_handset_rx
-static const uint32_t DEVICE_FMRADIO_HEADSET_RX    = 7; //fmradio_headset_rx
-static const uint32_t DEVICE_FMRADIO_SPEAKER_RX    = 8; //fmradio_speaker_rx
-static const uint32_t DEVICE_DUALMIC_HANDSET_TX    = 9; //handset_dual_mic_endfire_tx
-static const uint32_t DEVICE_DUALMIC_SPEAKER_TX    = 10; //speaker_dual_mic_endfire_tx
-static const uint32_t DEVICE_TTY_HEADSET_MONO_RX   = 11; //tty_headset_mono_rx
-static const uint32_t DEVICE_TTY_HEADSET_MONO_TX   = 12; //tty_headset_mono_tx
-static const uint32_t DEVICE_SPEAKER_HEADSET_RX    = 13; //headset_stereo_speaker_stereo_rx
-static const uint32_t DEVICE_FMRADIO_STEREO_TX     = 14;
-static const uint32_t DEVICE_HDMI_STERO_RX         = 15; //hdmi_stereo_rx
-static const uint32_t DEVICE_ANC_HEADSET_STEREO_RX = 16; //ANC RX
-static const uint32_t DEVICE_BT_SCO_RX             = 17; //bt_sco_rx
-static const uint32_t DEVICE_BT_SCO_TX             = 18; //bt_sco_tx
-static const uint32_t DEVICE_FMRADIO_STEREO_RX     = 19;
+static const uint32_t DEVICE_HANDSET_RX               = 0; // handset_rx
+static const uint32_t DEVICE_HANDSET_TX               = 1;//handset_tx
+static const uint32_t DEVICE_SPEAKER_RX               = 2; //speaker_stereo_rx
+static const uint32_t DEVICE_HEADSET_TX               = 3; //headset_mono_tx
+static const uint32_t DEVICE_SPEAKER_TX               = 4;//speaker_mono_tx
+static const uint32_t DEVICE_HEADSET_RX               = 5; //headset_stereo_rx
+static const uint32_t DEVICE_TTY_HEADSET_MONO_TX      = 6; //tty_headset_mono_tx
+static const uint32_t DEVICE_TTY_HEADSET_MONO_RX      = 7; //tty_headset_mono_rx
+static const uint32_t DEVICE_SPEAKER_HEADSET_RX       = 8; //headset_stereo_speaker_stereo_rx
+static const uint32_t DEVICE_HS_STEREO_LB             = 9;
+static const uint32_t DEVICE_SPEAKER_STEREO_LB        = 10;
+static const uint32_t DEVICE_LINEIN_PRI_TX             	 = 11;
+static const uint32_t DEVICE_FTM_HEADSET_MONO_RX           = 12;
+static const uint32_t DEVICE_FTM_HEADSET_MONO_L_RX         = 13;
+static const uint32_t DEVICE_FTM_HEADSET_MONO_R_RX         = 14;
+static const uint32_t DEVICE_FTM_HEADSET_MONO_DIFF_RX      = 15;
+static const uint32_t DEVICE_FTM_SPKR_MONO_RX              = 16;
+static const uint32_t DEVICE_FTM_SPKR_L_RX             	 = 17;
+static const uint32_t DEVICE_FTM_SPKR_R_RX             	 = 18;
+static const uint32_t DEVICE_FTM_SPKR_MONO_DIFF_RX         = 19;
+static const uint32_t DEVICE_FTM_LINEIN_L_TX               = 20;
+static const uint32_t DEVICE_FTM_LINEIN_R_TX               = 21;
+static const uint32_t DEVICE_FTM_AUX_OUT_RX             	 = 22;
+static const uint32_t DEVICE_FTM_DMIC1_LEFT_TX             = 23;
+static const uint32_t DEVICE_FTM_DMIC1_RIGHT_TX            = 24;
+static const uint32_t DEVICE_FTM_DMIC1_L_AND_R_TX          = 25;
+static const uint32_t DEVICE_FTM_DMIC2_LEFT_TX          	 = 26;
+static const uint32_t DEVICE_FTM_DMIC2_RIGHT_TX            = 27;
+static const uint32_t DEVICE_FTM_DMIC2_L_AND_R_TX       	 = 28;
+static const uint32_t DEVICE_FTM_HANDSET_MIC1_AUX_IN    	 = 29;
+static const uint32_t DEVICE_FTM_HANDSET_MIC_ADIE_LP_TX 	 = 30;
+static const uint32_t DEVICE_FTM_HEADSET_MIC_ADIE_LP_TX 	 = 31;
+static const uint32_t DEVICE_FTM_HANDSET_ADIE_LP_RX     	 = 32;
+static const uint32_t DEVICE_FTM_HEADSET_L_ADIE_LP_RX   	 = 33;
+static const uint32_t DEVICE_FTM_HEADSET_R_ADIE_LP_RX   	 = 34;
+static const uint32_t DEVICE_FTM_SPK_L_ADIE_LP_RX       	 = 35;
+static const uint32_t DEVICE_FTM_SPK_R_ADIE_LP_RX       	 = 36;
+static const uint32_t DEVICE_FTM_SPK_ADIE_LP_RX         	 = 37;
+static const uint32_t DEVICE_HANDSET_MIC1_HANDSET_MIC2     = 38;
+static const uint32_t DEVICE_BT_SCO_RX         		     = 39; //bt_sco_rx
+static const uint32_t DEVICE_BT_SCO_TX        		     = 40; //bt_sco_tx
+static const uint32_t DEVICE_FMRADIO_STEREO_TX  		     = 41;
+static const uint32_t DEVICE_FMRADIO_STEREO_RX    		 = 42;
+static const uint32_t DEVICE_MI2S_SD0_RX           	  	 = 43;
+static const uint32_t DEVICE_MI2S_SD1_RX           	  	 = 44;
+static const uint32_t DEVICE_MI2S_SD2_RX           	  	 = 45;
+static const uint32_t DEVICE_UPLINK_RX             		 = 46;
+static const uint32_t DEVICE_HDMI_STERO_RX       		     = 47; //hdmi_stereo_rx
+static const uint32_t DEVICE_HDMI_PASS_THROUGH             = 48;
++
+static const uint32_t DEVICE_FMRADIO_HANDSET_RX    = 49; //fmradio_handset_rx
+static const uint32_t DEVICE_FMRADIO_HEADSET_RX    = 50; //fmradio_headset_rx
+static const uint32_t DEVICE_FMRADIO_SPEAKER_RX    = 51; //fmradio_speaker_rx
+static const uint32_t DEVICE_DUALMIC_HANDSET_TX    = 52; //handset_dual_mic_endfire_tx
+static const uint32_t DEVICE_DUALMIC_SPEAKER_TX    = 53; //speaker_dual_mic_endfire_tx
+static const uint32_t DEVICE_ANC_HEADSET_STEREO_RX = 54; //ANC RX
 #ifdef SAMSUNG_AUDIO
 // Samsung devices
 static uint32_t DEVICE_HANDSET_VOIP_RX       = 40; // handset_voip_rx
@@ -768,10 +804,10 @@ AudioHardware::AudioHardware() :
 
         for(i = 0; i < dev_cnt;i++) {
             if(strcmp((char* )name[i],"handset_rx") == 0) {
-                index = DEVICE_HANDSET_RX;
+                index = DEVICE_SPEAKER_RX;
             }
             else if(strcmp((char* )name[i],"handset_tx") == 0) {
-                index = DEVICE_HANDSET_TX;
+                index = DEVICE_SPEAKER_TX;
             }
             else if((strcmp((char* )name[i],"speaker_stereo_rx") == 0) || 
                     (strcmp((char* )name[i],"speaker_stereo_rx_playback") == 0) ||
@@ -857,6 +893,25 @@ AudioHardware::AudioHardware() :
             }
             else if(strcmp((char*)name[i],"fmradio_stereo_rx") == 0)
                 index = DEVICE_FMRADIO_STEREO_RX;
+//V55
+            else if(strcmp((char* )name[i], "hs_stereo_lb") == 0)
+                index = DEVICE_HS_STEREO_LB;
+            else if(strcmp((char* )name[i], "speaker_stereo_lb") == 0)
+                index = DEVICE_SPEAKER_STEREO_LB;
+            else if(strcmp((char* )name[i], "linein_pri_tx") == 0)
+                index = DEVICE_LINEIN_PRI_TX;
+            else if(strcmp((char* )name[i], "handset_mic1_handset_mic2") == 0)
+                index = DEVICE_HANDSET_MIC1_HANDSET_MIC2;
+            else if(strcmp((char* )name[i], "mi2s_sd0_rx") == 0)
+                index = DEVICE_MI2S_SD0_RX;
+            else if(strcmp((char* )name[i], "mi2s_sd1_rx") == 0)
+                index = DEVICE_MI2S_SD1_RX;
+            else if(strcmp((char* )name[i], "mi2s_sd2_rx") == 0)
+                index = DEVICE_MI2S_SD2_RX;
+            else if(strcmp((char* )name[i], "uplink_rx") == 0)
+                index = DEVICE_UPLINK_RX;
+            else if(strcmp((char* )name[i], "hdmi_pass_through") == 0)
+                index = DEVICE_HDMI_PASS_THROUGH;
 #ifdef SAMSUNG_AUDIO
             else if(strcmp((char* )name[i], "handset_voip_rx") == 0)
                 index = DEVICE_HANDSET_VOIP_RX;
@@ -1732,8 +1787,8 @@ static status_t do_route_audio_rpc(uint32_t device,
     ALOGV("do_route_audio_rpc(%d, %d, %d)", device, mode, mic_mute);
 
     if(device == SND_DEVICE_HANDSET) {
-        new_rx_device = DEVICE_HANDSET_RX;
-        new_tx_device = DEVICE_HANDSET_TX;
+        new_rx_device = DEVICE_SPEAKER_RX;
+        new_tx_device = DEVICE_SPEAKER_TX;
         ALOGV("In HANDSET");
     }
     else if(device == SND_DEVICE_SPEAKER) {
@@ -1748,7 +1803,7 @@ static status_t do_route_audio_rpc(uint32_t device,
     }
     else if(device == SND_DEVICE_NO_MIC_HEADSET) {
         new_rx_device = DEVICE_HEADSET_RX;
-        new_tx_device = DEVICE_HANDSET_TX;
+        new_tx_device = DEVICE_SPEAKER_TX;
         ALOGV("In NO MIC HEADSET");
     }
 #if defined(QCOM_FM_ENABLED) || defined(STE_FM)
@@ -1831,7 +1886,7 @@ static status_t do_route_audio_rpc(uint32_t device,
     }
     else if(device == SND_DEVICE_HEADPHONE_AND_SPEAKER) {
         new_rx_device = DEVICE_SPEAKER_HEADSET_RX;
-        new_tx_device = DEVICE_HANDSET_TX;
+        new_tx_device = DEVICE_SPEAKER_TX;
         ALOGV("In DEVICE_SPEAKER_HEADSET_RX and DEVICE_HANDSET_TX");
         if(DEV_ID(new_rx_device) == INVALID_DEVICE) {
              new_rx_device = DEVICE_HEADSET_RX;
@@ -2396,7 +2451,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM8x60 *input)
               ) {
                 if (outputDevices & AudioSystem::DEVICE_OUT_EARPIECE) {
                     ALOGI("Routing audio to Handset\n");
-                    sndDevice = SND_DEVICE_HANDSET;
+                    sndDevice = SND_DEVICE_SPEAKER;
                 } else if (outputDevices & AudioSystem::DEVICE_OUT_WIRED_HEADPHONE) {
                     ALOGI("Routing audio to Speakerphone\n");
                     sndDevice = SND_DEVICE_NO_MIC_HEADSET;
@@ -2519,7 +2574,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM8x60 *input)
 #endif
           if(outputDevices & AudioSystem::DEVICE_OUT_EARPIECE){
             ALOGI("Routing audio to Handset\n");
-            sndDevice = SND_DEVICE_HANDSET;
+            sndDevice = SND_DEVICE_SPEAKER;
             audProcess = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
         }
     }
@@ -4660,7 +4715,7 @@ ssize_t AudioHardware::AudioStreamInMSM8x60::read( void* buffer, ssize_t bytes)
                   mChannels & AudioSystem::CHANNEL_IN_VOICE_UPLINK)) {
                  ALOGV("dec_id = %d,cur_tx= %d",dec_id,cur_tx);
                  if(cur_tx == INVALID_DEVICE)
-                     cur_tx = DEVICE_HANDSET_TX;
+                     cur_tx = DEVICE_SPEAKER_TX;
                  if(enableDevice(cur_tx, 1)) {
                      ALOGE("enableDevice failed for device cur_rx %d",cur_rx);
                      return -1;
