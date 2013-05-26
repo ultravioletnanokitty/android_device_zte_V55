@@ -188,7 +188,6 @@ static const uint32_t DEVICE_MI2S_SD2_RX           	  	 = 45;
 static const uint32_t DEVICE_UPLINK_RX             		 = 46;
 static const uint32_t DEVICE_HDMI_STERO_RX       		     = 47; //hdmi_stereo_rx
 static const uint32_t DEVICE_HDMI_PASS_THROUGH             = 48;
-+
 static const uint32_t DEVICE_FMRADIO_HANDSET_RX    = 49; //fmradio_handset_rx
 static const uint32_t DEVICE_FMRADIO_HEADSET_RX    = 50; //fmradio_headset_rx
 static const uint32_t DEVICE_FMRADIO_SPEAKER_RX    = 51; //fmradio_speaker_rx
