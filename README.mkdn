@@ -17,4 +17,5 @@ Sync and build as usual:
 
 	repo sync
 	. build/envsetup.sh
+	vendor/cm/get-prebuilts
 	brunch V55
