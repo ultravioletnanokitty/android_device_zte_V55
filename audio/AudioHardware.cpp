@@ -803,10 +803,10 @@ AudioHardware::AudioHardware() :
 
         for(i = 0; i < dev_cnt;i++) {
             if(strcmp((char* )name[i],"handset_rx") == 0) {
-                index = DEVICE_HANDSET_RX;
+                index = DEVICE_SPEAKER_RX;
             }
             else if(strcmp((char* )name[i],"handset_tx") == 0) {
-                index = DEVICE_HANDSET_TX;
+                index = DEVICE_SPEAKER_TX;
             }
             else if((strcmp((char* )name[i],"speaker_stereo_rx") == 0) || 
                     (strcmp((char* )name[i],"speaker_stereo_rx_playback") == 0) ||
@@ -1786,8 +1786,8 @@ static status_t do_route_audio_rpc(uint32_t device,
     ALOGV("do_route_audio_rpc(%d, %d, %d)", device, mode, mic_mute);
 
     if(device == SND_DEVICE_HANDSET) {
-        new_rx_device = DEVICE_HANDSET_RX;
-        new_tx_device = DEVICE_HANDSET_TX;
+        new_rx_device = DEVICE_SPEAKER_RX;
+        new_tx_device = DEVICE_SPEAKER_TX;
         ALOGV("In HANDSET");
     }
     else if(device == SND_DEVICE_SPEAKER) {
@@ -1802,7 +1802,7 @@ static status_t do_route_audio_rpc(uint32_t device,
     }
     else if(device == SND_DEVICE_NO_MIC_HEADSET) {
         new_rx_device = DEVICE_HEADSET_RX;
-        new_tx_device = DEVICE_HANDSET_TX;
+        new_tx_device = DEVICE_SPEAKER_TX;
         ALOGV("In NO MIC HEADSET");
     }
 #if defined(QCOM_FM_ENABLED) || defined(STE_FM)
@@ -1885,7 +1885,7 @@ static status_t do_route_audio_rpc(uint32_t device,
     }
     else if(device == SND_DEVICE_HEADPHONE_AND_SPEAKER) {
         new_rx_device = DEVICE_SPEAKER_HEADSET_RX;
-        new_tx_device = DEVICE_HANDSET_TX;
+        new_tx_device = DEVICE_SPEAKER_TX;
         ALOGV("In DEVICE_SPEAKER_HEADSET_RX and DEVICE_HANDSET_TX");
         if(DEV_ID(new_rx_device) == INVALID_DEVICE) {
              new_rx_device = DEVICE_HEADSET_RX;
@@ -2450,7 +2450,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM8x60 *input)
               ) {
                 if (outputDevices & AudioSystem::DEVICE_OUT_EARPIECE) {
                     ALOGI("Routing audio to Handset\n");
-                    sndDevice = SND_DEVICE_HANDSET;
+                    sndDevice = SND_DEVICE_SPEAKER;
                 } else if (outputDevices & AudioSystem::DEVICE_OUT_WIRED_HEADPHONE) {
                     ALOGI("Routing audio to Speakerphone\n");
                     sndDevice = SND_DEVICE_NO_MIC_HEADSET;
@@ -2573,7 +2573,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM8x60 *input)
 #endif
           if(outputDevices & AudioSystem::DEVICE_OUT_EARPIECE){
             ALOGI("Routing audio to Handset\n");
-            sndDevice = SND_DEVICE_HANDSET;
+            sndDevice = SND_DEVICE_SPEAKER;
             audProcess = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
         }
     }
@@ -4714,7 +4714,7 @@ ssize_t AudioHardware::AudioStreamInMSM8x60::read( void* buffer, ssize_t bytes)
                   mChannels & AudioSystem::CHANNEL_IN_VOICE_UPLINK)) {
                  ALOGV("dec_id = %d,cur_tx= %d",dec_id,cur_tx);
                  if(cur_tx == INVALID_DEVICE)
-                     cur_tx = DEVICE_HANDSET_TX;
+                     cur_tx = DEVICE_SPEAKER_TX;
                  if(enableDevice(cur_tx, 1)) {
                      ALOGE("enableDevice failed for device cur_rx %d",cur_rx);
                      return -1;
