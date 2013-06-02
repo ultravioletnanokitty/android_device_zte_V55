@@ -15,7 +15,8 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     libaudioutils \
     audio_policy.V55 \
-    audio.primary.V55
+    audio.primary.V55 \
+    audio_policy.conf
 
 # Graphics
 PRODUCT_PACKAGES += \
