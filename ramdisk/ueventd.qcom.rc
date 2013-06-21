@@ -34,8 +34,9 @@
 /dev/android_adb          0660   adb        adb
 /dev/android_adb_enable   0660   adb        adb
 /dev/ttyMSM0              0600   bluetooth  bluetooth
-/dev/ttyHS0               0600   bluetooth  bluetooth
-/dev/ttyGS0               0660   system     system
+/dev/ttyHS0               0666   bluetooth  bluetooth
+/dev/ttyGS0               0666   system     system
+/dev/rfkill          	  0666   root       root
 /dev/uinput               0660   system     bluetooth
 /dev/alarm                0664   system     radio
 /dev/tty0                 0660   root       system
@@ -137,10 +138,11 @@
 /dev/usb_accessory        0660   root       usb
 /dev/video*	          0660   system     camera 
 /dev/tun                  0660   system     vpn
+/dev/oncrpc/300000ba:00010000  0660   system     drmrpc
 #regular apps need to be able to open ion
 /dev/ion                  0664   system     system
 #rfcomm device for Bluetooth DUN
-/dev/rfcomm0              0660   bluetooth   bluetooth
+/dev/rfcomm0              0666   bluetooth   bluetooth
 /dev/btlock               0664   bluetooth  system
 
 # CDMA radio interface MUX
