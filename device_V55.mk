@@ -116,7 +116,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \
     $(LOCAL_PATH)/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
     $(LOCAL_PATH)/firmware/bcm4330.hcd:system/etc/firmware/bcm4330.hcd \
-    $(LOCAL_PATH)/firmware/bcm4329.hcd:system/etc/firmware/bcm4329.hcd \
     $(LOCAL_PATH)/firmware/dsps_fluid.b00:system/etc/firmware/dsps_fluid.b00 \
     $(LOCAL_PATH)/firmware/dsps_fluid.b01:system/etc/firmware/dsps_fluid.b01 \
     $(LOCAL_PATH)/firmware/dsps_fluid.b02:system/etc/firmware/dsps_fluid.b02 \
