@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <project path="device/zte/V55" name="ultravioletnanokitty/android_device_zte_V55-wifionly" remote="private" revision="4.1" />
-  <project path="vendor/zte/V55" name="ultravioletnanokitty/android_vendor_zte_V55" remote="private" revision="master" />
-  <project path="kernel/zte/V55" name="ultravioletnanokitty/android_kernel_zte_V55" remote="private" revision="master" />
+  <project path="device/zte/V55" name="ultravioletnanokitty/android_device_zte_V55-wifionly" remote="github" revision="4.1" />
+  <project path="vendor/zte/V55" name="ultravioletnanokitty/android_vendor_zte_V55" remote="github" revision="master" />
+  <project path="kernel/zte/V55" name="ultravioletnanokitty/android_kernel_zte_V55" remote="github" revision="master" />
 </manifest>
