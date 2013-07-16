@@ -4,6 +4,9 @@
 ### such a document.            --ultraviolet ###
 #################################################
 
+$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
 
@@ -44,8 +47,8 @@ PRODUCT_PACKAGES += \
     libstagefrighthw 
 
 # GPS
-PRUDUCT_PACKAGES += \
-    gps.default
+PRODUCT_PACKAGES += \
+    gps.V55
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -92,6 +95,7 @@ PRODUCT_COPY_FILES += \
 # Config Files
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/config/media_codecs.xml:system/etc/media_codecs.xml \
+    $(LOCAL_PATH)/config/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/config/thermald.conf:system/etc/thermald.conf \
     $(LOCAL_PATH)/config/egl.cfg:system/lib/egl/egl.cfg
 
@@ -128,4 +132,3 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/firmware/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin
 
 $(call inherit-product-if-exists, vendor/zte/V55/V55-vendor-blobs.mk)
-$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
