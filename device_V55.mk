@@ -48,8 +48,8 @@ PRODUCT_PACKAGES += \
     libOmxAmrEnc
 
 # GPS
-PRUDUCT_PACKAGES += \
-    gps.default
+PRODUCT_PACKAGES += \
+    gps.V55
 
 # Lights
 PRODUCT_PACKAGES += \
