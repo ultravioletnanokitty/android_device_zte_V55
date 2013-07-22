@@ -6,6 +6,8 @@
 
   <remove-project name="CyanogenMod/android_hardware_libhardware_legacy" />
   <project path="hardware/libhardware_legacy" name="Team-Hydra/android_hardware_libhardware_legacy" />
+  <remove-project name="CyanogenMod/android_hardware_qcom_gps" />
+  <project path="hardware/qcom/gps" name="CyanogenMod/android_hardware_qcom_gps" revision="jellybean" />
   <project path="hardware/qcom/display-legacy" name="Team-Hydra/android_hardware_qcom_display-legacy" />
   <project path="hardware/qcom/media-legacy" name="Team-Hydra/android_hardware_qcom_media-legacy" />
   <project path="prebuilt/linux-x86/toolchain/linaro" name="Team-Hydra/linaro" />
