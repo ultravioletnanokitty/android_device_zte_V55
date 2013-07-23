@@ -4,7 +4,9 @@
  ### such a document.            --ultraviolet ###
  #################################################
 
-$(call inherit-product, device/zte/smarttab-common/device_common.mk)
+$(call inherit-product, device/zte/smarttab-common/BoardConfigCommon.mk)
 
 TARGET_BOOTLOADER_BOARD_NAME := V55
 TARGET_KERNEL_CONFIG := v55_defconfig 
+
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := V55
