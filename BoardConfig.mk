@@ -4,7 +4,7 @@
  ### such a document.            --ultraviolet ###
  #################################################
 
--include device/zte/smarttab-common/BoardConfigCommon.mk)
+-include device/zte/smarttab-common/BoardConfigCommon.mk
 
 TARGET_BOOTLOADER_BOARD_NAME := V55
 TARGET_KERNEL_CONFIG := v55_defconfig 
