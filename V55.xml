@@ -6,5 +6,5 @@
   <project path="kernel/zte/smarttab" name="ultravioletnanokitty/android_kernel_zte_smarttab" remote="github" revision="master" />
 
   <remove-project name="CyanogenMod/android_external_bluetooth_bluez" />
-  <project path="external/bluetooth/bluez" name="ultravioletnanokitty/android_external_bluetooth_bluez" />
+  <project path="external/bluetooth/bluez" name="ultravioletnanokitty/android_external_bluetooth_bluez" revision="jellybean-smarttab" />
 </manifest>
