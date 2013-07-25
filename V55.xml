@@ -4,4 +4,7 @@
   <project path="device/zte/V55" name="ultravioletnanokitty/android_device_zte_V55" remote="github" revision="4.1" />
   <project path="vendor/zte/smarttab" name="ultravioletnanokitty/android_vendor_zte_smarttab" remote="github" revision="master" />
   <project path="kernel/zte/smarttab" name="ultravioletnanokitty/android_kernel_zte_smarttab" remote="github" revision="master" />
+
+  <remove-project name="CyanogenMod/android_external_bluetooth_bluez" />
+  <project path="external/bluetooth/bluez" name="ultravioletnanokitty/android_external_bluetooth_bluez" />
 </manifest>
