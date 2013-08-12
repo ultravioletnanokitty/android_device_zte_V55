@@ -11,7 +11,7 @@ Initialise the CM10 repo with the following:
 Copy the device local manifest to the appropriate location:
 
 	mkdir .repo/local_manifests
-	wget https://raw.github.com/ultravioletnanokitty/android_device_zte_V55-wifionly/4.1/V55.xml -O .repo/local_manifests/V55.xml
+	wget https://raw.github.com/ultravioletnanokitty/android_device_zte_V55-wifionly/4.1/smarttab.xml -O .repo/local_manifests/smarttab.xml
 	
 Sync and build as usual:
 
