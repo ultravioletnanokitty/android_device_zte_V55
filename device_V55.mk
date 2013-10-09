@@ -132,5 +132,5 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/firmware/apsta_bcm4330_b2.bin:system/etc/wifi/apsta_bcm4330_b2.bin \
     $(LOCAL_PATH)/firmware/bcm4330_b2.bin:system/etc/wifi/bcm4330_b2.bin
     
-$(call inherit-product-if-exists, vendor/zte/V55/V55-vendor-blobs.mk)
+$(call inherit-product-if-exists, vendor/zte/smarttab/smarttab-vendor-blobs.mk)
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)

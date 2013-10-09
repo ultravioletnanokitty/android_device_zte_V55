@@ -129,7 +129,7 @@ BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom vmal
 BOARD_KERNEL_BASE := 0x40200000
 BOARD_KERNEL_PAGESIZE := 2048
 TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-eabi-4.4.3
-TARGET_KERNEL_SOURCE := kernel/zte/V55
+TARGET_KERNEL_SOURCE := kernel/zte/smarttab
 TARGET_KERNEL_CONFIG := v55_defconfig 
 
 # SD Card		
@@ -147,8 +147,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/usb_mass_storage/lun0/
 BOARD_UMS_LUNFILE := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
 # Recovery (TWRP)
-
-#TARGET_PREBUILT_RECOVERY_KERNEL := device/zte/V55/recovery/kernel
 TARGET_PROVIDES_RECOVERY_INIT_RC := true
 TARGET_RECOVERY_INITRC := device/zte/V55/recovery/init.rc
 TARGET_RECOVERY_GUI := true
