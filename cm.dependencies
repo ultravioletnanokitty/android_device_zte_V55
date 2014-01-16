@@ -1,0 +1,14 @@
+[
+    {
+        "repository": "android_device_zte_smarttab-common",
+        "target_path": "device/zte/smarttab-common"
+    },
+    {
+        "repository": "android_kernel_zte_smarttab",
+        "target_path": "kernel/zte/smarttab"
+    }
+    {
+        "repository": "android_vendor_zte_smarttab",
+        "target_path": "vendor/zte/smarttab"
+    },
+]
