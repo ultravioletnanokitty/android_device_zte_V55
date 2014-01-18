@@ -4,14 +4,14 @@ Device Configuration for ZTE Optik (V55)
 Building
 ---------------
 
-Initialise the CM10.1 repo with the following:
+Initialise the CM10.2 repo with the following:
 
-    repo init -u git://github.com/CyanogenMod/android.git -b cm-10.1
+    repo init -u git://github.com/CyanogenMod/android.git -b cm-10.2
 
 Copy the device local manifest to the appropriate location:
 
 	mkdir .repo/local_manifests
-	wget https://raw.github.com/ultravioletnanokitty/android_device_zte_smarttab-common/4.2/smarttab.xml -O .repo/local_manifests/smarttab.xml
+	wget https://raw.github.com/ultravioletnanokitty/android_device_zte_smarttab-common/cm-10.2/smarttab.xml -O .repo/local_manifests/smarttab.xml
 	
 Sync and build as usual:
 
