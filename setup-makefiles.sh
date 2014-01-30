@@ -31,7 +31,9 @@ PRODUCT_COPY_FILES := \\
     $OUTDIR/proprietary/lib/libaudio.so:obj/lib/libaudio.so \\
     $OUTDIR/proprietary/lib/libdiag.so:obj/lib/libdiag.so \\
     $OUTDIR/proprietary/lib/libaudiopolicy.so:obj/lib/libaudiopolicy.so \\
+    $OUTDIR/proprietary/lib/libmmjpeg.so:obj/lib/libmmjpeg.so \\
     $OUTDIR/proprietary/lib/liboemcamera.so:obj/lib/liboemcamera.so \\
+    $OUTDIR/proprietary/lib/libcamera.so:obj/lib/libcamera.so \\
     $OUTDIR/proprietary/lib/hw/camera.msm8660.so:obj/lib/camera.msm8660.so 
 
 PRODUCT_COPY_FILES += \\

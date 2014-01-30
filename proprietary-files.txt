@@ -1,5 +1,6 @@
 # Proprietary Executables
 bin/battery_charging
+bin/brcm_patchram_plus
 bin/bridgemgrd
 bin/port-bridge
 bin/qmiproxy
@@ -50,16 +51,13 @@ lib/libsc-a2xx.so
 lib/libc2d2_z180.so
 
 # Camera
+lib/libcamera.so
 lib/libmmipl.so
 lib/libmmjpeg.so
 lib/libmmmpo.so
-lib/libmmstereo.so
 lib/libmmparser.so
 lib/liboemcamera.so
 lib/libgemini.so
-lib/libchromatix_imx074_default_video.so
-lib/libchromatix_imx074_preview.so
-lib/libchromatix_imx074_zsl.so
 bin/v4l2-qcamera-app
 bin/mm-qcamera-daemon
 bin/mm-qcamera-test
